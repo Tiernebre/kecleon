@@ -15,10 +15,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src"
@@ -31,5 +35,7 @@
     "./src/stories/**/*",
     "./src/setupTests.ts"
   ],
-  "files": ["./src/index.ts"]
+  "files": [
+    "./src/index.ts"
+  ]
 }
