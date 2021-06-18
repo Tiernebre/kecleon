@@ -1,0 +1,6 @@
+# Ignore artficats:
+dist
+build
+node_modules
+coverage
+lib
