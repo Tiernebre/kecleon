@@ -1,5 +1,8 @@
 # kecleon
 
+![Release Workflow](https://github.com/Tiernebre/kecleon/workflows/Release/badge.svg)
+[![npm version](https://badge.fury.io/js/%40tiernebre%2Fkecleon.svg)](https://badge.fury.io/js/%40tiernebre%2Fkecleon)
+
 My own personal design system / front-end toolkit that I utilize for my
 software projects.
 
