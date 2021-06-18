@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# kecleon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Release Workflow](https://github.com/Tiernebre/kecleon/workflows/Release/badge.svg)
+[![npm version](https://badge.fury.io/js/%40tiernebre%2Fkecleon.svg)](https://www.npmjs.com/package/@tiernebre/kecleon)
 
-## Available Scripts
+My own personal design system / front-end toolkit that I utilize for my
+software projects.
 
-In the project directory, you can run:
+## Philosophies
 
-### `yarn start`
+Because this is my personal design system, there are some philosophies
+that I've taken over my years of developing front-end web applications
+and UIs that this I want this design system to truly show:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Accessibility is important, not only for increasing the audience of
+  your applications but also means your code is much higher quality.
+- A mobile-first design approach, with general screen size responsiveness
+  always being a consideration and feature of any component.
+- Atomic Design translates very well to React based components, and
+  lends to scalable and re-usable designs.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `yarn test`
+React is absolutely the way to go and is my preferred choice for a
+front-end component library.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+TypeScript support, so every component is statically typed and has
+linter and static analysis checks to ensure quality is maintained
+over time.
 
-### `yarn build`
+I'm using Storybook as a way to serve the components to be easier
+to build and develop. Eventually I plan on publicly hosting an
+up-to-date Storybook instance that demoes my components live!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you wish to use kecleon in your project, all you need to do
+is add it as a dependency, such as below:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+yarn add @tiernebre/kecleon
 
-### `yarn eject`
+# or if you use NPM
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+npm install @tiernebre/kecleon
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Developing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Prerequisites
 
-## Learn More
+- Yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Steps
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Install dependencies:
+
+```sh
+yarn install
+```
+
+2. Start up a local Storybook server that lets you develop the components without
+   needing to link to another project:
+
+```sh
+yarn start
+```
+
+## License
+
+This project is [MIT Licensed](./LICENSE).
