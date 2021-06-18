@@ -17,8 +17,7 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "isolatedModules": true
   },
   "include": ["src"],
   "exclude": [
