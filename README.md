@@ -16,8 +16,25 @@ yarn add @tiernebre/kecleon
 npm install @tiernebre/kecleon
 ```
 
-## Getting Started
+## Developing
 
-### Prerequisites
+### Getting Started
+
+#### Prerequisites
 
 - Yarn
+
+#### Steps
+
+1. Install dependencies:
+
+```sh
+yarn install
+```
+
+2. Start up a local Storybook server that lets you develop the components without
+   needing to link to another project:
+
+```sh
+yarn start
+```
