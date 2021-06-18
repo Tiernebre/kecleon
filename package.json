@@ -41,6 +41,7 @@
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "react-app",
       "react-app/jest",
       "plugin:jsx-a11y/recommended"
@@ -54,7 +55,12 @@
           "import/no-anonymous-default-export": "off"
         }
       }
-    ]
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.eslint.json"
+      ]
+    }
   },
   "browserslist": {
     "production": [
