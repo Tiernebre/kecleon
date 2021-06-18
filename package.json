@@ -41,9 +41,11 @@
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "react-app",
       "react-app/jest",
-      "plugin:jsx-a11y/recommended"
+      "plugin:jsx-a11y/recommended",
+      "prettier"
     ],
     "overrides": [
       {
@@ -54,7 +56,12 @@
           "import/no-anonymous-default-export": "off"
         }
       }
-    ]
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.eslint.json"
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -75,6 +82,7 @@
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
+    "eslint-config-prettier": "^8.3.0",
     "lint-staged": ">=10",
     "prettier": "^2.3.1"
   },
