@@ -1,3 +1,7 @@
 src
 .storybook
+.github
+.eslintignore
+.prettierignore
+tsconfig.json
 tsconfig.json
