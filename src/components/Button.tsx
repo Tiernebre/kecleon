@@ -1,3 +1,3 @@
-export const Button = () => {
-  return <button>Hi, it's Kecleon!</button>
-}
+export const Button = (): JSX.Element => {
+  return <button>Hi, it's Kecleon!</button>;
+};
