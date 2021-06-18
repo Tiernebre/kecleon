@@ -1,6 +1,7 @@
 {
   "name": "kecleon",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "directories": {
     "lib": "lib"
