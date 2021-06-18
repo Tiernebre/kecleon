@@ -64,3 +64,7 @@ yarn install
 ```sh
 yarn start
 ```
+
+## License
+
+This project is [MIT Licensed](./LICENSE).
