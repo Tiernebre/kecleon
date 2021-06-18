@@ -1,3 +1,10 @@
+import { Fragment } from "react";
+
 export const Button = () => {
-  return <button>Hi, it's Kecleon!</button>;
+  return (
+    <Fragment>
+      <button>Hi, it's Kecleon!</button>
+      <img src="./foo.png"></img>
+    </Fragment>
+  );
 };
