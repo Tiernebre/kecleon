@@ -29,8 +29,9 @@
     "url": "https://github.com/Tiernebre/kecleon.git"
   },
   "scripts": {
-    "clean": "rm -rf ./lib",
-    "build": "tsc",
+    "clean": "rimraf ./lib",
+    "prebuild": "yarn clean",
+    "build": "tsc --p tsconfig.lib.json",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint . --max-warnings=0",
     "test": "react-scripts test",
@@ -84,7 +85,8 @@
     "@storybook/react": "^6.2.9",
     "eslint-config-prettier": "^8.3.0",
     "lint-staged": ">=10",
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.1",
+    "rimraf": "^3.0.2"
   },
   "resolutions": {
     "babel-loader": "8.1.0"
