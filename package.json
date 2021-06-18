@@ -30,7 +30,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./lib",
-    "build": "tsc --p tsconfig.components.json",
+    "build": "tsc --p tsconfig.lib.json",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint . --max-warnings=0",
     "test": "react-scripts test",
