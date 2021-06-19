@@ -22,17 +22,25 @@ export type ButtonProps = {
   light?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = (props: ButtonProps): JSX.Element => {
+export const Button = ({
+  color,
+  light,
+  ...props
+}: ButtonProps): JSX.Element => {
   const classes: string[] = ["button"];
 
-  if (props.color) {
-    classes.push(`is-${props.color.toLowerCase()}`);
+  if (color) {
+    classes.push(`is-${color.toLowerCase()}`);
   }
-  if (props.light) {
+  if (light) {
     classes.push(`is-light`);
   }
 
   const className = classes.join(" ");
 
-  return <button className={className}>{props.children}</button>;
+  return (
+    <button {...props} className={className}>
+      {props.children}
+    </button>
+  );
 };

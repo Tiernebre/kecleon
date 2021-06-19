@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Button, ButtonColor, ButtonColors } from "./Button";
+import user from "@testing-library/user-event";
 
 const lightCompatibleColors: ButtonColor[] = [
   "primary",
@@ -19,6 +20,22 @@ it("renders a button", () => {
   expect(foundButton).toBeInTheDocument();
 });
 
+it("renders a button with passed to natural HTML button attributes", () => {
+  const text = "Button Test";
+  const onClick = jest.fn();
+  render(
+    <Button type="submit" onClick={onClick}>
+      {text}
+    </Button>
+  );
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toHaveAttribute("type", "submit");
+  user.click(foundButton);
+  expect(onClick).toHaveBeenCalled();
+});
+
 it.each(ButtonColors)(
   "displays the button with color %p when provided",
   (color: ButtonColor) => {
@@ -36,7 +53,7 @@ it.each<ButtonColor>(lightCompatibleColors)(
   (color: ButtonColor) => {
     const text = `Button ${color} Light Test`;
     render(
-      <Button color={color} light>
+      <Button color={color} light={true}>
         {text}
       </Button>
     );
