@@ -1,6 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { Button, ButtonColor, ButtonColors } from "./Button";
 
+const lightCompatibleColors: ButtonColor[] = [
+  "primary",
+  "danger",
+  "warning",
+  "success",
+  "info",
+  "link",
+];
+
 it("renders a button", () => {
   const text = "Button Test";
   render(<Button>{text}</Button>);
@@ -22,14 +31,7 @@ it.each(ButtonColors)(
   }
 );
 
-it.each<ButtonColor>([
-  "primary",
-  "danger",
-  "warning",
-  "success",
-  "info",
-  "link",
-])(
+it.each<ButtonColor>(lightCompatibleColors)(
   "displays the button in a light variant with color = %p",
   (color: ButtonColor) => {
     const text = `Button ${color} Light Test`;
@@ -43,5 +45,35 @@ it.each<ButtonColor>([
     });
     expect(foundButton).toHaveClass(`is-${color}`);
     expect(foundButton).toHaveClass("is-light");
+  }
+);
+
+it.each<ButtonColor>(lightCompatibleColors)(
+  "displays the button in a non-light variant with color = %p if light is false",
+  (color: ButtonColor) => {
+    const text = `Button ${color} Non-Light Test`;
+    render(
+      <Button color={color} light={false}>
+        {text}
+      </Button>
+    );
+    const foundButton = screen.getByRole("button", {
+      name: text,
+    });
+    expect(foundButton).toHaveClass(`is-${color}`);
+    expect(foundButton).not.toHaveClass("is-light");
+  }
+);
+
+it.each<ButtonColor>(lightCompatibleColors)(
+  "displays the button in a non-light variant with color = %p if light is not provided",
+  (color: ButtonColor) => {
+    const text = `Button ${color} Non-Light Test`;
+    render(<Button color={color}>{text}</Button>);
+    const foundButton = screen.getByRole("button", {
+      name: text,
+    });
+    expect(foundButton).toHaveClass(`is-${color}`);
+    expect(foundButton).not.toHaveClass("is-light");
   }
 );
