@@ -23,7 +23,13 @@ export const White = Template.bind({});
 White.args = {
   color: "white",
 };
+
 export const Black = Template.bind({});
 Black.args = {
   color: "black",
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  color: "dark",
 };
