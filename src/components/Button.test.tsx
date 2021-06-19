@@ -23,15 +23,16 @@ it("renders a button", () => {
 it("renders a button with passed to natural HTML button attributes", () => {
   const text = "Button Test";
   const onClick = jest.fn();
+  const type = "submit";
   render(
-    <Button type="submit" onClick={onClick}>
+    <Button type={type} onClick={onClick}>
       {text}
     </Button>
   );
   const foundButton = screen.getByRole("button", {
     name: text,
   });
-  expect(foundButton).toHaveAttribute("type", "submit");
+  expect(foundButton).toHaveAttribute("type", type);
   user.click(foundButton);
   expect(onClick).toHaveBeenCalled();
 });
