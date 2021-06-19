@@ -7,7 +7,7 @@ export const ButtonColors = [
   "black",
   "text",
   "ghost",
-];
+] as const;
 
 type ButtonColor = typeof ButtonColors[number];
 
