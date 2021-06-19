@@ -1,6 +1,15 @@
 import { ButtonHTMLAttributes } from "react";
 
-type ButtonColor = "white" | "light" | "dark" | "black" | "text" | "ghost";
+export const ButtonColors = [
+  "white",
+  "light",
+  "dark",
+  "black",
+  "text",
+  "ghost",
+];
+
+type ButtonColor = typeof ButtonColors[number];
 
 export type ButtonProps = {
   color?: ButtonColor;
