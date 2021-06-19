@@ -12,7 +12,7 @@ export default {
         options: ButtonColors,
       },
     },
-    isLight: {
+    light: {
       control: {
         type: "boolean",
       },
