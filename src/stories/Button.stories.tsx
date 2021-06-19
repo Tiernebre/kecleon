@@ -15,15 +15,15 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<ButtonProps> = (args) => (
+  <Button {...args}>Button</Button>
+);
 
 export const White = Template.bind({});
 White.args = {
   color: "white",
-  children: "Button",
 };
 export const Black = Template.bind({});
 Black.args = {
   color: "black",
-  children: "Button",
 };
