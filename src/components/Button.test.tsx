@@ -22,7 +22,14 @@ it.each(ButtonColors)(
   }
 );
 
-it.each<ButtonColor>(["primary", "danger", "warning", "success"])(
+it.each<ButtonColor>([
+  "primary",
+  "danger",
+  "warning",
+  "success",
+  "info",
+  "link",
+])(
   "displays the button in a light variant with color = %p",
   (color: ButtonColor) => {
     const text = `Button ${color} Light Test`;
