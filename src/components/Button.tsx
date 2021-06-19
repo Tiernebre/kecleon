@@ -9,7 +9,7 @@ export const ButtonColors = [
   "ghost",
 ] as const;
 
-type ButtonColor = typeof ButtonColors[number];
+export type ButtonColor = typeof ButtonColors[number];
 
 export type ButtonProps = {
   color?: ButtonColor;
