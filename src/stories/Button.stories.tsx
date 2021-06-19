@@ -64,3 +64,33 @@ export const Ghost = Template.bind({});
 Ghost.args = {
   color: "ghost",
 };
+
+export const Primary = Template.bind({});
+Primary.args = {
+  color: "primary",
+};
+
+export const Link = Template.bind({});
+Link.args = {
+  color: "link",
+};
+
+export const Info = Template.bind({});
+Info.args = {
+  color: "info",
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  color: "success",
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  color: "warning",
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  color: "danger",
+};
