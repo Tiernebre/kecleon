@@ -19,6 +19,9 @@ const Template: Story<ButtonProps> = (args) => (
   <Button {...args}>Button</Button>
 );
 
+export const DefaultButton = Template.bind({});
+DefaultButton.args = {};
+
 export const White = Template.bind({});
 White.args = {
   color: "white",
