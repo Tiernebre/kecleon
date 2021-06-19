@@ -7,11 +7,13 @@ export type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = (props: ButtonProps): JSX.Element => {
-  let className = "button";
+  const classes: string[] = ["button"];
 
   if (props.color) {
-    className += `is-${props.color.toLowerCase()}`;
+    classes.push(`is-${props.color.toLowerCase()}`);
   }
+
+  const className = classes.join(" ");
 
   return <button className={className}>{props.children}</button>;
 };
