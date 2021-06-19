@@ -19,6 +19,7 @@ export type ButtonColor = typeof ButtonColors[number];
 
 export type ButtonProps = {
   color?: ButtonColor;
+  light?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = (props: ButtonProps): JSX.Element => {
@@ -26,6 +27,9 @@ export const Button = (props: ButtonProps): JSX.Element => {
 
   if (props.color) {
     classes.push(`is-${props.color.toLowerCase()}`);
+  }
+  if (props.light) {
+    classes.push(`is-light`);
   }
 
   const className = classes.join(" ");

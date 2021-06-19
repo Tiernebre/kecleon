@@ -12,6 +12,11 @@ export default {
         options: ButtonColors,
       },
     },
+    isLight: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 } as Meta;
 
@@ -35,4 +40,19 @@ Black.args = {
 export const Dark = Template.bind({});
 Dark.args = {
   color: "dark",
+};
+
+export const Light = Template.bind({});
+Light.args = {
+  color: "light",
+};
+
+export const Text = Template.bind({});
+Text.args = {
+  color: "text",
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  color: "ghost",
 };
