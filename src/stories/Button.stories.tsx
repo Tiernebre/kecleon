@@ -17,11 +17,19 @@ export default {
         type: "boolean",
       },
     },
+    children: {
+      control: {
+        type: "text",
+      },
+    },
+  },
+  args: {
+    children: "Button",
   },
 } as Meta;
 
 const Template: Story<ButtonProps> = (args) => (
-  <Button {...args}>Button</Button>
+  <Button {...args}>{args.children}</Button>
 );
 
 export const DefaultButton = Template.bind({});
