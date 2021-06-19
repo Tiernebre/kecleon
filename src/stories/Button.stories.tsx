@@ -17,3 +17,8 @@ White.args = {
   color: "white",
   children: "Button",
 };
+export const Black = Template.bind({});
+Black.args = {
+  color: "black",
+  children: "Button",
+};
