@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Button } from "../components/Button";
+import { Button, ButtonProps } from "../components/Button";
 
 export default {
   title: "Example/Button",
@@ -10,10 +10,10 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <Button {...args} />;
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Button",
+export const White = Template.bind({});
+White.args = {
+  color: "white",
+  children: "Button",
 };

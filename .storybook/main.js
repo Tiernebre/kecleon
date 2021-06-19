@@ -6,4 +6,7 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "@storybook/preset-scss",
   ],
+  typescript: {
+    reactDocgen: "react-docgen",
+  },
 };
