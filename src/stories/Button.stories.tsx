@@ -1,37 +1,96 @@
-import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { Button, ButtonProps } from "./Button";
+import { Button, ButtonColors, ButtonProps } from "../components/Button";
 
 export default {
   title: "Example/Button",
   component: Button,
   argTypes: {
-    backgroundColor: { control: "color" },
+    color: {
+      control: {
+        type: "select",
+        options: ButtonColors,
+      },
+    },
+    light: {
+      control: {
+        type: "boolean",
+      },
+    },
+    children: {
+      control: {
+        type: "text",
+      },
+    },
+  },
+  args: {
+    children: "Button",
   },
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<ButtonProps> = (args) => (
+  <Button {...args}>{args.children}</Button>
+);
+
+export const DefaultButton = Template.bind({});
+DefaultButton.args = {};
+
+export const White = Template.bind({});
+White.args = {
+  color: "white",
+};
+
+export const Black = Template.bind({});
+Black.args = {
+  color: "black",
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+  color: "dark",
+};
+
+export const Light = Template.bind({});
+Light.args = {
+  color: "light",
+};
+
+export const Text = Template.bind({});
+Text.args = {
+  color: "text",
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  color: "ghost",
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
-  label: "Button",
+  color: "primary",
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: "Button",
+export const Link = Template.bind({});
+Link.args = {
+  color: "link",
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
-  label: "Button",
+export const Info = Template.bind({});
+Info.args = {
+  color: "info",
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
-  label: "Button",
+export const Success = Template.bind({});
+Success.args = {
+  color: "success",
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  color: "warning",
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  color: "danger",
 };
