@@ -24,6 +24,7 @@
     "clean": "rimraf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --p tsconfig.lib.json",
+    "postbuild": "copyfiles -u 1 src/styles/**/* lib",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint . --max-warnings=0",
     "test": "react-scripts test",
