@@ -1,6 +1,11 @@
 import { Story, Meta } from "@storybook/react";
 
-import { IconButton, IconButtonProps } from "../components";
+import {
+  ButtonColors,
+  ButtonSizes,
+  IconButton,
+  IconButtonProps,
+} from "../components";
 
 export default {
   title: "Example/IconButton",
@@ -11,11 +16,30 @@ export default {
         type: "text",
       },
     },
+    color: {
+      control: {
+        type: "select",
+        options: ButtonColors,
+      },
+    },
+    light: {
+      control: {
+        type: "boolean",
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: ButtonSizes,
+      },
+    },
+    loading: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   args: {
-    button: {
-      color: "primary",
-    },
     icon: {
       name: "home",
     },

@@ -4,16 +4,16 @@ import { Icon, IconProps } from "../icon";
 
 export type IconButtonProps = PropsWithChildren<{
   icon: IconProps;
-  button: ButtonProps;
-}>;
+}> &
+  ButtonProps;
 
 export const IconButton = ({
   icon,
-  button,
   children,
+  ...buttonProps
 }: IconButtonProps): JSX.Element => {
   return (
-    <Button {...button}>
+    <Button {...buttonProps}>
       <Icon {...icon} />
       {children && <span>{children}</span>}
     </Button>
