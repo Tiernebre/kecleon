@@ -15,16 +15,21 @@ export const ButtonColors = [
   "danger",
 ] as const;
 
+export const ButtonSizes = ["small", "normal", "medium", "large"];
+
 export type ButtonColor = typeof ButtonColors[number];
+export type ButtonSize = typeof ButtonSizes[number];
 
 export type ButtonProps = {
   color?: ButtonColor;
   light?: boolean;
+  size?: ButtonSize;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
   color,
   light,
+  size,
   ...props
 }: ButtonProps): JSX.Element => {
   const classes: string[] = ["button"];
@@ -34,6 +39,9 @@ export const Button = ({
   }
   if (light) {
     classes.push(`is-light`);
+  }
+  if (size) {
+    classes.push(`is-${size}`);
   }
 
   const className = classes.join(" ");

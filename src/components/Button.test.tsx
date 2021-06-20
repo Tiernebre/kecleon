@@ -1,5 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import { Button, ButtonColor, ButtonColors } from "./Button";
+import {
+  Button,
+  ButtonColor,
+  ButtonColors,
+  ButtonSize,
+  ButtonSizes,
+} from "./Button";
 import user from "@testing-library/user-event";
 
 const lightCompatibleColors: ButtonColor[] = [
@@ -95,5 +101,17 @@ it.each<ButtonColor>(lightCompatibleColors)(
     });
     expect(foundButton).toHaveClass(`is-${color}`);
     expect(foundButton).not.toHaveClass("is-light");
+  }
+);
+
+it.each<ButtonSize>(ButtonSizes)(
+  "displays the button in size %p if provided",
+  (size: ButtonSize) => {
+    const text = `Button Size ${size} Test`;
+    render(<Button size={size}>{text}</Button>);
+    const foundButton = screen.getByRole("button", {
+      name: text,
+    });
+    expect(foundButton).toHaveClass(`is-${size}`);
   }
 );
