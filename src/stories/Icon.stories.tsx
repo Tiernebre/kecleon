@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<IconProps> = (args) => <Icon {...args} />;
 
-export const Home = Template.bind({});
-Home.args = {
+export const InteractiveIcon = Template.bind({});
+InteractiveIcon.args = {
   name: "home",
 };
