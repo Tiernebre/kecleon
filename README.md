@@ -6,6 +6,15 @@
 My own personal design system / front-end toolkit that I utilize for my
 software projects.
 
+My goal was to build a library of components that I can use
+for all of my personal projects without needing to be concerned
+about specific CSS frameworks.
+
+Kecleon is built on top of [Bulma](https://bulma.io/) for the CSS
+styling, but I've iterated on the Bulma CSS with some of my personal
+preferences and have also composed higher level components out of
+the awesome ones that Bulma provides out of the box.
+
 ## Philosophies
 
 Because this is my personal design system, there are some philosophies
@@ -31,6 +40,12 @@ over time.
 I'm using Storybook as a way to serve the components to be easier
 to build and develop. Eventually I plan on publicly hosting an
 up-to-date Storybook instance that demoes my components live!
+
+Bulma is the CSS framework that drives Kecleon. Currently I am
+relying heavily on Bulma's wonderful styles out of the box. Consumers
+of Kecleon do not need to worry about Bulma, which makes it flexible
+in the future say if new XYZ styling framework comes out and
+I prefer that one more.
 
 ## Installing
 
