@@ -66,3 +66,16 @@ MobileFourColumns.args = {
     </Fragment>
   ),
 };
+
+export const GaplessFourColumns = Template.bind({});
+GaplessFourColumns.args = {
+  gapless: true,
+  children: (
+    <Fragment>
+      <Column>One</Column>
+      <Column>Two</Column>
+      <Column>Three</Column>
+      <Column>Four</Column>
+    </Fragment>
+  ),
+};
