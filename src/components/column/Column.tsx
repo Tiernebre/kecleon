@@ -29,13 +29,21 @@ export type ColumnSize = typeof columnSizes[number];
 
 export type ColumnProps = PropsWithChildren<{
   size?: ColumnSize;
+  offset?: ColumnSize;
 }>;
 
-export const Column = ({ size, children }: ColumnProps): JSX.Element => {
+export const Column = ({
+  size,
+  offset,
+  children,
+}: ColumnProps): JSX.Element => {
   const classes = ["column"];
 
   if (size) {
     classes.push(`is-${size}`);
+  }
+  if (offset) {
+    classes.push(`is-offset-${offset}`);
   }
 
   const className = classes.join(" ");
