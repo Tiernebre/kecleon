@@ -111,3 +111,36 @@ it("does not render in verticallyCentered mode by default", () => {
   const columnFound = screen.getByText(message);
   expect(columnFound.parentElement).not.toHaveClass("is-vcentered");
 });
+
+it("renders in multiLine mode if provided", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns multiLine>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).toHaveClass("is-multiline");
+});
+
+it("does not render in multiLine mode if provided as false", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns multiLine={false}>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-multiline");
+});
+
+it("does not render in multiLine mode by default", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-multiline");
+});
