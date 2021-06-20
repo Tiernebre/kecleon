@@ -45,6 +45,33 @@ it("renders a button with passed to natural HTML button attributes", () => {
   expect(onClick).toHaveBeenCalled();
 });
 
+it("can be disabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toBeDisabled();
+});
+
+it("can be enabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toBeDisabled();
+});
+
+it("by default is enabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toBeDisabled();
+});
+
 it.each(ButtonColors)(
   "displays the button with color %p when provided",
   (color: ButtonColor) => {
