@@ -16,6 +16,27 @@ it.each<Color>(colors)("renders an icon with color = %p", (color: Color) => {
   expect(icon).toHaveClass(`has-text-${color}`);
 });
 
+it("renders an icon with a border", () => {
+  const message = "Home";
+  render(<Icon name="home" message={message} bordered />);
+  const icon = screen.getByTitle(message);
+  expect(icon).toHaveClass("fa-border");
+});
+
+it("renders an icon without a border", () => {
+  const message = "Home";
+  render(<Icon name="home" message={message} bordered={false} />);
+  const icon = screen.getByTitle(message);
+  expect(icon).not.toHaveClass("fa-border");
+});
+
+it("renders an icon without a border by default", () => {
+  const message = "Home";
+  render(<Icon name="home" message={message} />);
+  const icon = screen.getByTitle(message);
+  expect(icon).not.toHaveClass("fa-border");
+});
+
 it("renders the message for screen readers only", () => {
   const message = "Create Test";
   render(<Icon name="plus" message={message} />);

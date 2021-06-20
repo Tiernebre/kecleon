@@ -4,13 +4,22 @@ export type IconProps = {
   name: string; // https://fontawesome.com/v5/cheatsheet displays the possible names
   message?: string;
   color?: Color;
+  bordered?: boolean;
 };
 
-export const Icon = ({ name, color, message }: IconProps): JSX.Element => {
+export const Icon = ({
+  name,
+  color,
+  message,
+  bordered,
+}: IconProps): JSX.Element => {
   const classes = [`fas fa-${name.toLowerCase()}`];
 
   if (color) {
     classes.push(`has-text-${color}`);
+  }
+  if (bordered) {
+    classes.push("fa-border");
   }
 
   const className = classes.join(" ");
