@@ -30,11 +30,13 @@ export type ColumnSize = typeof columnSizes[number];
 export type ColumnProps = PropsWithChildren<{
   size?: ColumnSize;
   offset?: ColumnSize;
+  narrow?: boolean;
 }>;
 
 export const Column = ({
   size,
   offset,
+  narrow,
   children,
 }: ColumnProps): JSX.Element => {
   const classes = ["column"];
@@ -44,6 +46,9 @@ export const Column = ({
   }
   if (offset) {
     classes.push(`is-offset-${offset}`);
+  }
+  if (narrow) {
+    classes.push("is-narrow");
   }
 
   const className = classes.join(" ");

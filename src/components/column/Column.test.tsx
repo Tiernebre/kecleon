@@ -20,3 +20,24 @@ it.each<ColumnSize>(columnSizes)(
     expect(column).toHaveClass(`is-offset-${offset}`);
   }
 );
+
+it("renders as narrow if provided", () => {
+  const message = "Column";
+  render(<Column narrow={true}>{message}</Column>);
+  const column = screen.getByText(message);
+  expect(column).toHaveClass("is-narrow");
+});
+
+it("not rendered as narrow if provided as false", () => {
+  const message = "Column";
+  render(<Column narrow={false}>{message}</Column>);
+  const column = screen.getByText(message);
+  expect(column).not.toHaveClass("is-narrow");
+});
+
+it("not rendered as narrow by default", () => {
+  const message = "Column";
+  render(<Column>{message}</Column>);
+  const column = screen.getByText(message);
+  expect(column).not.toHaveClass("is-narrow");
+});
