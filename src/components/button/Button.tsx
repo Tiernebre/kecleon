@@ -1,9 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
 import { colors } from "../../types";
+import { sizes } from "../../types/size/sizes";
 
 export const ButtonColors = [...colors, "text", "ghost"] as const;
 
-export const ButtonSizes = ["small", "normal", "medium", "large"] as const;
+export const ButtonSizes = [...sizes, "normal"] as const;
 
 export type ButtonColor = typeof ButtonColors[number];
 export type ButtonSize = typeof ButtonSizes[number];
