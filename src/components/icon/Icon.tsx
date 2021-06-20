@@ -13,21 +13,26 @@ export const Icon = ({
   color,
   message,
   bordered,
+  size,
 }: IconProps): JSX.Element => {
-  const classes = [`fas fa-${name.toLowerCase()}`];
-
+  const fontClasses = [`fas fa-${name.toLowerCase()}`];
   if (color) {
-    classes.push(`has-text-${color}`);
+    fontClasses.push(`has-text-${color}`);
   }
   if (bordered) {
-    classes.push("fa-border");
+    fontClasses.push("fa-border");
   }
+  const fontClassName = fontClasses.join(" ");
 
-  const className = classes.join(" ");
+  const iconClasses = ["icon"];
+  if (size) {
+    iconClasses.push(`is-${size}`);
+  }
+  const iconClassName = iconClasses.join(" ");
 
   return (
-    <span className="icon">
-      <i aria-hidden="true" title={message} className={className}></i>
+    <span className={iconClassName}>
+      <i aria-hidden="true" title={message} className={fontClassName}></i>
       {message && (
         <span className="is-sr-only" data-testid="icon-screen-reader-message">
           {message}
