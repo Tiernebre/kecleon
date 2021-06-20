@@ -31,6 +31,46 @@ it.each<ColumnSize>(columnSizes)(
   }
 );
 
+it.each<ColumnSize>(columnSizes)(
+  "renders with tablet size = %p when provided",
+  (tablet: ColumnSize) => {
+    const message = "Column";
+    render(<Column tablet={tablet}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(`is-${tablet}-tablet`);
+  }
+);
+
+it.each<ColumnSize>(columnSizes)(
+  "renders with desktop size = %p when provided",
+  (desktop: ColumnSize) => {
+    const message = "Column";
+    render(<Column desktop={desktop}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(`is-${desktop}-desktop`);
+  }
+);
+
+it.each<ColumnSize>(columnSizes)(
+  "renders with widescreen size = %p when provided",
+  (widescreen: ColumnSize) => {
+    const message = "Column";
+    render(<Column widescreen={widescreen}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(`is-${widescreen}-widescreen`);
+  }
+);
+
+it.each<ColumnSize>(columnSizes)(
+  "renders with fullHd size = %p when provided",
+  (fullHd: ColumnSize) => {
+    const message = "Column";
+    render(<Column fullHd={fullHd}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(`is-${fullHd}-fullhd`);
+  }
+);
+
 it("renders as narrow if provided", () => {
   const message = "Column";
   render(<Column narrow={true}>{message}</Column>);

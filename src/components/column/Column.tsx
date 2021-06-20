@@ -63,6 +63,18 @@ export const Column = ({
   if (mobile) {
     classes.push(`is-${mobile}-mobile`);
   }
+  if (tablet) {
+    classes.push(`is-${tablet}-tablet`);
+  }
+  if (desktop) {
+    classes.push(`is-${desktop}-desktop`);
+  }
+  if (widescreen) {
+    classes.push(`is-${widescreen}-widescreen`);
+  }
+  if (fullHd) {
+    classes.push(`is-${fullHd}-fullhd`);
+  }
 
   const className = classes.join(" ");
 
