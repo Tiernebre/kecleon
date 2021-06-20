@@ -1,7 +1,7 @@
 import { Color } from "../../types";
 
 export type IconProps = {
-  name: string;
+  name: string; // https://fontawesome.com/v5/cheatsheet displays the possible names
   color?: Color;
 };
 
@@ -16,7 +16,7 @@ export const Icon = ({ name, color }: IconProps): JSX.Element => {
 
   return (
     <span className="icon">
-      <i className={className}></i>
+      <i aria-hidden="true" className={className}></i>
     </span>
   );
 };
