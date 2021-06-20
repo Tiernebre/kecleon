@@ -144,3 +144,36 @@ it("does not render in multiLine mode by default", () => {
   const columnFound = screen.getByText(message);
   expect(columnFound.parentElement).not.toHaveClass("is-multiline");
 });
+
+it("renders in centered mode if provided", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns centered>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).toHaveClass("is-centered");
+});
+
+it("does not render in centered mode if provided as false", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns centered={false}>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-centered");
+});
+
+it("does not render in centered mode by default", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-centered");
+});

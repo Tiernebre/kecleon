@@ -5,6 +5,7 @@ export type ColumnsProps = PropsWithChildren<{
   gapless?: boolean;
   verticallyCentered?: boolean;
   multiLine?: boolean;
+  centered?: boolean;
 }>;
 
 export const Columns = ({
@@ -13,6 +14,7 @@ export const Columns = ({
   children,
   verticallyCentered,
   multiLine,
+  centered,
 }: ColumnsProps): JSX.Element => {
   const classes = ["columns"];
 
@@ -27,6 +29,9 @@ export const Columns = ({
   }
   if (multiLine) {
     classes.push("is-multiline");
+  }
+  if (centered) {
+    classes.push("is-centered");
   }
 
   const className = classes.join(" ");
