@@ -1,13 +1,21 @@
 import { Story, Meta } from "@storybook/react";
 
-import { IconButton } from "../components";
+import { IconButton, IconButtonProps } from "../components";
 
 export default {
   title: "Example/IconButton",
   component: IconButton,
+  args: {
+    button: {
+      color: "primary",
+    },
+    icon: {
+      name: "home",
+    },
+  },
 } as Meta;
 
-const Template: Story = (args) => <IconButton {...args} />;
+const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />;
 
 export const InteractiveIconButton = Template.bind({});
 InteractiveIconButton.args = {};
