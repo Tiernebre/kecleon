@@ -5,6 +5,13 @@ import { IconButton, IconButtonProps } from "../components";
 export default {
   title: "Example/IconButton",
   component: IconButton,
+  argTypes: {
+    children: {
+      control: {
+        type: "text",
+      },
+    },
+  },
   args: {
     button: {
       color: "primary",
