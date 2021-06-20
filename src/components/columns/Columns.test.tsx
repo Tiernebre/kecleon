@@ -24,7 +24,7 @@ it("renders in mobile mode if provided", () => {
   expect(columnFound.parentElement).toHaveClass("is-mobile");
 });
 
-it("renders in mobile mode if provided as false", () => {
+it("does not render in mobile mode if provided as false", () => {
   const message = "Hello, I'm a column!";
   render(
     <Columns mobile={false}>
@@ -35,7 +35,7 @@ it("renders in mobile mode if provided as false", () => {
   expect(columnFound.parentElement).not.toHaveClass("is-mobile");
 });
 
-it("renders in non mobile mode by default", () => {
+it("does not render in mobile mode by default", () => {
   const message = "Hello, I'm a column!";
   render(
     <Columns>
@@ -44,4 +44,37 @@ it("renders in non mobile mode by default", () => {
   );
   const columnFound = screen.getByText(message);
   expect(columnFound.parentElement).not.toHaveClass("is-mobile");
+});
+
+it("renders in gapless mode if provided", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns gapless>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).toHaveClass("is-gapless");
+});
+
+it("does not render in gapless mode if provided as false", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns gapless={false}>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-gapless");
+});
+
+it("does not render in gapless mode by default", () => {
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).not.toHaveClass("is-gapless");
 });
