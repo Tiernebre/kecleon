@@ -31,7 +31,7 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta<IconProps>;
 
 const Template: Story<IconProps> = (args) => <Icon {...args} />;
 

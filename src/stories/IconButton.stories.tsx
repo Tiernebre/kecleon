@@ -44,7 +44,7 @@ export default {
       name: "home",
     },
   },
-} as Meta;
+} as Meta<IconButtonProps>;
 
 const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />;
 
