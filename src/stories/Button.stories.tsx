@@ -22,6 +22,11 @@ export default {
         type: "text",
       },
     },
+    loading: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   args: {
     children: "Button",
@@ -93,4 +98,9 @@ Warning.args = {
 export const Danger = Template.bind({});
 Danger.args = {
   color: "danger",
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  loading: true,
 };
