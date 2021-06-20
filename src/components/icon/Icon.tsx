@@ -1,10 +1,11 @@
-import { Color } from "../../types";
+import { Color, Size } from "../../types";
 
 export type IconProps = {
   name: string; // https://fontawesome.com/v5/cheatsheet displays the possible names
   message?: string;
   color?: Color;
   bordered?: boolean;
+  size?: Size;
 };
 
 export const Icon = ({
