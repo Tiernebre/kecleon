@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ButtonProps } from "../button";
 import { IconButton } from "./IconButton";
 import user from "@testing-library/user-event";
+import { IconProps } from "../icon/Icon";
 
 it("renders given children content", () => {
   const message = "Icon Button Text";
@@ -28,4 +29,20 @@ it("renders the button with the correct provided details", () => {
   const foundIconButton = screen.getByRole("button", { name: message });
   user.click(foundIconButton);
   expect(onClick).toHaveBeenCalled();
+});
+
+it("renders the icon with the correct provided details", () => {
+  const message = "Icon Button Text";
+  const iconMessage = "Icon Message";
+  const icon: IconProps = {
+    name: "home",
+    message: iconMessage,
+  };
+  render(
+    <IconButton button={{}} icon={icon}>
+      {message}
+    </IconButton>
+  );
+  const foundIconMessage = screen.getByText(iconMessage);
+  expect(foundIconMessage).toBeInTheDocument();
 });
