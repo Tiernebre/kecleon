@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { Color, colors } from "../../types";
 import { Icon } from "./Icon";
 
 it("renders an icon", () => {
@@ -6,6 +7,13 @@ it("renders an icon", () => {
   render(<Icon name="home" message={message} />);
   const icon = screen.getByTitle(message);
   expect(icon).toBeInTheDocument();
+});
+
+it.each<Color>(colors)("renders an icon with color = %p", (color: Color) => {
+  const message = "Home";
+  render(<Icon name="home" message={message} color={color} />);
+  const icon = screen.getByTitle(message);
+  expect(icon).toHaveClass(`has-text-${color}`);
 });
 
 it("renders the message for screen readers only", () => {
