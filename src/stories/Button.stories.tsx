@@ -1,6 +1,11 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Button, ButtonColors, ButtonProps } from "../components/Button";
+import {
+  Button,
+  ButtonColors,
+  ButtonProps,
+  ButtonSizes,
+} from "../components/Button";
 
 export default {
   title: "Example/Button",
@@ -20,6 +25,17 @@ export default {
     children: {
       control: {
         type: "text",
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: ButtonSizes,
+      },
+    },
+    loading: {
+      control: {
+        type: "boolean",
       },
     },
   },
@@ -93,4 +109,24 @@ Warning.args = {
 export const Danger = Template.bind({});
 Danger.args = {
   color: "danger",
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  size: "small",
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  size: "medium",
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  size: "large",
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+  loading: true,
 };

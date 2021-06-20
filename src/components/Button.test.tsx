@@ -1,5 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import { Button, ButtonColor, ButtonColors } from "./Button";
+import {
+  Button,
+  ButtonColor,
+  ButtonColors,
+  ButtonSize,
+  ButtonSizes,
+} from "./Button";
 import user from "@testing-library/user-event";
 
 const lightCompatibleColors: ButtonColor[] = [
@@ -37,6 +43,33 @@ it("renders a button with passed to natural HTML button attributes", () => {
   expect(foundButton).toHaveAttribute("name", name);
   user.click(foundButton);
   expect(onClick).toHaveBeenCalled();
+});
+
+it("can be disabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toBeDisabled();
+});
+
+it("can be enabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toBeDisabled();
+});
+
+it("by default is enabled", () => {
+  const text = "Disabled Button";
+  render(<Button disabled={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toBeDisabled();
 });
 
 it.each(ButtonColors)(
@@ -97,3 +130,42 @@ it.each<ButtonColor>(lightCompatibleColors)(
     expect(foundButton).not.toHaveClass("is-light");
   }
 );
+
+it.each<ButtonSize>(ButtonSizes)(
+  "displays the button in size %p if provided",
+  (size: ButtonSize) => {
+    const text = `Button Size ${size} Test`;
+    render(<Button size={size}>{text}</Button>);
+    const foundButton = screen.getByRole("button", {
+      name: text,
+    });
+    expect(foundButton).toHaveClass(`is-${size}`);
+  }
+);
+
+it("can be loading", () => {
+  const text = "Button Loading Test";
+  render(<Button loading>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toHaveClass("is-loading");
+});
+
+it("can be not loading", () => {
+  const text = "Button Loading Test";
+  render(<Button loading={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toHaveClass("is-loading");
+});
+
+it("by default is not loading", () => {
+  const text = "Button Loading Test";
+  render(<Button>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toHaveClass("is-loading");
+});
