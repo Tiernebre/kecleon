@@ -1,7 +1,12 @@
-export const Icon = (): JSX.Element => {
+export type IconProps = {
+  name: string;
+};
+
+export const Icon = ({ name }: IconProps): JSX.Element => {
+  const className = `fas fa-${name.toLowerCase()}`;
   return (
     <span className="icon">
-      <i className="fas fa-home"></i>
+      <i className={className}></i>
     </span>
   );
 };
