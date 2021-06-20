@@ -2,7 +2,7 @@ import { Color } from "../../types";
 
 export type IconProps = {
   name: string; // https://fontawesome.com/v5/cheatsheet displays the possible names
-  message: string;
+  message?: string;
   color?: Color;
 };
 
