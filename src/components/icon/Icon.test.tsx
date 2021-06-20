@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Color, colors } from "../../types";
-import { Icon } from "./Icon";
+import { Color, colors, Size, sizes } from "../../types";
+import { Icon, IconFontSize, iconFontSizes } from "./Icon";
 
 it("renders an icon", () => {
   const message = "Home";
@@ -36,6 +36,35 @@ it("renders an icon without a border by default", () => {
   const icon = screen.getByTitle(message);
   expect(icon).not.toHaveClass("fa-border");
 });
+
+it.each<Size>(sizes)(
+  "renders an icon with container size = %p",
+  (containerSize: Size) => {
+    const message = "Set Size";
+    render(
+      <Icon name="home" message={message} containerSize={containerSize} />
+    );
+    const icon = screen.getByTitle(message);
+    expect(icon.parentElement).toHaveClass(`is-${containerSize}`);
+  }
+);
+
+it("render an icon without a set container size if it is not provided", () => {
+  const message = "Set Size";
+  render(<Icon name="home" message={message} />);
+  const icon = screen.getByTitle(message);
+  expect(icon.parentElement).toHaveClass("icon", { exact: true });
+});
+
+it.each<IconFontSize>(iconFontSizes)(
+  "renders an icon with font size = %p",
+  (fontSize: IconFontSize) => {
+    const message = "Set Size";
+    render(<Icon name="home" message={message} fontSize={fontSize} />);
+    const icon = screen.getByTitle(message);
+    expect(icon).toHaveClass(`fa-${fontSize}`);
+  }
+);
 
 it("renders the message for screen readers only", () => {
   const message = "Create Test";

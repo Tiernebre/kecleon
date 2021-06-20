@@ -1,10 +1,15 @@
-import { Color } from "../../types";
+import { Color, Size } from "../../types";
+
+export const iconFontSizes = ["xs", "sm", "lg", "2x"] as const;
+export type IconFontSize = typeof iconFontSizes[number];
 
 export type IconProps = {
   name: string; // https://fontawesome.com/v5/cheatsheet displays the possible names
   message?: string;
   color?: Color;
   bordered?: boolean;
+  containerSize?: Size;
+  fontSize?: IconFontSize;
 };
 
 export const Icon = ({
@@ -12,21 +17,30 @@ export const Icon = ({
   color,
   message,
   bordered,
+  containerSize,
+  fontSize,
 }: IconProps): JSX.Element => {
-  const classes = [`fas fa-${name.toLowerCase()}`];
-
+  const fontClasses = [`fas fa-${name.toLowerCase()}`];
   if (color) {
-    classes.push(`has-text-${color}`);
+    fontClasses.push(`has-text-${color}`);
   }
   if (bordered) {
-    classes.push("fa-border");
+    fontClasses.push("fa-border");
   }
+  if (fontSize) {
+    fontClasses.push(`fa-${fontSize}`);
+  }
+  const fontClassName = fontClasses.join(" ");
 
-  const className = classes.join(" ");
+  const iconClasses = ["icon"];
+  if (containerSize) {
+    iconClasses.push(`is-${containerSize}`);
+  }
+  const iconClassName = iconClasses.join(" ");
 
   return (
-    <span className="icon">
-      <i aria-hidden="true" title={message} className={className}></i>
+    <span className={iconClassName}>
+      <i aria-hidden="true" title={message} className={fontClassName}></i>
       {message && (
         <span className="is-sr-only" data-testid="icon-screen-reader-message">
           {message}
