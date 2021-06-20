@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Icon, IconProps } from "../components";
+import { Icon, iconFontSizes, IconProps } from "../components";
 import { colors, sizes } from "../types";
 
 export default {
@@ -18,10 +18,16 @@ export default {
         options: colors,
       },
     },
-    size: {
+    containerSize: {
       control: {
         type: "select",
         options: sizes,
+      },
+    },
+    fontSize: {
+      control: {
+        type: "select",
+        options: iconFontSizes,
       },
     },
   },

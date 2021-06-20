@@ -1,18 +1,6 @@
 import { Color, Size } from "../../types";
 
-export const iconFontSizes = [
-  "xs",
-  "sm",
-  "lg",
-  "2x",
-  "3x",
-  "5x",
-  "6x",
-  "7x",
-  "8x",
-  "9x",
-  "10x",
-] as const;
+export const iconFontSizes = ["xs", "sm", "lg", "2x"] as const;
 export type IconFontSize = typeof iconFontSizes[number];
 
 export type IconProps = {
