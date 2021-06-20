@@ -24,12 +24,14 @@ export type ButtonProps = {
   color?: ButtonColor;
   light?: boolean;
   size?: ButtonSize;
+  loading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
   color,
   light,
   size,
+  loading,
   ...props
 }: ButtonProps): JSX.Element => {
   const classes: string[] = ["button"];
@@ -42,6 +44,9 @@ export const Button = ({
   }
   if (size) {
     classes.push(`is-${size}`);
+  }
+  if (loading) {
+    classes.push(`is-loading`);
   }
 
   const className = classes.join(" ");

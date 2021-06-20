@@ -142,3 +142,30 @@ it.each<ButtonSize>(ButtonSizes)(
     expect(foundButton).toHaveClass(`is-${size}`);
   }
 );
+
+it("can be loading", () => {
+  const text = "Button Loading Test";
+  render(<Button loading>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toHaveClass("is-loading");
+});
+
+it("can be not loading", () => {
+  const text = "Button Loading Test";
+  render(<Button loading={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toHaveClass("is-loading");
+});
+
+it("by default is not loading", () => {
+  const text = "Button Loading Test";
+  render(<Button>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toHaveClass("is-loading");
+});
