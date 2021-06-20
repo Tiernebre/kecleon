@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Box, BoxProps } from "../components";
+import { Box, BoxProps, Button } from "../components";
 
 export default {
   title: "Example/Box",
@@ -53,7 +53,7 @@ FormBox.args = {
         </div>
       </div>
 
-      <button className="button is-primary">Sign in</button>
+      <Button color="primary">Sign In</Button>
     </form>
   ),
 };
