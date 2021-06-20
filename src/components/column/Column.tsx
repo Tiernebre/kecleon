@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+
 export const columnSizes = [
   "one-quarter",
   "one-third",
@@ -13,10 +15,18 @@ export const columnSizes = [
 
 export type ColumnSize = typeof columnSizes[number];
 
-export type ColumnProps = {
+export type ColumnProps = PropsWithChildren<{
   size?: ColumnSize;
-};
+}>;
 
-export const Column = (props: ColumnProps): JSX.Element => (
-  <div className="column">Column</div>
-);
+export const Column = ({ size, children }: ColumnProps): JSX.Element => {
+  const classes = ["column"];
+
+  if (size) {
+    classes.push(`is-${size}`);
+  }
+
+  const className = classes.join(" ");
+
+  return <div className={className}>{children}</div>;
+};

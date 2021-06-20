@@ -6,6 +6,11 @@ export default {
   component: Column,
   title: "Example/Column",
   argTypes: {
+    children: {
+      control: {
+        type: "text",
+      },
+    },
     size: {
       control: {
         type: "select",
@@ -19,5 +24,5 @@ const Template: Story<ColumnProps> = (args) => <Column {...args} />;
 
 export const SimpleColumn = Template.bind({});
 SimpleColumn.args = {
-  size: "four-fifths",
+  children: "Column",
 };
