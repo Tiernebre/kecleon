@@ -1,7 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 
 import { Icon, IconProps } from "../components";
-import { colors } from "../types";
+import { colors, sizes } from "../types";
 
 export default {
   title: "Example/Icon",
@@ -16,6 +16,12 @@ export default {
       control: {
         type: "select",
         options: colors,
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: sizes,
       },
     },
   },

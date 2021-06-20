@@ -37,12 +37,17 @@ it("renders an icon without a border by default", () => {
   expect(icon).not.toHaveClass("fa-border");
 });
 
-it.each<Size>(sizes)("renders an icon with size = %p", (size: Size) => {
-  const message = "Set Size";
-  render(<Icon name="home" message={message} size={size} />);
-  const icon = screen.getByTitle(message);
-  expect(icon.parentElement).toHaveClass(`is-${size}`);
-});
+it.each<Size>(sizes)(
+  "renders an icon with container size = %p",
+  (containerSize: Size) => {
+    const message = "Set Size";
+    render(
+      <Icon name="home" message={message} containerSize={containerSize} />
+    );
+    const icon = screen.getByTitle(message);
+    expect(icon.parentElement).toHaveClass(`is-${containerSize}`);
+  }
+);
 
 it("render an icon with a set size if it is not provided", () => {
   const message = "Set Size";

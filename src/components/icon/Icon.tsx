@@ -5,7 +5,7 @@ export type IconProps = {
   message?: string;
   color?: Color;
   bordered?: boolean;
-  size?: Size;
+  containerSize?: Size;
 };
 
 export const Icon = ({
@@ -13,7 +13,7 @@ export const Icon = ({
   color,
   message,
   bordered,
-  size,
+  containerSize,
 }: IconProps): JSX.Element => {
   const fontClasses = [`fas fa-${name.toLowerCase()}`];
   if (color) {
@@ -25,8 +25,8 @@ export const Icon = ({
   const fontClassName = fontClasses.join(" ");
 
   const iconClasses = ["icon"];
-  if (size) {
-    iconClasses.push(`is-${size}`);
+  if (containerSize) {
+    iconClasses.push(`is-${containerSize}`);
   }
   const iconClassName = iconClasses.join(" ");
 
