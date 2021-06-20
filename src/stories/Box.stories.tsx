@@ -20,3 +20,40 @@ export const PlaintextBox = Template.bind({});
 PlaintextBox.args = {
   children: "Plain Text Box. Hello World!",
 };
+
+export const FormBox = Template.bind({});
+FormBox.args = {
+  children: (
+    <form>
+      <div className="field">
+        <label htmlFor="email" className="label">
+          Email
+        </label>
+        <div className="control">
+          <input
+            id="email"
+            className="input"
+            type="email"
+            placeholder="e.g. alex@example.com"
+          />
+        </div>
+      </div>
+
+      <div className="field">
+        <label htmlFor="password" className="label">
+          Password
+        </label>
+        <div className="control">
+          <input
+            id="password"
+            className="input"
+            type="password"
+            placeholder="********"
+          />
+        </div>
+      </div>
+
+      <button className="button is-primary">Sign in</button>
+    </form>
+  ),
+};
