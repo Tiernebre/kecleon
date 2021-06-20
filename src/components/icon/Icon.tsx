@@ -1,9 +1,9 @@
 import { Color, Size } from "../../types";
 
 export const iconFontSizes = [
-  "x-small",
-  "small",
-  "large",
+  "xs",
+  "sm",
+  "lg",
   "2x",
   "3x",
   "5x",
@@ -21,6 +21,7 @@ export type IconProps = {
   color?: Color;
   bordered?: boolean;
   containerSize?: Size;
+  fontSize?: IconFontSize;
 };
 
 export const Icon = ({
@@ -29,6 +30,7 @@ export const Icon = ({
   message,
   bordered,
   containerSize,
+  fontSize,
 }: IconProps): JSX.Element => {
   const fontClasses = [`fas fa-${name.toLowerCase()}`];
   if (color) {
@@ -36,6 +38,9 @@ export const Icon = ({
   }
   if (bordered) {
     fontClasses.push("fa-border");
+  }
+  if (fontSize) {
+    fontClasses.push(`fa-${fontSize}`);
   }
   const fontClassName = fontClasses.join(" ");
 
