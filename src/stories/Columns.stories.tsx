@@ -6,13 +6,6 @@ import { Column, Columns, ColumnsProps } from "../components";
 export default {
   component: Columns,
   title: "Example/Columns",
-  argTypes: {
-    children: {
-      control: {
-        type: "text",
-      },
-    },
-  },
 } as Meta<ColumnsProps>;
 
 const Template: Story<ColumnsProps> = (args) => (
@@ -51,6 +44,19 @@ ThreeColumns.args = {
 
 export const FourColumns = Template.bind({});
 FourColumns.args = {
+  children: (
+    <Fragment>
+      <Column>One</Column>
+      <Column>Two</Column>
+      <Column>Three</Column>
+      <Column>Four</Column>
+    </Fragment>
+  ),
+};
+
+export const MobileFourColumns = Template.bind({});
+MobileFourColumns.args = {
+  mobile: true,
   children: (
     <Fragment>
       <Column>One</Column>
