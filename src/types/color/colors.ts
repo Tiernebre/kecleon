@@ -1,4 +1,8 @@
 export const colors = [
+  "white",
+  "light",
+  "dark",
+  "black",
   "primary",
   "link",
   "info",

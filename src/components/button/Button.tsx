@@ -1,15 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import { colors } from "../../types";
 
-export const ButtonColors = [
-  "white",
-  "light",
-  "dark",
-  "black",
-  "text",
-  "ghost",
-  ...colors,
-] as const;
+export const ButtonColors = [...colors, "text", "ghost"] as const;
 
 export const ButtonSizes = ["small", "normal", "medium", "large"] as const;
 
