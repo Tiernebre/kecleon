@@ -3,8 +3,8 @@ import { Story, Meta } from "@storybook/react";
 import { Box, BoxProps, Button } from "../components";
 
 export default {
-  title: "Example/Box",
   component: Box,
+  title: "Example/Box",
   argTypes: {
     children: {
       control: {
