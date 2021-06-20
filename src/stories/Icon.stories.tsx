@@ -5,6 +5,13 @@ import { Icon, IconProps } from "../components";
 export default {
   title: "Example/Icon",
   component: Icon,
+  argTypes: {
+    name: {
+      control: {
+        type: "text",
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story<IconProps> = (args) => <Icon {...args} />;
