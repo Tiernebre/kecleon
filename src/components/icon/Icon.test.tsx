@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Color, colors } from "../../types";
+import { Color, colors, Size, sizes } from "../../types";
 import { Icon } from "./Icon";
 
 it("renders an icon", () => {
@@ -35,6 +35,20 @@ it("renders an icon without a border by default", () => {
   render(<Icon name="home" message={message} />);
   const icon = screen.getByTitle(message);
   expect(icon).not.toHaveClass("fa-border");
+});
+
+it.each<Size>(sizes)("renders an icon with size = %p", (size: Size) => {
+  const message = "Set Size";
+  render(<Icon name="home" message={message} size={size} />);
+  const icon = screen.getByTitle(message);
+  expect(icon.parentElement).toHaveClass(`is-${size}`);
+});
+
+it("render an icon with a set size if it is not provided", () => {
+  const message = "Set Size";
+  render(<Icon name="home" message={message} />);
+  const icon = screen.getByTitle(message);
+  expect(icon.parentElement).toHaveClass("icon", { exact: true });
 });
 
 it("renders the message for screen readers only", () => {
