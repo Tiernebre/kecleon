@@ -26,4 +26,5 @@ const Template: Story<IconProps> = (args) => <Icon {...args} />;
 export const InteractiveIcon = Template.bind({});
 InteractiveIcon.args = {
   name: "home",
+  message: "Go Home",
 };
