@@ -14,3 +14,9 @@ it("renders the message for screen readers only", () => {
   const screenOnlyMessage = screen.getByText(message);
   expect(screenOnlyMessage).toHaveClass("is-sr-only");
 });
+
+it("does not render the screen reader message if a message is not provided", () => {
+  render(<Icon name="minus" />);
+  const screenOnlyMessage = screen.queryByTestId("icon-screen-reader-message");
+  expect(screenOnlyMessage).toBeNull();
+});

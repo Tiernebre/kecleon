@@ -18,7 +18,11 @@ export const Icon = ({ name, color, message }: IconProps): JSX.Element => {
   return (
     <span className="icon">
       <i aria-hidden="true" title={message} className={className}></i>
-      {message && <span className="is-sr-only">{message}</span>}
+      {message && (
+        <span className="is-sr-only" data-testid="icon-screen-reader-message">
+          {message}
+        </span>
+      )}
     </span>
   );
 };
