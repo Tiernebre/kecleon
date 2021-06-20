@@ -31,12 +31,22 @@ export type ColumnProps = PropsWithChildren<{
   size?: ColumnSize;
   offset?: ColumnSize;
   narrow?: boolean;
+  mobile?: ColumnSize;
+  tablet?: ColumnSize;
+  desktop?: ColumnSize;
+  widescreen?: ColumnSize;
+  fullHd?: ColumnSize;
 }>;
 
 export const Column = ({
   size,
   offset,
   narrow,
+  mobile,
+  tablet,
+  desktop,
+  widescreen,
+  fullHd,
   children,
 }: ColumnProps): JSX.Element => {
   const classes = ["column"];
@@ -49,6 +59,9 @@ export const Column = ({
   }
   if (narrow) {
     classes.push("is-narrow");
+  }
+  if (mobile) {
+    classes.push(`is-${mobile}-mobile`);
   }
 
   const className = classes.join(" ");

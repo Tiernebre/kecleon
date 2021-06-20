@@ -21,6 +21,16 @@ it.each<ColumnSize>(columnSizes)(
   }
 );
 
+it.each<ColumnSize>(columnSizes)(
+  "renders with mobile size = %p when provided",
+  (mobile: ColumnSize) => {
+    const message = "Column";
+    render(<Column mobile={mobile}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(`is-${mobile}-mobile`);
+  }
+);
+
 it("renders as narrow if provided", () => {
   const message = "Column";
   render(<Column narrow={true}>{message}</Column>);
