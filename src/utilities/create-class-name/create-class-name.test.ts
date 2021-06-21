@@ -24,7 +24,7 @@ describe("createClassNameFromProps", () => {
     expect(className).toContain(expectedClass);
   });
 
-  it("does not returns with a class name that was false based on given properties", () => {
+  it("does not return with a class name that was false based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
     const classMap = new Map([[expectedProperty, expectedClass]]);
