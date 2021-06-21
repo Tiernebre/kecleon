@@ -1,9 +1,13 @@
-import { createClassNameFromProps } from "./create-class-name";
+import {
+  ClassNameTransformFn,
+  createClassNameFromProps,
+} from "./create-class-name";
 
 type Props = {
   mobile?: boolean;
   desktop?: boolean;
   fluid?: boolean;
+  color?: string;
 };
 
 describe("createClassNameFromProps", () => {
@@ -34,6 +38,19 @@ describe("createClassNameFromProps", () => {
     };
     const className = createClassNameFromProps<Props>(classMap, properties);
     expect(className).toContain(expectedClass);
+  });
+
+  it("returns with a transformed class name that was true based on given properties", () => {
+    const expectedProperty = "color";
+    const classMap = new Map<keyof Props, ClassNameTransformFn>([
+      [expectedProperty, (color: string) => `is-${color}`],
+    ]);
+    const expectedValue = "blue";
+    const properties = {
+      [expectedProperty]: expectedValue,
+    };
+    const className = createClassNameFromProps<Props>(classMap, properties);
+    expect(className).toContain(`is-${expectedValue}`);
   });
 
   it("does not return with a class name that was false based on given properties", () => {
