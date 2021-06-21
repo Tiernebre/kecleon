@@ -1,13 +1,23 @@
 import { createClassNameFromProps } from "./create-class-name";
 
+type Props = {
+  mobile?: boolean;
+  desktop?: boolean;
+  fluid?: boolean;
+};
+
 describe("createClassNameFromProps", () => {
   it("returns an empty string if nothing is provided", () => {
-    expect(createClassNameFromProps(new Map([]), {})).toEqual("");
+    expect(createClassNameFromProps<Props>(new Map([]), {})).toEqual("");
   });
 
   it("returns given default class names", () => {
     const defaultClasses = ["column", "is-mobile"];
-    const className = createClassNameFromProps(new Map([]), {}, defaultClasses);
+    const className = createClassNameFromProps<Props>(
+      new Map([]),
+      {},
+      defaultClasses
+    );
     defaultClasses.forEach((defaultClass) => {
       expect(className).toContain(defaultClass);
     });
@@ -16,32 +26,36 @@ describe("createClassNameFromProps", () => {
   it("returns with a class name that was true based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
-    const classMap = new Map([[expectedProperty, expectedClass]]);
+    const classMap = new Map<keyof Props, string>([
+      [expectedProperty, expectedClass],
+    ]);
     const properties = {
       [expectedProperty]: true,
     };
-    const className = createClassNameFromProps(classMap, properties);
+    const className = createClassNameFromProps<Props>(classMap, properties);
     expect(className).toContain(expectedClass);
   });
 
   it("does not return with a class name that was false based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
-    const classMap = new Map([[expectedProperty, expectedClass]]);
+    const classMap = new Map<keyof Props, string>([
+      [expectedProperty, expectedClass],
+    ]);
     const properties = {
       [expectedProperty]: false,
     };
-    const className = createClassNameFromProps(classMap, properties, [
+    const className = createClassNameFromProps<Props>(classMap, properties, [
       "default-class",
     ]);
     expect(className).not.toContain(expectedClass);
   });
 
   it("returns with multiple class names that are true based on given properties", () => {
-    const expectedProperties = ["desktop", "fluid"];
-    const expectedClasses = ["is-desktop", "is-fluid-container"];
-    const classMap = new Map(
-      expectedProperties.map((property, index) => [
+    const expectedProperties: (keyof Props)[] = ["desktop", "fluid"];
+    const expectedClasses: string[] = ["is-desktop", "is-fluid-container"];
+    const classMap = new Map<keyof Props, string>(
+      expectedProperties.map((property: keyof Props, index: number) => [
         property,
         expectedClasses[index],
       ])
@@ -50,7 +64,7 @@ describe("createClassNameFromProps", () => {
       [expectedProperties[0]]: true,
       [expectedProperties[1]]: true,
     };
-    const className = createClassNameFromProps(classMap, properties);
+    const className = createClassNameFromProps<Props>(classMap, properties);
     expectedClasses.forEach((expectedClass) => {
       expect(className).toContain(expectedClass);
     });

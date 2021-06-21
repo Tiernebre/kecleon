@@ -1,6 +1,6 @@
-export const createClassNameFromProps = (
-  classMap: Map<string, string>,
-  props: Record<string, boolean>,
+export const createClassNameFromProps = <T extends Record<string, unknown>>(
+  classMap: Map<keyof T, string>,
+  props: Partial<T>,
   defaultClasses: string[] = []
 ): string => {
   const classes = [...defaultClasses];
