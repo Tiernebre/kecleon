@@ -1,13 +1,15 @@
-import { createClassName } from "./create-class-name";
+import { createClassNameFromProps } from "./create-class-name";
 
-it("returns an empty string if nothing is provided", () => {
-  expect(createClassName()).toEqual("");
-});
+describe("createClassNameFromProps", () => {
+  it("returns an empty string if nothing is provided", () => {
+    expect(createClassNameFromProps(new Map([]), {})).toEqual("");
+  });
 
-it("returns given default class names", () => {
-  const defaultClasses = ["column", "is-mobile"];
-  const className = createClassName(defaultClasses);
-  defaultClasses.forEach((defaultClass) => {
-    expect(className).toContain(defaultClass);
+  it("returns given default class names", () => {
+    const defaultClasses = ["column", "is-mobile"];
+    const className = createClassNameFromProps(new Map([]), {}, defaultClasses);
+    defaultClasses.forEach((defaultClass) => {
+      expect(className).toContain(defaultClass);
+    });
   });
 });
