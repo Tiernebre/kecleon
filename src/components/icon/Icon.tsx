@@ -1,4 +1,8 @@
 import { Color, Size } from "../../types";
+import {
+  ClassNameTransformFn,
+  createClassNameFromProps,
+} from "../../utilities";
 
 export const iconFontSizes = ["xs", "sm", "lg", "2x"] as const;
 export type IconFontSize = typeof iconFontSizes[number];
@@ -12,6 +16,16 @@ export type IconProps = {
   fontSize?: IconFontSize;
 };
 
+const fontClassNameMapping = new Map<keyof IconProps, ClassNameTransformFn>([
+  ["color", (color: string) => `has-text-${color}`],
+  ["bordered", () => "fa-border"],
+  ["fontSize", (fontSize: string) => `fa-${fontSize}`],
+]);
+
+const iconClassNameMapping = new Map<keyof IconProps, ClassNameTransformFn>([
+  ["containerSize", (containerSize: string) => `is-${containerSize}`],
+]);
+
 export const Icon = ({
   name,
   color,
@@ -20,23 +34,17 @@ export const Icon = ({
   containerSize,
   fontSize,
 }: IconProps): JSX.Element => {
-  const fontClasses = [`fas fa-${name.toLowerCase()}`];
-  if (color) {
-    fontClasses.push(`has-text-${color}`);
-  }
-  if (bordered) {
-    fontClasses.push("fa-border");
-  }
-  if (fontSize) {
-    fontClasses.push(`fa-${fontSize}`);
-  }
-  const fontClassName = fontClasses.join(" ");
+  const fontClassName = createClassNameFromProps(
+    fontClassNameMapping,
+    { color, bordered, fontSize } as Partial<IconProps>,
+    [`fas fa-${name.toLowerCase()}`]
+  );
 
-  const iconClasses = ["icon"];
-  if (containerSize) {
-    iconClasses.push(`is-${containerSize}`);
-  }
-  const iconClassName = iconClasses.join(" ");
+  const iconClassName = createClassNameFromProps(
+    iconClassNameMapping,
+    { containerSize } as Partial<IconProps>,
+    ["icon"]
+  );
 
   return (
     <span className={iconClassName}>
