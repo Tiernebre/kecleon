@@ -26,8 +26,8 @@ describe("createClassNameFromProps", () => {
   it("returns with a class name that was true based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
-    const classMap = new Map<keyof Props, string>([
-      [expectedProperty, expectedClass],
+    const classMap = new Map<keyof Props, () => string>([
+      [expectedProperty, () => expectedClass],
     ]);
     const properties = {
       [expectedProperty]: true,
@@ -39,8 +39,8 @@ describe("createClassNameFromProps", () => {
   it("does not return with a class name that was false based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
-    const classMap = new Map<keyof Props, string>([
-      [expectedProperty, expectedClass],
+    const classMap = new Map<keyof Props, () => string>([
+      [expectedProperty, () => expectedClass],
     ]);
     const properties = {
       [expectedProperty]: false,
@@ -54,10 +54,10 @@ describe("createClassNameFromProps", () => {
   it("returns with multiple class names that are true based on given properties", () => {
     const expectedProperties: (keyof Props)[] = ["desktop", "fluid"];
     const expectedClasses: string[] = ["is-desktop", "is-fluid-container"];
-    const classMap = new Map<keyof Props, string>(
+    const classMap = new Map<keyof Props, () => string>(
       expectedProperties.map((property: keyof Props, index: number) => [
         property,
-        expectedClasses[index],
+        () => expectedClasses[index],
       ])
     );
     const properties = {
@@ -71,12 +71,12 @@ describe("createClassNameFromProps", () => {
   });
 
   it("returns without multiple class names that are false based on given properties", () => {
-    const expectedProperties = ["desktop", "fluid"];
-    const expectedClasses = ["is-desktop", "is-fluid-container"];
-    const classMap = new Map(
-      expectedProperties.map((property, index) => [
+    const expectedProperties: (keyof Props)[] = ["desktop", "fluid"];
+    const expectedClasses: string[] = ["is-desktop", "is-fluid-container"];
+    const classMap = new Map<keyof Props, () => string>(
+      expectedProperties.map((property: keyof Props, index: number) => [
         property,
-        expectedClasses[index],
+        () => expectedClasses[index],
       ])
     );
     const properties = {
@@ -92,12 +92,12 @@ describe("createClassNameFromProps", () => {
   });
 
   it("returns with multiple class names that are mixed based on given properties", () => {
-    const expectedProperties = ["desktop", "fluid"];
-    const expectedClasses = ["is-desktop", "is-fluid-container"];
-    const classMap = new Map(
-      expectedProperties.map((property, index) => [
+    const expectedProperties: (keyof Props)[] = ["desktop", "fluid"];
+    const expectedClasses: string[] = ["is-desktop", "is-fluid-container"];
+    const classMap = new Map<keyof Props, () => string>(
+      expectedProperties.map((property: keyof Props, index: number) => [
         property,
-        expectedClasses[index],
+        () => expectedClasses[index],
       ])
     );
     const propertyThatWillMap = expectedProperties[0];
