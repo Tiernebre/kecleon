@@ -54,29 +54,12 @@ const columnClassNameMap = new Map<keyof ColumnProps, ClassNameTransformFn>([
 ]);
 
 export const Column = ({
-  size,
-  offset,
-  narrow,
-  mobile,
-  tablet,
-  desktop,
-  widescreen,
-  fullHd,
   children,
+  ...classNameProps
 }: ColumnProps): JSX.Element => {
-  const classNameProps: Partial<ColumnProps> = {
-    size,
-    offset,
-    narrow,
-    mobile,
-    tablet,
-    desktop,
-    widescreen,
-    fullHd,
-  };
   const className = createClassNameFromProps(
     columnClassNameMap,
-    classNameProps,
+    classNameProps as Partial<ColumnProps>,
     ["column"]
   );
 
