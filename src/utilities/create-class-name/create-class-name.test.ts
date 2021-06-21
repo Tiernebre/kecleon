@@ -76,4 +76,28 @@ describe("createClassNameFromProps", () => {
       expect(className).not.toContain(expectedClass);
     });
   });
+
+  it("returns with multiple class names that are mixed based on given properties", () => {
+    const expectedProperties = ["desktop", "fluid"];
+    const expectedClasses = ["is-desktop", "is-fluid-container"];
+    const classMap = new Map(
+      expectedProperties.map((property, index) => [
+        property,
+        expectedClasses[index],
+      ])
+    );
+    const propertyThatWillMap = expectedProperties[0];
+    const propertyThatWillNotMap = expectedProperties[1];
+    const classThatWillMap = expectedClasses[0];
+    const classThatWillNotMap = expectedClasses[1];
+    const properties = {
+      [propertyThatWillMap]: true,
+      [propertyThatWillNotMap]: false,
+    };
+    const className = createClassNameFromProps(classMap, properties, [
+      "default-class",
+    ]);
+    expect(className).toContain(classThatWillMap);
+    expect(className).not.toContain(classThatWillNotMap);
+  });
 });
