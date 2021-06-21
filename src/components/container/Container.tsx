@@ -1,17 +1,25 @@
 import { PropsWithChildren } from "react";
+import {
+  ClassNameTransformMap,
+  createClassNameFromProps,
+} from "../../utilities";
 
 export type ContainerProps = PropsWithChildren<{
   fluid?: boolean;
 }>;
 
-export const Container = ({ fluid, children }: ContainerProps): JSX.Element => {
-  const classes = ["container"];
+const containerClassNameMapping: ClassNameTransformMap<ContainerProps> =
+  new Map([["fluid", () => "is-fluid"]]);
 
-  if (fluid) {
-    classes.push("is-fluid");
-  }
-
-  const className = classes.join(" ");
+export const Container = ({
+  children,
+  ...classNameProps
+}: ContainerProps): JSX.Element => {
+  const className = createClassNameFromProps(
+    containerClassNameMapping,
+    classNameProps as Partial<ContainerProps>,
+    ["container"]
+  );
 
   return <div className={className}>{children}</div>;
 };

@@ -1,4 +1,8 @@
 import { PropsWithChildren } from "react";
+import {
+  ClassNameTransformMap,
+  createClassNameFromProps,
+} from "../../utilities";
 
 export const columnSizes = [
   "one-quarter",
@@ -38,45 +42,26 @@ export type ColumnProps = PropsWithChildren<{
   fullHd?: ColumnSize;
 }>;
 
+const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
+  ["size", (size: string) => `is-${size}`],
+  ["offset", (offset: string) => `is-offset-${offset}`],
+  ["narrow", () => "is-narrow"],
+  ["mobile", (mobile: string) => `is-${mobile}-mobile`],
+  ["tablet", (tablet: string) => `is-${tablet}-tablet`],
+  ["desktop", (desktop: string) => `is-${desktop}-desktop`],
+  ["widescreen", (widescreen: string) => `is-${widescreen}-widescreen`],
+  ["fullHd", (fullHd: string) => `is-${fullHd}-fullhd`],
+]);
+
 export const Column = ({
-  size,
-  offset,
-  narrow,
-  mobile,
-  tablet,
-  desktop,
-  widescreen,
-  fullHd,
   children,
+  ...classNameProps
 }: ColumnProps): JSX.Element => {
-  const classes = ["column"];
-
-  if (size) {
-    classes.push(`is-${size}`);
-  }
-  if (offset) {
-    classes.push(`is-offset-${offset}`);
-  }
-  if (narrow) {
-    classes.push("is-narrow");
-  }
-  if (mobile) {
-    classes.push(`is-${mobile}-mobile`);
-  }
-  if (tablet) {
-    classes.push(`is-${tablet}-tablet`);
-  }
-  if (desktop) {
-    classes.push(`is-${desktop}-desktop`);
-  }
-  if (widescreen) {
-    classes.push(`is-${widescreen}-widescreen`);
-  }
-  if (fullHd) {
-    classes.push(`is-${fullHd}-fullhd`);
-  }
-
-  const className = classes.join(" ");
+  const className = createClassNameFromProps(
+    columnClassNameMap,
+    classNameProps as Partial<ColumnProps>,
+    ["column"]
+  );
 
   return <div className={className}>{children}</div>;
 };
