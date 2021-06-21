@@ -6,7 +6,8 @@ export const createClassNameFromProps = (
   const classes = [...defaultClasses];
 
   Object.keys(props).forEach((prop) => {
-    if (prop && classMap.get(prop)) {
+    const value = props[prop];
+    if (value && classMap.get(prop)) {
       classes.push(classMap.get(prop) as string);
     }
   });
