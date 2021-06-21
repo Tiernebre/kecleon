@@ -13,7 +13,7 @@ describe("createClassNameFromProps", () => {
     });
   });
 
-  it("returns class names that were true based on given properties", () => {
+  it("returns with a class name that was true based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";
     const classMap = new Map([[expectedProperty, expectedClass]]);
