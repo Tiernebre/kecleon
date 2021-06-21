@@ -22,12 +22,10 @@ export const createClassNameFromProps = <T extends Record<string, unknown>>(
   const classes = [...defaultClasses];
 
   Object.keys(props).forEach((prop) => {
-    const value = props[prop];
-    if (value) {
-      const transform = classMap.get(prop);
-      if (transform) {
-        classes.push(transform(value as string));
-      }
+    const value = props[prop] as string;
+    const transform = classMap.get(prop);
+    if (value && transform) {
+      classes.push(transform(value));
     }
   });
 
