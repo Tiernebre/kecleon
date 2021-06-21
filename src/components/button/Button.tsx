@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { colors } from "../../types";
 import { sizes } from "../../types/size/sizes";
 import {
-  ClassNameTransformFn,
+  ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
@@ -20,14 +20,12 @@ export type ButtonProps = {
   loading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const buttonClassNameMapping = new Map<keyof ButtonProps, ClassNameTransformFn>(
-  [
-    ["color", (color: string) => `is-${color.toLowerCase()}`],
-    ["light", () => "is-light"],
-    ["size", (size: string) => `is-${size}`],
-    ["loading", () => `is-loading`],
-  ]
-);
+const buttonClassNameMapping: ClassNameTransformMap<ButtonProps> = new Map([
+  ["color", (color: string) => `is-${color.toLowerCase()}`],
+  ["light", () => "is-light"],
+  ["size", (size: string) => `is-${size}`],
+  ["loading", () => `is-loading`],
+]);
 
 export const Button = ({
   color,

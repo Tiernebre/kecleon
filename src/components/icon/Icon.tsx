@@ -1,6 +1,6 @@
 import { Color, Size } from "../../types";
 import {
-  ClassNameTransformFn,
+  ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
@@ -16,13 +16,13 @@ export type IconProps = {
   fontSize?: IconFontSize;
 };
 
-const fontClassNameMapping = new Map<keyof IconProps, ClassNameTransformFn>([
+const fontClassNameMapping: ClassNameTransformMap<IconProps> = new Map([
   ["color", (color: string) => `has-text-${color}`],
   ["bordered", () => "fa-border"],
   ["fontSize", (fontSize: string) => `fa-${fontSize}`],
 ]);
 
-const iconClassNameMapping = new Map<keyof IconProps, ClassNameTransformFn>([
+const iconClassNameMapping: ClassNameTransformMap<IconProps> = new Map([
   ["containerSize", (containerSize: string) => `is-${containerSize}`],
 ]);
 

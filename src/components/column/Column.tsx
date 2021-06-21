@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import {
-  ClassNameTransformFn,
+  ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
@@ -42,7 +42,7 @@ export type ColumnProps = PropsWithChildren<{
   fullHd?: ColumnSize;
 }>;
 
-const columnClassNameMap = new Map<keyof ColumnProps, ClassNameTransformFn>([
+const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
   ["size", (size: string) => `is-${size}`],
   ["offset", (offset: string) => `is-offset-${offset}`],
   ["narrow", () => "is-narrow"],

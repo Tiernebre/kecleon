@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import {
-  ClassNameTransformFn,
+  ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
@@ -12,7 +12,7 @@ export type ColumnsProps = PropsWithChildren<{
   centered?: boolean;
 }>;
 
-const columnsClassNameMap = new Map<keyof ColumnsProps, ClassNameTransformFn>([
+const columnsClassNameMap: ClassNameTransformMap<ColumnsProps> = new Map([
   ["mobile", () => "is-mobile"],
   ["gapless", () => "is-gapless"],
   ["verticallyCentered", () => "is-vcentered"],

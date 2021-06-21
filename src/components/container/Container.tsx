@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import {
-  ClassNameTransformFn,
+  ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
@@ -8,10 +8,8 @@ export type ContainerProps = PropsWithChildren<{
   fluid?: boolean;
 }>;
 
-const containerClassNameMapping = new Map<
-  keyof ContainerProps,
-  ClassNameTransformFn
->([["fluid", () => "is-fluid"]]);
+const containerClassNameMapping: ClassNameTransformMap<ContainerProps> =
+  new Map([["fluid", () => "is-fluid"]]);
 
 export const Container = ({
   children,

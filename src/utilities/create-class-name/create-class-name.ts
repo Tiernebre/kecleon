@@ -1,4 +1,5 @@
 export type ClassNameTransformFn = (() => string) | ((value: string) => string);
+export type ClassNameTransformMap<T> = Map<keyof T, ClassNameTransformFn>;
 
 /**
  * Returns a formatted className given information about props. A Map
