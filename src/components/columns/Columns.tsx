@@ -1,4 +1,8 @@
 import { PropsWithChildren } from "react";
+import {
+  ClassNameTransformFn,
+  createClassNameFromProps,
+} from "../../utilities";
 
 export type ColumnsProps = PropsWithChildren<{
   mobile?: boolean;
@@ -8,6 +12,14 @@ export type ColumnsProps = PropsWithChildren<{
   centered?: boolean;
 }>;
 
+const columnsClassNameMap = new Map<keyof ColumnsProps, ClassNameTransformFn>([
+  ["mobile", () => "is-mobile"],
+  ["gapless", () => "is-gapless"],
+  ["verticallyCentered", () => "is-vcentered"],
+  ["multiLine", () => "is-multiline"],
+  ["centered", () => "is-centered"],
+]);
+
 export const Columns = ({
   mobile,
   gapless,
@@ -16,25 +28,20 @@ export const Columns = ({
   multiLine,
   centered,
 }: ColumnsProps): JSX.Element => {
-  const classes = ["columns"];
+  const classNameProps: Partial<ColumnsProps> = {
+    mobile,
+    gapless,
+    children,
+    verticallyCentered,
+    multiLine,
+    centered,
+  };
 
-  if (mobile) {
-    classes.push("is-mobile");
-  }
-  if (gapless) {
-    classes.push("is-gapless");
-  }
-  if (verticallyCentered) {
-    classes.push("is-vcentered");
-  }
-  if (multiLine) {
-    classes.push("is-multiline");
-  }
-  if (centered) {
-    classes.push("is-centered");
-  }
-
-  const className = classes.join(" ");
+  const className = createClassNameFromProps(
+    columnsClassNameMap,
+    classNameProps,
+    ["columns"]
+  );
 
   return <div className={className}>{children}</div>;
 };
