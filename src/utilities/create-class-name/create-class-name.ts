@@ -1,5 +1,7 @@
+export type ClassNameTransformFn = (() => string) | ((value: string) => string);
+
 export const createClassNameFromProps = <T extends Record<string, unknown>>(
-  classMap: Map<keyof T, (value?: string) => string>,
+  classMap: Map<keyof T, ClassNameTransformFn>,
   props: Partial<T>,
   defaultClasses: string[] = []
 ): string => {

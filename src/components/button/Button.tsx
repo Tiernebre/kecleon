@@ -1,6 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
 import { colors } from "../../types";
 import { sizes } from "../../types/size/sizes";
+import {
+  ClassNameTransformFn,
+  createClassNameFromProps,
+} from "../../utilities";
 
 export const ButtonColors = [...colors, "text", "ghost"] as const;
 
@@ -16,6 +20,15 @@ export type ButtonProps = {
   loading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+const buttonClassNameMapping = new Map<keyof ButtonProps, ClassNameTransformFn>(
+  [
+    ["color", (color: string) => `is-${color.toLowerCase()}`],
+    ["light", () => "is-light"],
+    ["size", (size: string) => `is-${size}`],
+    ["loading", () => `is-loading`],
+  ]
+);
+
 export const Button = ({
   color,
   light,
@@ -23,25 +36,21 @@ export const Button = ({
   loading,
   ...props
 }: ButtonProps): JSX.Element => {
-  const classes: string[] = ["button"];
+  const classNameProps: Partial<ButtonProps> = {
+    color,
+    light,
+    size,
+    loading,
+  };
 
-  if (color) {
-    classes.push(`is-${color.toLowerCase()}`);
-  }
-  if (light) {
-    classes.push(`is-light`);
-  }
-  if (size) {
-    classes.push(`is-${size}`);
-  }
-  if (loading) {
-    classes.push(`is-loading`);
-  }
-
-  const className = classes.join(" ");
+  const className = createClassNameFromProps(
+    buttonClassNameMapping,
+    classNameProps,
+    ["button"]
+  );
 
   return (
-    <button {...props} className={className}>
+    <button className={className} {...props}>
       {props.children}
     </button>
   );
