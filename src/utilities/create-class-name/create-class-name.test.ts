@@ -55,4 +55,25 @@ describe("createClassNameFromProps", () => {
       expect(className).toContain(expectedClass);
     });
   });
+
+  it("returns without multiple class names that are false based on given properties", () => {
+    const expectedProperties = ["desktop", "fluid"];
+    const expectedClasses = ["is-desktop", "is-fluid-container"];
+    const classMap = new Map(
+      expectedProperties.map((property, index) => [
+        property,
+        expectedClasses[index],
+      ])
+    );
+    const properties = {
+      [expectedProperties[0]]: false,
+      [expectedProperties[1]]: false,
+    };
+    const className = createClassNameFromProps(classMap, properties, [
+      "default-class",
+    ]);
+    expectedClasses.forEach((expectedClass) => {
+      expect(className).not.toContain(expectedClass);
+    });
+  });
 });
