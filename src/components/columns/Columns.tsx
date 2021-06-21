@@ -21,25 +21,12 @@ const columnsClassNameMap = new Map<keyof ColumnsProps, ClassNameTransformFn>([
 ]);
 
 export const Columns = ({
-  mobile,
-  gapless,
   children,
-  verticallyCentered,
-  multiLine,
-  centered,
+  ...classNameProps
 }: ColumnsProps): JSX.Element => {
-  const classNameProps: Partial<ColumnsProps> = {
-    mobile,
-    gapless,
-    children,
-    verticallyCentered,
-    multiLine,
-    centered,
-  };
-
   const className = createClassNameFromProps(
     columnsClassNameMap,
-    classNameProps,
+    classNameProps as Partial<ColumnsProps>,
     ["columns"]
   );
 
