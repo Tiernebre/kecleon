@@ -1,13 +1,13 @@
 export const createClassNameFromProps = (
   classMap: Map<string, string>,
-  properties: Record<string, boolean>,
+  props: Record<string, boolean>,
   defaultClasses: string[] = []
 ): string => {
   const classes = [...defaultClasses];
 
-  Object.keys(properties).forEach((property) => {
-    if (property && classMap.get(property)) {
-      classes.push(classMap.get(property) as string);
+  Object.keys(props).forEach((prop) => {
+    if (prop && classMap.get(prop)) {
+      classes.push(classMap.get(prop) as string);
     }
   });
 

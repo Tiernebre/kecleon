@@ -12,4 +12,15 @@ describe("createClassNameFromProps", () => {
       expect(className).toContain(defaultClass);
     });
   });
+
+  it("returns class names that were true based on given properties", () => {
+    const expectedProperty = "mobile";
+    const expectedClass = "is-mobile";
+    const classMap = new Map([[expectedProperty, expectedClass]]);
+    const properties = {
+      [expectedProperty]: true,
+    };
+    const className = createClassNameFromProps(classMap, properties);
+    expect(className).toContain(expectedClass);
+  });
 });
