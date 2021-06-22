@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import { Fragment } from "react";
 
 import { Notification, NotificationProps } from "../components";
 import { colors } from "../types";
@@ -40,3 +41,15 @@ const InteractiveNotificationTemplate: Story<NotificationProps> = (args) => (
 
 export const InteractiveNotification = InteractiveNotificationTemplate.bind({});
 InteractiveNotification.args = {};
+
+const NotificationColorsTemplate: Story<NotificationProps> = () => (
+  <Fragment>
+    {colors.map((color) => (
+      <Notification color={color} key={color}>
+        Notification with color = {color}.
+      </Notification>
+    ))}
+  </Fragment>
+);
+
+export const NotificationColors = NotificationColorsTemplate.bind({});
