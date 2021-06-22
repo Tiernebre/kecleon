@@ -12,6 +12,5 @@ it("binds an accessible label for screen readers", () => {
   const label = "Close the Notification";
   render(<Delete label={label} />);
   const foundDelete = screen.getByRole("button", { name: label });
-  expect(foundDelete).toBeInTheDocument();
   expect(foundDelete).toHaveAccessibleName(label);
 });
