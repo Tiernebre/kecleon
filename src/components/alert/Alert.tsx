@@ -8,8 +8,10 @@ export type AlertProps = {
 
 export const Alert = ({ color, message }: AlertProps): JSX.Element => {
   return (
-    <Notification color={color} closable>
-      {message}
-    </Notification>
+    <div className="alert">
+      <Notification color={color} closable>
+        {message}
+      </Notification>
+    </div>
   );
 };
