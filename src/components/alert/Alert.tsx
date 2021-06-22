@@ -7,7 +7,7 @@ export type AlertProps = {
   color: AlertColor;
 };
 
-const AlertContainer = styled.div.attrs((props) => ({
+const AlertContainer = styled.div.attrs(() => ({
   className: "alert",
 }))`
   position: sticky;
