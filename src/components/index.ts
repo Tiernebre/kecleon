@@ -6,3 +6,4 @@ export * from "./columns";
 export * from "./container";
 export * from "./icon";
 export * from "./icon-button";
+export * from "./notification";
