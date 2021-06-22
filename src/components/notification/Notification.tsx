@@ -10,6 +10,7 @@ export type NotificationProps = PropsWithChildren<{
   color?: Color;
   light?: boolean;
   closable?: boolean;
+  onClose?: () => void;
 }>;
 
 const notificationClassNameMap: ClassNameTransformMap<NotificationProps> =
@@ -21,8 +22,9 @@ const notificationClassNameMap: ClassNameTransformMap<NotificationProps> =
 export const Notification = ({
   color,
   light,
-  closable = true,
+  onClose,
   children,
+  closable = true,
 }: NotificationProps): JSX.Element => {
   const className = createClassNameFromProps(
     notificationClassNameMap,
@@ -31,7 +33,7 @@ export const Notification = ({
   );
   return (
     <div className={className}>
-      {closable && <Delete label="Close Notification" />}
+      {closable && <Delete label="Close Notification" onClick={onClose} />}
       {children}
     </div>
   );
