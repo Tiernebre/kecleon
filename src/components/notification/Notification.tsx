@@ -4,10 +4,12 @@ import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
+import { Delete } from "../delete";
 
 export type NotificationProps = PropsWithChildren<{
   color?: Color;
   light?: boolean;
+  closable?: boolean;
 }>;
 
 const notificationClassNameMap: ClassNameTransformMap<NotificationProps> =
@@ -19,6 +21,7 @@ const notificationClassNameMap: ClassNameTransformMap<NotificationProps> =
 export const Notification = ({
   color,
   light,
+  closable = true,
   children,
 }: NotificationProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -26,5 +29,10 @@ export const Notification = ({
     { color, light } as Partial<NotificationProps>,
     ["notification"]
   );
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className}>
+      {closable && <Delete label="Close Notification" />}
+      {children}
+    </div>
+  );
 };

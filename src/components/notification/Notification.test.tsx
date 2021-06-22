@@ -18,3 +18,30 @@ it.each<Color>(colors)(
     expect(notification).toHaveClass(`is-${color}`);
   }
 );
+
+it("includes a close button by default", () => {
+  const message = "A test notification.";
+  render(<Notification>{message}</Notification>);
+  const closeButton = screen.getByRole("button", {
+    name: "Close Notification",
+  });
+  expect(closeButton).toBeInTheDocument();
+});
+
+it("includes a close button if specified", () => {
+  const message = "A test notification.";
+  render(<Notification closable>{message}</Notification>);
+  const closeButton = screen.getByRole("button", {
+    name: "Close Notification",
+  });
+  expect(closeButton).toBeInTheDocument();
+});
+
+it("does not include a close button if specified", () => {
+  const message = "A test notification.";
+  render(<Notification closable={false}>{message}</Notification>);
+  const closeButton = screen.queryByRole("button", {
+    name: "Close Notification",
+  });
+  expect(closeButton).toBeNull();
+});
