@@ -10,7 +10,7 @@ export type AlertProps = {
 const StyledAlert = styled.div.attrs(() => ({
   className: "alert",
 }))`
-  position: absolute;
+  position: fixed;
   width: 400px;
   top: 20px;
   right: 20px;
