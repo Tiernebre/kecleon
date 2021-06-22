@@ -4,6 +4,7 @@ export * from "./buttons";
 export * from "./column";
 export * from "./columns";
 export * from "./container";
+export * from "./delete";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./notification";
