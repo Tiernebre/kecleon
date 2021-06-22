@@ -7,18 +7,21 @@ export type AlertProps = {
   color: AlertColor;
 };
 
-const AlertContainer = styled.div.attrs(() => ({
+const StyledAlert = styled.div.attrs(() => ({
   className: "alert",
 }))`
-  position: sticky;
+  position: absolute;
+  width: 400px;
+  top: 20px;
+  right: 20px;
 `;
 
 export const Alert = ({ color, message }: AlertProps): JSX.Element => {
   return (
-    <AlertContainer>
+    <StyledAlert>
       <Notification color={color} closable>
         {message}
       </Notification>
-    </AlertContainer>
+    </StyledAlert>
   );
 };
