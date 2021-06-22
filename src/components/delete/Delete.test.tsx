@@ -19,9 +19,15 @@ it("binds an accessible label for screen readers", () => {
 it("supports normal button props", () => {
   const onClick = jest.fn();
   const type = "submit";
-  render(<Delete label="Label" onClick={onClick} type={type} />);
+  const { rerender } = render(
+    <Delete label="Label" onClick={onClick} type={type} />
+  );
   const foundDelete = screen.getByRole("button");
   user.click(foundDelete);
   expect(onClick).toHaveBeenCalled();
   expect(foundDelete).toHaveAttribute("type", type);
+  expect(foundDelete).toBeEnabled();
+  rerender(<Delete label="Label" disabled />);
+  const foundDisabledDelete = screen.getByRole("button");
+  expect(foundDisabledDelete).toBeDisabled();
 });
