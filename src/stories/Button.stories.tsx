@@ -1,6 +1,13 @@
 import { Story, Meta } from "@storybook/react";
+import React, { Fragment } from "react";
 
-import { Button, ButtonColors, ButtonProps, ButtonSizes } from "../components";
+import {
+  Button,
+  ButtonColor,
+  ButtonColors,
+  ButtonProps,
+  ButtonSizes,
+} from "../components";
 
 export default {
   title: "Example/Button",
@@ -43,85 +50,16 @@ const Template: Story<ButtonProps> = (args) => (
   <Button {...args}>{args.children}</Button>
 );
 
-export const DefaultButton = Template.bind({});
-DefaultButton.args = {};
+export const InteractiveButton = Template.bind({});
+InteractiveButton.args = {};
 
-export const White = Template.bind({});
-White.args = {
-  color: "white",
-};
-
-export const Black = Template.bind({});
-Black.args = {
-  color: "black",
-};
-
-export const Dark = Template.bind({});
-Dark.args = {
-  color: "dark",
-};
-
-export const Light = Template.bind({});
-Light.args = {
-  color: "light",
-};
-
-export const Text = Template.bind({});
-Text.args = {
-  color: "text",
-};
-
-export const Ghost = Template.bind({});
-Ghost.args = {
-  color: "ghost",
-};
-
-export const Primary = Template.bind({});
-Primary.args = {
-  color: "primary",
-};
-
-export const Link = Template.bind({});
-Link.args = {
-  color: "link",
-};
-
-export const Info = Template.bind({});
-Info.args = {
-  color: "info",
-};
-
-export const Success = Template.bind({});
-Success.args = {
-  color: "success",
-};
-
-export const Warning = Template.bind({});
-Warning.args = {
-  color: "warning",
-};
-
-export const Danger = Template.bind({});
-Danger.args = {
-  color: "danger",
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
-};
-
-export const Medium = Template.bind({});
-Medium.args = {
-  size: "medium",
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
-};
-
-export const Loading = Template.bind({});
-Loading.args = {
-  loading: true,
-};
+const ColorButtonsTemplate: Story<ButtonProps> = () => (
+  <Fragment>
+    {ButtonColors.map((color: ButtonColor) => (
+      <div className="block">
+        <Button color={color}>{color} Button</Button>
+      </div>
+    ))}
+  </Fragment>
+);
+export const ColoredButtons = ColorButtonsTemplate.bind({});
