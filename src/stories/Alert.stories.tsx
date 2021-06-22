@@ -13,6 +13,9 @@ const range = (start: number, end: number) => {
 const Template: Story<AlertProps> = () => (
   <div>
     <Alert color="success" message="foo" />
+    <div className="block">
+      <p>Scroll the viewport, notice that the alert stays fixed!</p>
+    </div>
     {range(0, 50).map((index) => (
       <div className="block" key={index}>
         Block {index}
