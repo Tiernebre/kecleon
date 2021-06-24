@@ -12,14 +12,18 @@ import { useAlerts } from "../../hooks";
  * of this component, you should prefer to just use {@link Alerts} instead.
  */
 export const SmartAlerts = (): JSX.Element => {
-  const { state } = useAlerts();
+  const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
   return (
     <Alerts>
       {alerts.map((alert, index) => {
         return (
-          <Alert color={alert.color} key={index}>
+          <Alert
+            color={alert.color}
+            key={index}
+            onClose={() => dispatch({ type: "remove", index })}
+          >
             {alert.message}
           </Alert>
         );
