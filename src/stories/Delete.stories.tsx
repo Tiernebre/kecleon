@@ -4,8 +4,8 @@ import { sizes } from "..";
 import { Delete, DeleteProps } from "../components";
 
 export default {
-  title: "Example/Delete",
   component: Delete,
+  title: "Example/Delete",
   argTypes: {
     size: {
       control: {
