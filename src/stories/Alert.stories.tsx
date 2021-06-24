@@ -2,8 +2,8 @@ import { Story, Meta } from "@storybook/react";
 import { Alert, AlertProps } from "../components";
 
 export default {
-  title: "Example/Alert",
   component: Alert,
+  title: "Example/Alert",
   argTypes: {
     color: {
       control: "select",
