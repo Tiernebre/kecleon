@@ -51,6 +51,6 @@ it("adds an alert", () => {
   expect(screen.queryAllByRole("listitem")).toHaveLength(1);
 });
 
-it("throws an error if used outside a provider", () => {
+it("throws an error if used outside its associated provider", () => {
   expect(() => render(<AlertsTestBed />)).toThrow(Error);
 });
