@@ -48,4 +48,5 @@ it("adds an alert", () => {
     user.click(screen.getByRole("button", { name: "Add Alert" }));
   });
   expect(screen.getByText("Test")).toBeInTheDocument();
+  expect(screen.queryAllByRole("listitem")).toHaveLength(1);
 });
