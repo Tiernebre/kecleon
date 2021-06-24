@@ -14,7 +14,7 @@ export const Alert = ({
   onClose,
 }: AlertProps): JSX.Element => {
   return (
-    <div className={styles.alert}>
+    <div role="alert" className={styles.alert}>
       <Notification color={color} closable onClose={onClose}>
         {children}
       </Notification>
