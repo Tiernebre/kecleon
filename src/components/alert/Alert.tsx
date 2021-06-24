@@ -1,6 +1,6 @@
 import { Notification } from "..";
 import { AlertColor } from "../../types";
-import styles from "./Alert.module.scss";
+import styles from "./Alert.module.css";
 
 export type AlertProps = {
   message: string;
