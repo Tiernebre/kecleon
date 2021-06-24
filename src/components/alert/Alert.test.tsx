@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Alert } from "./Alert";
 import user from "@testing-library/user-event";
+import { AlertColor } from "../../types";
 
 it("can be closed", () => {
   const onClose = jest.fn();
@@ -21,3 +22,16 @@ it("renders children", () => {
   );
   expect(screen.getByText(message)).toBeInTheDocument();
 });
+
+it.each<AlertColor>(["success", "danger", "warning"])(
+  "renders in color = %p",
+  (color: AlertColor) => {
+    const message = "Expected Message";
+    render(
+      <Alert color={color} onClose={jest.fn()}>
+        {message}
+      </Alert>
+    );
+    expect(screen.getByText(message)).toHaveClass(`is-${color}`);
+  }
+);
