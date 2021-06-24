@@ -18,7 +18,7 @@ const Template: Story<AlertProps> = () => (
       <Alert color="warning">This is the third Alert. WOOT</Alert>
     </Alerts>
     <div className="block">
-      <p>Scroll the viewport, notice that the alert stays fixed!</p>
+      <p>Scroll the viewport, notice that the alerts stay fixed!</p>
     </div>
     {range(0, 50).map((index) => (
       <div className="block" key={index}>
