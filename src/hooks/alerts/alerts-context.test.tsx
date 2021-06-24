@@ -10,7 +10,7 @@ type AlertsTestBedProps = {
 };
 
 const AlertsTestBed = ({ index }: AlertsTestBedProps): JSX.Element => {
-  const { state, dispatch, addAlert } = useAlerts();
+  const { state, dispatch, showAlert } = useAlerts();
   const { alerts } = state;
 
   const payload: AlertRequest = {
@@ -28,7 +28,7 @@ const AlertsTestBed = ({ index }: AlertsTestBedProps): JSX.Element => {
           <li key={index}>{alert.message}</li>
         ))}
       </ol>
-      <button onClick={() => addAlert(payload)}>Queue Alert</button>
+      <button onClick={() => showAlert(payload)}>Queue Alert</button>
       <button onClick={dequeueAlert}>Dequeue Alert</button>
       <button onClick={removeAlertByIndex}>Remove Alert</button>
     </Fragment>

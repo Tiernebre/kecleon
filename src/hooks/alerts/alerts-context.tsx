@@ -13,7 +13,7 @@ type AlertsProviderProps = React.PropsWithChildren<unknown>;
 type Context = {
   state: State;
   dispatch: Dispatch;
-  addAlert: (request: AlertRequest) => void;
+  showAlert: (request: AlertRequest) => void;
 };
 
 const AlertsContext = React.createContext<Context | undefined>(undefined);
@@ -41,7 +41,7 @@ export const AlertsProvider = ({
   children,
 }: AlertsProviderProps): JSX.Element => {
   const [state, dispatch] = React.useReducer(alertsReducer, { alerts: [] });
-  const addAlert = React.useCallback(
+  const showAlert = React.useCallback(
     (request: AlertRequest) => {
       dispatch({
         type: "queue",
@@ -50,7 +50,7 @@ export const AlertsProvider = ({
     },
     [dispatch]
   );
-  const value = { state, dispatch, addAlert };
+  const value = { state, dispatch, showAlert };
 
   return (
     <AlertsContext.Provider value={value}>{children}</AlertsContext.Provider>
