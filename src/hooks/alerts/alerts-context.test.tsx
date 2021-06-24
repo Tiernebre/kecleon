@@ -3,23 +3,20 @@ import { Fragment } from "react";
 import { AlertsProvider, useAlerts } from "./alerts-context";
 import user from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { AlertRequest } from "../../types/alert";
 
 type AlertsTestBedProps = {
   index?: number;
 };
 
 const AlertsTestBed = ({ index }: AlertsTestBedProps): JSX.Element => {
-  const { state, dispatch } = useAlerts();
+  const { state, dispatch, addAlert } = useAlerts();
   const { alerts } = state;
 
-  const queueAlert = () =>
-    dispatch({
-      type: "queue",
-      payload: {
-        color: "success",
-        message: `Test ${alerts.length}`,
-      },
-    });
+  const payload: AlertRequest = {
+    color: "success",
+    message: `Test ${alerts.length}`,
+  };
   const dequeueAlert = () => dispatch({ type: "dequeue" });
   const removeAlertByIndex = () =>
     dispatch({ type: "remove", index: index ?? 0 });
@@ -31,7 +28,7 @@ const AlertsTestBed = ({ index }: AlertsTestBedProps): JSX.Element => {
           <li key={index}>{alert.message}</li>
         ))}
       </ol>
-      <button onClick={queueAlert}>Queue Alert</button>
+      <button onClick={() => addAlert(payload)}>Queue Alert</button>
       <button onClick={dequeueAlert}>Dequeue Alert</button>
       <button onClick={removeAlertByIndex}>Remove Alert</button>
     </Fragment>
