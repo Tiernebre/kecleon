@@ -1,3 +1,5 @@
+import { useAlerts } from "../../hooks";
+
 /**
  * SmartAlerts is a flavor of the {@link Alerts} component
  * that is "smart" in that it knows about Alerts context state.
@@ -9,5 +11,8 @@
  * of this component, you should prefer to just use {@link Alerts} instead.
  */
 export const SmartAlerts = (): JSX.Element => {
+  const { state, dispatch } = useAlerts();
+  const { alerts } = state;
+
   return <div>Smart Alerts</div>;
 };
