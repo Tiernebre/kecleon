@@ -1,3 +1,4 @@
+import { Alert, Alerts } from "..";
 import { useAlerts } from "../../hooks";
 
 /**
@@ -14,5 +15,15 @@ export const SmartAlerts = (): JSX.Element => {
   const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
-  return <div>Smart Alerts</div>;
+  return (
+    <Alerts>
+      {alerts.map((alert, index) => {
+        return (
+          <Alert color={alert.color} key={index}>
+            {alert.message}
+          </Alert>
+        );
+      })}
+    </Alerts>
+  );
 };
