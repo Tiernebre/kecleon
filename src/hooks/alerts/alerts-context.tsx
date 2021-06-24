@@ -36,7 +36,7 @@ export const AlertsProvider = ({
 
 export const useAlerts = (): Context => {
   const context = React.useContext(AlertsContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useAlerts must be used within an AlertsProvider");
   }
   return context;

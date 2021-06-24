@@ -50,3 +50,7 @@ it("adds an alert", () => {
   expect(screen.getByText("Test")).toBeInTheDocument();
   expect(screen.queryAllByRole("listitem")).toHaveLength(1);
 });
+
+it("throws an error if used outside a provider", () => {
+  expect(() => render(<AlertsTestBed />)).toThrow(Error);
+});
