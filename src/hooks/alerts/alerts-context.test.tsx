@@ -4,7 +4,11 @@ import { AlertsProvider, useAlerts } from "./alerts-context";
 import user from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-const AlertsTestBed = (): JSX.Element => {
+type AlertsTestBedProps = {
+  index?: number;
+};
+
+const AlertsTestBed = ({ index }: AlertsTestBedProps): JSX.Element => {
   const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
@@ -13,10 +17,12 @@ const AlertsTestBed = (): JSX.Element => {
       type: "queue",
       payload: {
         color: "success",
-        message: "Test",
+        message: `Test ${alerts.length}`,
       },
     });
   const dequeueAlert = () => dispatch({ type: "dequeue" });
+  const removeAlertByIndex = () =>
+    dispatch({ type: "remove", index: index ?? 0 });
 
   return (
     <Fragment>
@@ -27,6 +33,7 @@ const AlertsTestBed = (): JSX.Element => {
       </ol>
       <button onClick={queueAlert}>Queue Alert</button>
       <button onClick={dequeueAlert}>Dequeue Alert</button>
+      <button onClick={removeAlertByIndex}>Remove Alert</button>
     </Fragment>
   );
 };
@@ -35,6 +42,14 @@ const getQueueButton = () =>
   screen.getByRole("button", { name: "Queue Alert" });
 const getDequeueButton = () =>
   screen.getByRole("button", { name: "Dequeue Alert" });
+const getRemoveButton = () =>
+  screen.getByRole("button", { name: "Remove Alert" });
+
+const addAlert = () => {
+  act(() => {
+    user.click(getQueueButton());
+  });
+};
 
 it("by default is an empty array", () => {
   render(
@@ -51,10 +66,8 @@ it("queues an alert", () => {
       <AlertsTestBed />
     </AlertsProvider>
   );
-  act(() => {
-    user.click(getQueueButton());
-  });
-  expect(screen.getByText("Test")).toBeInTheDocument();
+  addAlert();
+  expect(screen.getByText("Test 0")).toBeInTheDocument();
   expect(screen.queryAllByRole("listitem")).toHaveLength(1);
 });
 
@@ -64,16 +77,33 @@ it("dequeues an alert", () => {
       <AlertsTestBed />
     </AlertsProvider>
   );
-  act(() => {
-    user.click(getQueueButton());
-  });
-  expect(screen.getByText("Test")).toBeInTheDocument();
+  addAlert();
+  expect(screen.getByText("Test 0")).toBeInTheDocument();
   expect(screen.getAllByRole("listitem")).toHaveLength(1);
   act(() => {
     user.click(getDequeueButton());
   });
-  expect(screen.queryByText("Test")).toBeNull();
+  expect(screen.queryByText("Test 0")).toBeNull();
   expect(screen.queryAllByRole("listitem")).toHaveLength(0);
+});
+
+it("removes an alert", () => {
+  const index = 5;
+  render(
+    <AlertsProvider>
+      <AlertsTestBed index={index} />
+    </AlertsProvider>
+  );
+  const length = 10;
+  for (let i = 0; i < length; i++) {
+    addAlert();
+  }
+  expect(screen.getAllByRole("listitem")).toHaveLength(length);
+  act(() => {
+    user.click(getRemoveButton());
+  });
+  expect(screen.queryAllByRole("listitem")).toHaveLength(length - 1);
+  expect(screen.queryByText("Test 5")).toBeNull();
 });
 
 it("throws an error if used outside its associated provider", () => {
