@@ -11,3 +11,13 @@ it("can be closed", () => {
   user.click(closeButton);
   expect(onClose).toHaveBeenCalled();
 });
+
+it("renders children", () => {
+  const message = "Expected Message";
+  render(
+    <Alert color="success" onClose={jest.fn()}>
+      {message}
+    </Alert>
+  );
+  expect(screen.getByText(message)).toBeInTheDocument();
+});
