@@ -1,16 +1,31 @@
 import { render, screen } from "@testing-library/react";
+import { Fragment } from "react";
 import { AlertsProvider, useAlerts } from "./alerts-context";
+import user from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 
 const AlertsTestBed = (): JSX.Element => {
-  const { state } = useAlerts();
+  const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
+  const addAlert = () =>
+    dispatch({
+      type: "add",
+      payload: {
+        color: "success",
+        message: "Test",
+      },
+    });
+
   return (
-    <ol>
-      {alerts.map((alert, index) => (
-        <li key={index}>{JSON.stringify(alert)}</li>
-      ))}
-    </ol>
+    <Fragment>
+      <ol>
+        {alerts.map((alert, index) => (
+          <li key={index}>{alert.message}</li>
+        ))}
+      </ol>
+      <button onClick={addAlert}>Add Alert</button>
+    </Fragment>
   );
 };
 
@@ -21,4 +36,16 @@ it("by default is an empty array", () => {
     </AlertsProvider>
   );
   expect(screen.queryAllByRole("listitem")).toHaveLength(0);
+});
+
+it("adds an alert", () => {
+  render(
+    <AlertsProvider>
+      <AlertsTestBed />
+    </AlertsProvider>
+  );
+  act(() => {
+    user.click(screen.getByRole("button", { name: "Add Alert" }));
+  });
+  expect(screen.getByText("Test")).toBeInTheDocument();
 });
