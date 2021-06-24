@@ -8,7 +8,7 @@ const AlertsTestBed = (): JSX.Element => {
   const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
-  const addAlert = () =>
+  const queueAlert = () =>
     dispatch({
       type: "queue",
       payload: {
@@ -16,6 +16,7 @@ const AlertsTestBed = (): JSX.Element => {
         message: "Test",
       },
     });
+  const dequeueAlert = () => dispatch({ type: "dequeue" });
 
   return (
     <Fragment>
@@ -24,10 +25,16 @@ const AlertsTestBed = (): JSX.Element => {
           <li key={index}>{alert.message}</li>
         ))}
       </ol>
-      <button onClick={addAlert}>Add Alert</button>
+      <button onClick={queueAlert}>Queue Alert</button>
+      <button onClick={dequeueAlert}>Dequeue Alert</button>
     </Fragment>
   );
 };
+
+const getQueueButton = () =>
+  screen.getByRole("button", { name: "Queue Alert" });
+const getDequeueButton = () =>
+  screen.getByRole("button", { name: "Dequeue Alert" });
 
 it("by default is an empty array", () => {
   render(
@@ -38,17 +45,35 @@ it("by default is an empty array", () => {
   expect(screen.queryAllByRole("listitem")).toHaveLength(0);
 });
 
-it("adds an alert", () => {
+it("queues an alert", () => {
   render(
     <AlertsProvider>
       <AlertsTestBed />
     </AlertsProvider>
   );
   act(() => {
-    user.click(screen.getByRole("button", { name: "Add Alert" }));
+    user.click(getQueueButton());
   });
   expect(screen.getByText("Test")).toBeInTheDocument();
   expect(screen.queryAllByRole("listitem")).toHaveLength(1);
+});
+
+it("dequeues an alert", () => {
+  render(
+    <AlertsProvider>
+      <AlertsTestBed />
+    </AlertsProvider>
+  );
+  act(() => {
+    user.click(getQueueButton());
+  });
+  expect(screen.getByText("Test")).toBeInTheDocument();
+  expect(screen.getAllByRole("listitem")).toHaveLength(1);
+  act(() => {
+    user.click(getDequeueButton());
+  });
+  expect(screen.queryByText("Test")).toBeNull();
+  expect(screen.queryAllByRole("listitem")).toHaveLength(0);
 });
 
 it("throws an error if used outside its associated provider", () => {

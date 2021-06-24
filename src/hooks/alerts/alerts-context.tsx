@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AlertRequest } from "../../types/alert";
 
-type Action = { type: "queue"; payload: AlertRequest };
+type Action = { type: "queue"; payload: AlertRequest } | { type: "dequeue" };
 type Dispatch = (action: Action) => void;
 type State = {
   alerts: AlertRequest[];
@@ -18,6 +18,8 @@ const alertsReducer: React.Reducer<State, Action> = (
   switch (action.type) {
     case "queue":
       return { alerts: [...state.alerts, action.payload] };
+    case "dequeue":
+      return { alerts: state.alerts.slice(1) };
     default:
       throw new Error(`Unhandled alerts action type`);
   }
