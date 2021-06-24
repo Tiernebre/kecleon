@@ -12,7 +12,7 @@ import { useAlerts } from "../../hooks";
  * of this component, you should prefer to just use {@link Alerts} instead.
  */
 export const SmartAlerts = (): JSX.Element => {
-  const { state, dispatch } = useAlerts();
+  const { state } = useAlerts();
   const { alerts } = state;
 
   return (
