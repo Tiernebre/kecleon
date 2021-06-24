@@ -28,5 +28,5 @@ const Template: Story<AlertProps> = () => (
   </div>
 );
 
-export const InteractiveAlert = Template.bind({});
-InteractiveAlert.args = {};
+export const InteractiveAlerts = Template.bind({});
+InteractiveAlerts.args = {};
