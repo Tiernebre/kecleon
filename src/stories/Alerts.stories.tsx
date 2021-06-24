@@ -14,6 +14,8 @@ const Template: Story<AlertProps> = () => (
   <div>
     <Alerts>
       <Alert color="success">This is the first Alert. WOOT</Alert>
+      <Alert color="danger">This is the second Alert. WOOT</Alert>
+      <Alert color="warning">This is the third Alert. WOOT</Alert>
     </Alerts>
     <div className="block">
       <p>Scroll the viewport, notice that the alert stays fixed!</p>

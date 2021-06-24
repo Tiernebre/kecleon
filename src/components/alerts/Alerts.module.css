@@ -2,4 +2,10 @@
   position: fixed;
   top: 20px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.alerts > * {
+  margin-bottom: 1rem;
 }
