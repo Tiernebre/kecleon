@@ -1,9 +1,9 @@
 import { Story, Meta } from "@storybook/react";
-import { Alert, AlertProps } from "../components";
+import { Alert, Alerts, AlertProps } from "../components";
 
 export default {
-  title: "Example/Alert",
-  component: Alert,
+  title: "Example/Alerts",
+  component: Alerts,
 } as Meta;
 
 const range = (start: number, end: number) => {
@@ -12,7 +12,9 @@ const range = (start: number, end: number) => {
 
 const Template: Story<AlertProps> = () => (
   <div>
-    <Alert color="success" message="foo" />
+    <Alerts>
+      <Alert color="success">This is the first Alert. WOOT</Alert>
+    </Alerts>
     <div className="block">
       <p>Scroll the viewport, notice that the alert stays fixed!</p>
     </div>
