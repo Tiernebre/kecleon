@@ -10,7 +10,7 @@ const AlertsTestBed = (): JSX.Element => {
 
   const addAlert = () =>
     dispatch({
-      type: "add",
+      type: "queue",
       payload: {
         color: "success",
         message: "Test",
