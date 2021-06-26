@@ -18,13 +18,13 @@ export const SmartAlerts = (): JSX.Element => {
 
   return (
     <Alerts>
-      {alerts.map((alert, index) => {
+      {alerts.map((alert) => {
         return (
           <ExpirableAlert
             color={alert.color}
             expiresInMillis={5000}
             key={alert.id}
-            onExpire={() => dispatch({ type: "remove", index })}
+            onExpire={() => dispatch({ type: "remove", id: alert.id })}
           >
             {alert.message}
           </ExpirableAlert>
