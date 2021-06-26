@@ -5,19 +5,12 @@ import styles from "./Alert.module.css";
 
 export type AlertProps = PropsWithChildren<{
   color: AlertColor;
-  onClose?: () => void;
 }>;
 
-export const Alert = ({
-  color,
-  children,
-  onClose,
-}: AlertProps): JSX.Element => {
+export const Alert = ({ color, children }: AlertProps): JSX.Element => {
   return (
     <div role="alert" className={styles.alert}>
-      <Notification color={color} closable={false}>
-        {children}
-      </Notification>
+      <Notification color={color}>{children}</Notification>
     </div>
   );
 };

@@ -8,7 +8,7 @@ it("removes children after a set amount of time", () => {
   render(<Expire expiresInMillis={time}>{message}</Expire>);
   expect(screen.getByText(message)).toBeInTheDocument();
   act(() => {
-    jest.runAllTimers();
+    jest.advanceTimersByTime(time);
   });
   expect(screen.queryByText(message)).toBeNull();
 });
