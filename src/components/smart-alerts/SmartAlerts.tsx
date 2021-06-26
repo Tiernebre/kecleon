@@ -2,6 +2,13 @@ import { Alerts } from "..";
 import { useAlerts } from "../../hooks";
 import { ExpirableAlert } from "../expirable-alert";
 
+const DEFAULT_FADE_OUT_IN_SECONDS = 5;
+const DEFAULT_FADE_OUT_IN_MILLIS = DEFAULT_FADE_OUT_IN_SECONDS * 1000;
+
+type SmartAlertsProps = {
+  fadeOutInMillis?: number;
+};
+
 /**
  * SmartAlerts is a flavor of the {@link Alerts} component
  * that is "smart" in that it knows about Alerts context state.
@@ -12,9 +19,13 @@ import { ExpirableAlert } from "../expirable-alert";
  * If you do not wish to use the "smart" stateful coupled nature
  * of this component, you should prefer to just use {@link Alerts} instead.
  */
-export const SmartAlerts = (): JSX.Element => {
+export const SmartAlerts = ({
+  fadeOutInMillis,
+}: SmartAlertsProps): JSX.Element => {
   const { state, dispatch } = useAlerts();
   const { alerts } = state;
+
+  const expiresInMillis = fadeOutInMillis ?? DEFAULT_FADE_OUT_IN_MILLIS;
 
   return (
     <Alerts>
@@ -22,7 +33,7 @@ export const SmartAlerts = (): JSX.Element => {
         return (
           <ExpirableAlert
             color={alert.color}
-            expiresInMillis={5000}
+            expiresInMillis={expiresInMillis}
             key={alert.id}
             onExpire={() => dispatch({ type: "remove", id: alert.id })}
           >

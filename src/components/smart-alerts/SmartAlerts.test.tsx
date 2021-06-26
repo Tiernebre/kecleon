@@ -37,3 +37,23 @@ it("renders out alerts from the context", () => {
   alerts = screen.getAllByRole("alert");
   expect(alerts).toHaveLength(1);
 });
+
+it("fades out an alert after 5 seconds by default", () => {
+  jest.useFakeTimers();
+  render(
+    <AlertsProvider>
+      <SmartAlerts />
+      <ShowAlertButton message="Test Alert" />
+    </AlertsProvider>
+  );
+  let alerts = screen.queryAllByRole("alert");
+  expect(alerts).toHaveLength(0);
+  addAlert();
+  alerts = screen.getAllByRole("alert");
+  expect(alerts).toHaveLength(1);
+  act(() => {
+    jest.advanceTimersByTime(5000); // 5 seconds
+  });
+  alerts = screen.queryAllByRole("alert");
+  expect(alerts).toHaveLength(0);
+});
