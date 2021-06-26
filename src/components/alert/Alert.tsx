@@ -5,7 +5,7 @@ import styles from "./Alert.module.css";
 
 export type AlertProps = PropsWithChildren<{
   color: AlertColor;
-  onClose?: () => void;
+  onClose: () => void;
 }>;
 
 export const Alert = ({
