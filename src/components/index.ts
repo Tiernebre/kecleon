@@ -9,6 +9,7 @@ export * from "./container";
 export * from "./delete";
 export * from "./expire";
 export * from "./expirable-alert";
+export * from "./fade";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./notification";
