@@ -12,4 +12,5 @@ export * from "./expirable-alert";
 export * from "./fade";
 export * from "./icon";
 export * from "./icon-button";
+export * from "./image";
 export * from "./notification";
