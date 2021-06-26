@@ -10,3 +10,6 @@
 .fade-exit-active {
   opacity: 0;
 }
+.fade-exit-done {
+  opacity: 0;
+}
