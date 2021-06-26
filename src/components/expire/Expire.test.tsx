@@ -34,15 +34,46 @@ it("supports fading animation for expired content", () => {
   jest.useFakeTimers();
   const message = "Message!";
   const time = 10000;
-  const fadeDuration = 1000;
   const onRemoval = jest.fn();
   render(
     <Expire expiresInMillis={time} onRemoval={onRemoval} fadeable={true}>
       {message}
     </Expire>
   );
-  expect(screen.getByText(message)).toBeInTheDocument();
-  expect(screen.getByText(message)).toHaveClass("expire-animation-container");
+  const renderedContent = screen.getByText(message);
+  expect(renderedContent).toBeInTheDocument();
+  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveStyle({ transition: "opacity 500ms" });
+  expect(onRemoval).not.toHaveBeenCalled();
+  act(() => {
+    jest.advanceTimersByTime(time + 500);
+  });
+  expect(screen.queryByText(message)).toBeNull();
+  expect(onRemoval).toHaveBeenCalledTimes(1);
+});
+
+it("supports fading animation for expired content with a custom fade duration", () => {
+  jest.useFakeTimers();
+  const message = "Message!";
+  const time = 10000;
+  const fadeDuration = 1000;
+  const onRemoval = jest.fn();
+  render(
+    <Expire
+      expiresInMillis={time}
+      onRemoval={onRemoval}
+      fadeable={true}
+      fadeDurationInMillis={fadeDuration}
+    >
+      {message}
+    </Expire>
+  );
+  const renderedContent = screen.getByText(message);
+  expect(renderedContent).toBeInTheDocument();
+  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveStyle({
+    transition: `opacity ${fadeDuration}ms`,
+  });
   expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
     jest.advanceTimersByTime(time + fadeDuration);
