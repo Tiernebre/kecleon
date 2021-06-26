@@ -1,6 +1,6 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Image, ImageProps } from "../components";
+import { fixedImageSizes, Image, ImageProps, imageRatios } from "../components";
 
 export default {
   title: "Example/Image",
@@ -11,6 +11,26 @@ export default {
         type: "boolean",
       },
     },
+    src: {
+      control: {
+        type: "text",
+      },
+    },
+    fixedSize: {
+      control: {
+        type: "select",
+        options: fixedImageSizes,
+      },
+    },
+    ratio: {
+      control: {
+        type: "select",
+        options: imageRatios,
+      },
+    },
+  },
+  args: {
+    src: "https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/001.png",
   },
 } as Meta<ImageProps>;
 
