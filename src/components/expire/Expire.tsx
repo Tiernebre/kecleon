@@ -2,6 +2,7 @@ import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 
 export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
+  onExpire?: () => void;
 }>;
 
 /**
@@ -13,18 +14,22 @@ export type ExpireProps = PropsWithChildren<{
 export const Expire = ({
   expiresInMillis,
   children,
+  onExpire,
 }: ExpireProps): JSX.Element => {
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setExpired(true);
+      if (onExpire) {
+        onExpire();
+      }
     }, expiresInMillis);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [expiresInMillis]);
+  }, [expiresInMillis, onExpire]);
 
   return <Fragment>{!expired && children}</Fragment>;
 };
