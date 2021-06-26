@@ -1,13 +1,14 @@
 import * as React from "react";
-import { AlertRequest } from "../../types/alert";
+import { AlertRequest, QueuedAlert } from "../../types/alert";
+import { v4 as uuid } from "uuid";
 
 type Action =
   | { type: "queue"; payload: AlertRequest }
   | { type: "dequeue" }
-  | { type: "remove"; index: number };
+  | { type: "remove"; id: string };
 type Dispatch = (action: Action) => void;
 type State = {
-  alerts: AlertRequest[];
+  alerts: QueuedAlert[];
 };
 type AlertsProviderProps = React.PropsWithChildren<unknown>;
 type Context = {
@@ -23,13 +24,19 @@ const alertsReducer: React.Reducer<State, Action> = (
   action: Action
 ) => {
   switch (action.type) {
-    case "queue":
-      return { alerts: [...state.alerts, action.payload] };
+    case "queue": {
+      const alert: QueuedAlert = {
+        ...action.payload,
+        id: uuid(),
+      };
+      return { alerts: [...state.alerts, alert] };
+    }
     case "dequeue":
       return { alerts: state.alerts.slice(1) };
     case "remove": {
       const alerts = state.alerts.slice();
-      alerts.splice(action.index, 1);
+      const alertIndexToRemove = alerts.findIndex(({ id }) => id === action.id);
+      alerts.splice(alertIndexToRemove, 1);
       return { alerts };
     }
     default:

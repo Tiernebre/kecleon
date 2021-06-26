@@ -1,5 +1,12 @@
-import { Alert, Alerts } from "..";
+import { Alerts, ExpirableAlert } from "..";
 import { useAlerts } from "../../hooks";
+
+const DEFAULT_FADE_OUT_IN_SECONDS = 5;
+const DEFAULT_FADE_OUT_IN_MILLIS = DEFAULT_FADE_OUT_IN_SECONDS * 1000;
+
+type SmartAlertsProps = {
+  fadeOutInMillis?: number;
+};
 
 /**
  * SmartAlerts is a flavor of the {@link Alerts} component
@@ -11,21 +18,28 @@ import { useAlerts } from "../../hooks";
  * If you do not wish to use the "smart" stateful coupled nature
  * of this component, you should prefer to just use {@link Alerts} instead.
  */
-export const SmartAlerts = (): JSX.Element => {
+export const SmartAlerts = ({
+  fadeOutInMillis,
+}: SmartAlertsProps): JSX.Element => {
   const { state, dispatch } = useAlerts();
   const { alerts } = state;
 
+  const expiresInMillis = fadeOutInMillis ?? DEFAULT_FADE_OUT_IN_MILLIS;
+
   return (
     <Alerts>
-      {alerts.map((alert, index) => {
+      {alerts.map((alert) => {
+        const closeAlert = () => dispatch({ type: "remove", id: alert.id });
         return (
-          <Alert
+          <ExpirableAlert
             color={alert.color}
-            key={index}
-            onClose={() => dispatch({ type: "remove", index })}
+            expiresInMillis={expiresInMillis}
+            key={alert.id}
+            onExpire={closeAlert}
+            onClose={closeAlert}
           >
             {alert.message}
-          </Alert>
+          </ExpirableAlert>
         );
       })}
     </Alerts>
