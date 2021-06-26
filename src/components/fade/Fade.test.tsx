@@ -2,10 +2,11 @@ import { render, screen } from "@testing-library/react";
 import { Fade } from "./Fade";
 
 it("fades out given content within the provided time", () => {
-  const duration = 1000;
+  jest.useFakeTimers();
+  const duration = 500;
   const content = "This message will fade out eventually....";
   const onOutCompletion = jest.fn();
-  render(
+  const { rerender } = render(
     <Fade
       visible={true}
       durationInMillis={duration}
@@ -15,4 +16,16 @@ it("fades out given content within the provided time", () => {
     </Fade>
   );
   expect(screen.getByText(content)).toBeInTheDocument();
+  expect(onOutCompletion).not.toHaveBeenCalled();
+  rerender(
+    <Fade
+      visible={false}
+      durationInMillis={duration}
+      onOutCompletion={onOutCompletion}
+    >
+      {content}
+    </Fade>
+  );
+  jest.advanceTimersByTime(duration + 1);
+  expect(onOutCompletion).toHaveBeenCalled();
 });
