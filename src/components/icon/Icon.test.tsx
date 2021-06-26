@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Color, colors, Size, sizes } from "../../types";
+import { Color, colors, Direction, directions, Size, sizes } from "../../types";
 import { Icon, IconFontSize, iconFontSizes } from "./Icon";
 
 it("renders an icon", () => {
@@ -78,3 +78,13 @@ it("does not render the screen reader message if a message is not provided", () 
   const screenOnlyMessage = screen.queryByTestId("icon-screen-reader-message");
   expect(screenOnlyMessage).toBeNull();
 });
+
+it.each<Direction>(directions)(
+  "is rendered in direction %p",
+  (direction: Direction) => {
+    const message = "Set Direction";
+    render(<Icon name="minus" direction={direction} message={message} />);
+    const icon = screen.getByTitle(message);
+    expect(icon.parentElement).toHaveClass(`is-${direction}`);
+  }
+);
