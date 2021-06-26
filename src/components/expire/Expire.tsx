@@ -8,6 +8,7 @@ export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
   onRemoval?: () => void;
   fadeable?: boolean;
+  fadeDurationInMillis: number;
 }>;
 
 /**
@@ -15,12 +16,16 @@ export type ExpireProps = PropsWithChildren<{
  * a provided time (in milliseconds).
  *
  * By "hide", the content is entirely removed from the DOM.
+ *
+ * Also supports a fade out animation effect so that the element
+ * is not removed from the DOM immediately.
  */
 export const Expire = ({
   expiresInMillis,
   children,
   onRemoval,
   fadeable = false,
+  fadeDurationInMillis = 500,
 }: ExpireProps): JSX.Element => {
   const [expired, setExpired] = useState(false);
   const [removed, setRemoved] = useState(false);
@@ -58,11 +63,17 @@ export const Expire = ({
   return fadeable ? (
     <CSSTransition
       in={!expired}
-      timeout={500}
+      timeout={fadeDurationInMillis}
       classNames={classNames}
       onExited={hideContent}
     >
-      <div>{renderedContent}</div>
+      <div
+        style={{
+          transition: `opacity ${fadeDurationInMillis}ms`,
+        }}
+      >
+        {renderedContent}
+      </div>
     </CSSTransition>
   ) : (
     <Fragment>{renderedContent}</Fragment>
