@@ -11,6 +11,7 @@ export * from "./expire";
 export * from "./expirable-alert";
 export * from "./fade";
 export * from "./form-control";
+export * from "./form-field";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./image";
