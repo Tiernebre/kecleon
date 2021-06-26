@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import { Fragment } from "react";
 
 import { Input, InputProps } from "../components";
 import { colors, sizes } from "../types";
@@ -27,7 +28,22 @@ export default {
   },
 } as Meta<InputProps>;
 
-const Template: Story<InputProps> = (args) => <Input {...args} />;
+const InteractiveInputTemplate: Story<InputProps> = (args) => (
+  <Input {...args} />
+);
 
-export const InteractiveInput = Template.bind({});
+export const InteractiveInput = InteractiveInputTemplate.bind({});
 InteractiveInput.args = {};
+
+const InputColorsTemplate: Story<InputProps> = () => (
+  <Fragment>
+    {colors.map((color) => {
+      return (
+        <div className="block">
+          <Input color={color} value={color}></Input>
+        </div>
+      );
+    })}
+  </Fragment>
+);
+export const InputColors = InputColorsTemplate.bind({});
