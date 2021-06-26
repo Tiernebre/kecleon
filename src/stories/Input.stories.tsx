@@ -35,6 +35,11 @@ const InteractiveInputTemplate: Story<InputProps> = (args) => (
 export const InteractiveInput = InteractiveInputTemplate.bind({});
 InteractiveInput.args = {};
 
+export const RoundedInput = InteractiveInputTemplate.bind({});
+RoundedInput.args = {
+  rounded: true,
+};
+
 const InputColorsTemplate: Story<InputProps> = () => (
   <Fragment>
     {colors.map((color) => {
