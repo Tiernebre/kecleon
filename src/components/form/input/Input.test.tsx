@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { colors } from "../..";
-import { Color, Size, sizes } from "../../types";
+import { colors } from "../../..";
+import { Color, Size, sizes } from "../../../types";
 import { Input } from ".";
 
 it("is entirely unopinionated if not given any props", () => {
