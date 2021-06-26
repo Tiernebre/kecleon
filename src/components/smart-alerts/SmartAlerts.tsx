@@ -1,6 +1,5 @@
-import { Alerts } from "..";
+import { Alerts, ExpirableAlert } from "..";
 import { useAlerts } from "../../hooks";
-import { ExpirableAlert } from "../expirable-alert";
 
 const DEFAULT_FADE_OUT_IN_SECONDS = 5;
 const DEFAULT_FADE_OUT_IN_MILLIS = DEFAULT_FADE_OUT_IN_SECONDS * 1000;

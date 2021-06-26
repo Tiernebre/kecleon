@@ -8,6 +8,7 @@ export * from "./columns";
 export * from "./container";
 export * from "./delete";
 export * from "./expire";
+export * from "./expirable-alert";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./notification";
