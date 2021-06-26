@@ -13,19 +13,19 @@ it("removes children after a set amount of time", () => {
   expect(screen.queryByText(message)).toBeNull();
 });
 
-it("invokes a handler callback if provided for on expiration", () => {
+it("invokes a handler callback if provided for on removal", () => {
   jest.useFakeTimers();
   const message = "Message!";
   const time = 10000;
-  const onExpiration = jest.fn();
+  const onRemoval = jest.fn();
   render(
-    <Expire expiresInMillis={time} onExpire={onExpiration}>
+    <Expire expiresInMillis={time} onRemoval={onRemoval}>
       {message}
     </Expire>
   );
-  expect(onExpiration).not.toHaveBeenCalled();
+  expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
     jest.advanceTimersByTime(time);
   });
-  expect(onExpiration).toHaveBeenCalledTimes(1);
+  expect(onRemoval).toHaveBeenCalledTimes(1);
 });

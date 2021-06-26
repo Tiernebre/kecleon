@@ -6,7 +6,7 @@ import styles from "./Expire.module.css";
 
 export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
-  onExpire?: () => void;
+  onRemoval?: () => void;
   fadeable?: boolean;
 }>;
 
@@ -19,24 +19,23 @@ export type ExpireProps = PropsWithChildren<{
 export const Expire = ({
   expiresInMillis,
   children,
-  onExpire,
-  fadeable,
+  onRemoval,
+  fadeable = false,
 }: ExpireProps): JSX.Element => {
   const [expired, setExpired] = useState(false);
   const [removed, setRemoved] = useState(false);
 
   const hideContent = () => {
     setRemoved(true);
-    if (onExpire) {
-      onExpire();
+    if (onRemoval) {
+      onRemoval();
     }
   };
 
   useDidMount(() => {
     const timeout = setTimeout(() => {
-      if (fadeable) {
-        setExpired(true);
-      } else {
+      setExpired(true);
+      if (!fadeable) {
         hideContent();
       }
     }, expiresInMillis);
@@ -46,8 +45,6 @@ export const Expire = ({
     };
   });
 
-  const renderedContent = removed ? null : children;
-
   const classNames: CSSTransitionClassNames = {
     enter: styles["expire-enter"],
     enterActive: styles["expire-enter-active"],
@@ -56,13 +53,14 @@ export const Expire = ({
     exitDone: styles["expire-exit-done"],
   };
 
-  console.log(fadeable);
+  const renderedContent = removed ? null : children;
+
   return fadeable ? (
     <CSSTransition
       in={!expired}
-      timeout={5000}
+      timeout={500}
       classNames={classNames}
-      onExited={() => hideContent()}
+      onExited={hideContent}
     >
       <div>{renderedContent}</div>
     </CSSTransition>
