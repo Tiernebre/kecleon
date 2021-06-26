@@ -1,5 +1,11 @@
 import { screen, render } from "@testing-library/react";
-import { fixedImageSizes, Image, ImageFixedSize } from "./Image";
+import {
+  fixedImageSizes,
+  Image,
+  ImageFixedSize,
+  ImageRatio,
+  imageRatios,
+} from "./Image";
 
 it("renders the provided image source", () => {
   const src =
@@ -32,7 +38,7 @@ it("is not rounded by default", () => {
   expect(image.parentElement).not.toHaveClass("is-rounded");
 });
 
-it.each(fixedImageSizes)(
+it.each<ImageFixedSize>(fixedImageSizes)(
   "is rendered in fixed size with dimension %p",
   (fixedImageSize: ImageFixedSize) => {
     const alt = "Test Image";
@@ -41,5 +47,15 @@ it.each(fixedImageSizes)(
     expect(image.parentElement).toHaveClass(
       `is-${fixedImageSize}x${fixedImageSize}`
     );
+  }
+);
+
+it.each<ImageRatio>(imageRatios)(
+  "is rendered in ratio %p",
+  (ratio: ImageRatio) => {
+    const alt = "Test Image";
+    render(<Image alt={alt} ratio={ratio} />);
+    const image = screen.getByAltText(alt);
+    expect(image.parentElement).toHaveClass(`is-${ratio}`);
   }
 );
