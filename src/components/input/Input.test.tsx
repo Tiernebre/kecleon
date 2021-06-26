@@ -21,6 +21,13 @@ it("can be readonly", () => {
   expect(input).toHaveAttribute("readonly");
 });
 
+it("can have a placeholder", () => {
+  const placeholder = "Test Placeholder";
+  render(<Input placeholder={placeholder} />);
+  const input = screen.getByRole("textbox");
+  expect(input).toHaveAttribute("placeholder", placeholder);
+});
+
 it.each<Color>(colors)("renders with color %p", (color: Color) => {
   render(<Input color={color} />);
   const input = screen.getByRole("textbox");
