@@ -40,3 +40,12 @@ FadeableSetExpire.args = {
   children:
     "This message will disappear within 5 seconds of being loaded. See ya later!",
 };
+
+export const LongFadeableSetExpire = Template.bind({});
+FadeableSetExpire.args = {
+  fadeable: true,
+  expiresInMillis: 5000,
+  fadeDurationInMillis: 10000,
+  children:
+    "This message will disappear within 5 seconds of being loaded, but will take 10 seconds to fully fade away. See ya later!",
+};
