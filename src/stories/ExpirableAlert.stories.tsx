@@ -3,17 +3,17 @@ import { Story, Meta } from "@storybook/react";
 import { ExpirableAlert, ExpirableAlertProps } from "../components";
 
 export default {
-  component: ExpirableAlert,
   title: "Example/ExpirableAlert",
+  component: ExpirableAlert,
   argTypes: {
-    expiresInMillis: {
-      control: {
-        type: "number",
-      },
-    },
     children: {
       control: {
         type: "text",
+      },
+    },
+    expiresInMillis: {
+      control: {
+        type: "number",
       },
     },
   },

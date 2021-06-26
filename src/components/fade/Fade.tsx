@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import styles from "./Fade.module.css";
 
-type FadeProps = PropsWithChildren<{
+export type FadeProps = PropsWithChildren<{
   visible: boolean;
   durationInMillis: number;
   // called when the element is completely finished fading away
