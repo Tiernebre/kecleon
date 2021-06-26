@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { Size, sizes } from "../../types";
 import { Input } from "../input";
 import { FormControl } from "./FormControl";
 
@@ -71,3 +72,16 @@ it("does not display in loading state if specified as false", () => {
   const input = screen.getByRole("textbox");
   expect(input.parentElement).not.toHaveClass("is-loading");
 });
+
+it.each<Size>(sizes)(
+  "displays the loading spinner in size = %p",
+  (size: Size) => {
+    render(
+      <FormControl hasIconsRight hasIconsLeft loading loadingSize={size}>
+        <Input />
+      </FormControl>
+    );
+    const input = screen.getByRole("textbox");
+    expect(input.parentElement).toHaveClass(`is-${size}`);
+  }
+);
