@@ -42,6 +42,7 @@ it("supports fading animation for expired content", () => {
     </Expire>
   );
   expect(screen.getByText(message)).toBeInTheDocument();
+  expect(screen.getByText(message)).toHaveClass("expire-animation-container");
   expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
     jest.advanceTimersByTime(time + fadeDuration);
