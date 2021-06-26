@@ -8,7 +8,7 @@ export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
   onRemoval?: () => void;
   fadeable?: boolean;
-  fadeDurationInMillis: number;
+  fadeDurationInMillis?: number;
 }>;
 
 /**
