@@ -1,15 +1,10 @@
 import { Fragment, PropsWithChildren, useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import { useDidMount } from "../../hooks";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import styles from "./Expire.module.css";
+import { Fade } from "../fade";
 
 export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
   onRemoval?: () => void;
-  // I still don't know how I feel about Expire caring about fading animations...
-  // Maybe in the future I can abstract this functionality out into its own animation
-  // based component 🤔.
   fadeable?: boolean;
   fadeDurationInMillis?: number;
 }>;
@@ -53,32 +48,16 @@ export const Expire = ({
     };
   });
 
-  const classNames: CSSTransitionClassNames = {
-    enter: styles["expire-enter"],
-    enterActive: styles["expire-enter-active"],
-    exit: styles["expire-exit"],
-    exitActive: styles["expire-exit-active"],
-    exitDone: styles["expire-exit-done"],
-  };
-
   const renderedContent = removed ? null : children;
 
   return fadeable ? (
-    <CSSTransition
-      in={!expired}
-      timeout={fadeDurationInMillis}
-      classNames={classNames}
-      onExited={hideContent}
+    <Fade
+      visible={!expired}
+      durationInMillis={fadeDurationInMillis}
+      onOutCompletion={hideContent}
     >
-      <div
-        className="expire-animation-container"
-        style={{
-          transition: `opacity ${fadeDurationInMillis}ms`,
-        }}
-      >
-        {renderedContent}
-      </div>
-    </CSSTransition>
+      {renderedContent}
+    </Fade>
   ) : (
     <Fragment>{renderedContent}</Fragment>
   );

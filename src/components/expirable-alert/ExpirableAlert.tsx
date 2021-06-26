@@ -11,7 +11,7 @@ export const ExpirableAlert = ({
   fadeDurationInMillis,
   ...props
 }: ExpirableAlertProps): JSX.Element => {
-  const expireProps = {
+  const expireProps: ExpireProps = {
     expiresInMillis,
     onRemoval,
     fadeable,

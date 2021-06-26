@@ -42,7 +42,7 @@ it("supports fading animation for expired content", () => {
   );
   const renderedContent = screen.getByText(message);
   expect(renderedContent).toBeInTheDocument();
-  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveClass("fade-animation-container");
   expect(renderedContent).toHaveStyle({ transition: "opacity 500ms" });
   expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
@@ -70,7 +70,7 @@ it("supports fading animation for expired content with a custom fade duration", 
   );
   const renderedContent = screen.getByText(message);
   expect(renderedContent).toBeInTheDocument();
-  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveClass("fade-animation-container");
   expect(renderedContent).toHaveStyle({
     transition: `opacity ${fadeDuration}ms`,
   });
