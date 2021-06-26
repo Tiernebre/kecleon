@@ -35,8 +35,9 @@ export const SmartAlerts = ({
             color={alert.color}
             expiresInMillis={expiresInMillis}
             key={alert.id}
-            onExpire={closeAlert}
+            onRemoval={closeAlert}
             onClose={closeAlert}
+            fadeable
           >
             {alert.message}
           </ExpirableAlert>
