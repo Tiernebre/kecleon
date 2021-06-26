@@ -1,3 +1,3 @@
 export const FormControl = (): JSX.Element => {
-  return <div>Form Control</div>;
+  return <div className="control">Form Control</div>;
 };
