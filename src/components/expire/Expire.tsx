@@ -1,4 +1,5 @@
-import { Fragment, PropsWithChildren, useEffect, useState } from "react";
+import { Fragment, PropsWithChildren, useState } from "react";
+import { useDidMount } from "../../hooks";
 
 export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
@@ -18,18 +19,14 @@ export const Expire = ({
 }: ExpireProps): JSX.Element => {
   const [expired, setExpired] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
+  useDidMount(() => {
+    setTimeout(() => {
       setExpired(true);
       if (onExpire) {
         onExpire();
       }
     }, expiresInMillis);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [expiresInMillis, onExpire]);
+  });
 
   return <Fragment>{!expired && children}</Fragment>;
 };
