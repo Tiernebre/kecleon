@@ -5,8 +5,8 @@ import { Input, InputProps } from "../components";
 import { colors, sizes } from "../types";
 
 export default {
-  component: Input,
   title: "Example/Input",
+  component: Input,
   argTypes: {
     rounded: {
       control: {
