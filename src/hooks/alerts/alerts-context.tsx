@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 type Action =
   | { type: "queue"; payload: AlertRequest }
   | { type: "dequeue" }
-  | { type: "remove"; index: number };
+  | { type: "remove"; id: string };
 type Dispatch = (action: Action) => void;
 type State = {
   alerts: QueuedAlert[];
@@ -35,7 +35,8 @@ const alertsReducer: React.Reducer<State, Action> = (
       return { alerts: state.alerts.slice(1) };
     case "remove": {
       const alerts = state.alerts.slice();
-      alerts.splice(action.index, 1);
+      const alertIndexToRemove = alerts.findIndex(({ id }) => id === action.id);
+      alerts.splice(alertIndexToRemove, 1);
       return { alerts };
     }
     default:
