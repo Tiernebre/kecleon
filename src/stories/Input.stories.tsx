@@ -39,7 +39,7 @@ const InputColorsTemplate: Story<InputProps> = () => (
   <Fragment>
     {colors.map((color) => {
       return (
-        <div className="block">
+        <div className="block" key={color}>
           <Input color={color} value={color}></Input>
         </div>
       );
@@ -47,3 +47,16 @@ const InputColorsTemplate: Story<InputProps> = () => (
   </Fragment>
 );
 export const InputColors = InputColorsTemplate.bind({});
+
+const InputSizesTemplate: Story<InputProps> = () => (
+  <Fragment>
+    {sizes.map((size) => {
+      return (
+        <div className="block" key={size}>
+          <Input size={size} value={size}></Input>
+        </div>
+      );
+    })}
+  </Fragment>
+);
+export const InputSizes = InputSizesTemplate.bind({});
