@@ -28,6 +28,12 @@ it("can have a placeholder", () => {
   expect(input).toHaveAttribute("placeholder", placeholder);
 });
 
+it("can have a specific type", () => {
+  render(<Input type="number" />);
+  const input = screen.getByRole("spinbutton");
+  expect(input).toHaveAttribute("type", "number");
+});
+
 it.each<Color>(colors)("renders with color %p", (color: Color) => {
   render(<Input color={color} />);
   const input = screen.getByRole("textbox");

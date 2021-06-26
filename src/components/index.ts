@@ -13,4 +13,5 @@ export * from "./fade";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./image";
+export * from "./input";
 export * from "./notification";
