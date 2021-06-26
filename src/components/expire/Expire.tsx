@@ -68,6 +68,7 @@ export const Expire = ({
       onExited={hideContent}
     >
       <div
+        className="expire-animation-container"
         style={{
           transition: `opacity ${fadeDurationInMillis}ms`,
         }}

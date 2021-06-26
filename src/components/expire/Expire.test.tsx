@@ -29,3 +29,23 @@ it("invokes a handler callback if provided for on removal", () => {
   });
   expect(onRemoval).toHaveBeenCalledTimes(1);
 });
+
+it("supports fading animation for expired content", () => {
+  jest.useFakeTimers();
+  const message = "Message!";
+  const time = 10000;
+  const fadeDuration = 1000;
+  const onRemoval = jest.fn();
+  render(
+    <Expire expiresInMillis={time} onRemoval={onRemoval} fadeable>
+      {message}
+    </Expire>
+  );
+  expect(screen.getByText(message)).toBeInTheDocument();
+  expect(onRemoval).not.toHaveBeenCalled();
+  act(() => {
+    jest.advanceTimersByTime(time + fadeDuration);
+  });
+  expect(screen.queryByText(message)).toBeNull();
+  expect(onRemoval).toHaveBeenCalledTimes(1);
+});
