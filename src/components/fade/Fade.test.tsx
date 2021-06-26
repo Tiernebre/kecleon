@@ -15,7 +15,12 @@ it("fades out given content within the provided time", () => {
       {content}
     </Fade>
   );
-  expect(screen.getByText(content)).toBeInTheDocument();
+  const renderedContent = screen.getByText(content);
+  expect(renderedContent).toBeInTheDocument();
+  expect(renderedContent).toHaveClass("fade-animation-container");
+  expect(renderedContent).toHaveStyle({
+    transition: `opacity ${duration}ms`,
+  });
   expect(onOutCompletion).not.toHaveBeenCalled();
   rerender(
     <Fade
