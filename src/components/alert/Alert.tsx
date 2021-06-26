@@ -10,7 +10,9 @@ export type AlertProps = PropsWithChildren<{
 export const Alert = ({ color, children }: AlertProps): JSX.Element => {
   return (
     <div role="alert" className={styles.alert}>
-      <Notification color={color}>{children}</Notification>
+      <Notification color={color} closable={false}>
+        {children}
+      </Notification>
     </div>
   );
 };

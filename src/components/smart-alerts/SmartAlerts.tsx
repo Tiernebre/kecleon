@@ -1,5 +1,6 @@
-import { Alert, Alerts } from "..";
+import { Alerts } from "..";
 import { useAlerts } from "../../hooks";
+import { ExpirableAlert } from "../expirable-alert";
 
 /**
  * SmartAlerts is a flavor of the {@link Alerts} component
@@ -19,13 +20,14 @@ export const SmartAlerts = (): JSX.Element => {
     <Alerts>
       {alerts.map((alert, index) => {
         return (
-          <Alert
+          <ExpirableAlert
             color={alert.color}
-            key={index}
-            onClose={() => dispatch({ type: "remove", index })}
+            expiresInMillis={5000}
+            key={alert.id}
+            onExpire={() => dispatch({ type: "remove", index })}
           >
             {alert.message}
-          </Alert>
+          </ExpirableAlert>
         );
       })}
     </Alerts>

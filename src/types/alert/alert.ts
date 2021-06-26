@@ -6,3 +6,7 @@ export type AlertRequest = {
   message: string;
   color: AlertColor;
 };
+
+export type QueuedAlert = {
+  id: string;
+} & AlertRequest;

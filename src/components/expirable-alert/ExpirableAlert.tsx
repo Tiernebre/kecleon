@@ -6,10 +6,11 @@ export type ExpirableAlertProps = ExpireProps & AlertProps;
 
 export const ExpirableAlert = ({
   expiresInMillis,
+  onExpire,
   ...props
 }: ExpirableAlertProps): JSX.Element => {
   return (
-    <Expire expiresInMillis={expiresInMillis}>
+    <Expire expiresInMillis={expiresInMillis} onExpire={onExpire}>
       <Alert {...props} />
     </Expire>
   );
