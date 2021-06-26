@@ -31,3 +31,10 @@ const InputControlWithIconsTemplate: Story<FormControlProps> = (args) => (
   </FormControl>
 );
 export const InputControlWithIcons = InputControlWithIconsTemplate.bind({});
+
+const InputControlWithLoadingTemplate: Story<FormControlProps> = (args) => (
+  <FormControl loading>
+    <Input readOnly placeholder="Input Control" />
+  </FormControl>
+);
+export const InputControlWithLoading = InputControlWithLoadingTemplate.bind({});
