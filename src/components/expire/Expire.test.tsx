@@ -37,7 +37,7 @@ it("supports fading animation for expired content", () => {
   const fadeDuration = 1000;
   const onRemoval = jest.fn();
   render(
-    <Expire expiresInMillis={time} onRemoval={onRemoval} fadeable>
+    <Expire expiresInMillis={time} onRemoval={onRemoval} fadeable={true}>
       {message}
     </Expire>
   );
