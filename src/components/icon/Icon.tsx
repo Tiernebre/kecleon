@@ -1,4 +1,4 @@
-import { Color, Size } from "../../types";
+import { Color, Direction, Size } from "../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -14,6 +14,7 @@ export type IconProps = {
   bordered?: boolean;
   containerSize?: Size;
   fontSize?: IconFontSize;
+  direction?: Direction;
 };
 
 const fontClassNameMapping: ClassNameTransformMap<IconProps> = new Map([
@@ -24,6 +25,7 @@ const fontClassNameMapping: ClassNameTransformMap<IconProps> = new Map([
 
 const iconClassNameMapping: ClassNameTransformMap<IconProps> = new Map([
   ["containerSize", (containerSize: string) => `is-${containerSize}`],
+  ["direction", (direction: string) => `is-${direction}`],
 ]);
 
 export const Icon = ({
@@ -33,6 +35,7 @@ export const Icon = ({
   bordered,
   containerSize,
   fontSize,
+  direction,
 }: IconProps): JSX.Element => {
   const fontClassName = createClassNameFromProps(
     fontClassNameMapping,
@@ -42,7 +45,7 @@ export const Icon = ({
 
   const iconClassName = createClassNameFromProps(
     iconClassNameMapping,
-    { containerSize } as Partial<IconProps>,
+    { containerSize, direction } as Partial<IconProps>,
     ["icon"]
   );
 
