@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { AlertsProvider, useAlerts } from "../../hooks";
 import { SmartAlerts } from "./SmartAlerts";
 import user from "@testing-library/user-event";
@@ -36,6 +36,30 @@ it("renders out alerts from the context", () => {
   addAlert();
   alerts = screen.getAllByRole("alert");
   expect(alerts).toHaveLength(1);
+});
+
+it("removes an alert that a user closed", () => {
+  render(
+    <AlertsProvider>
+      <SmartAlerts />
+      <ShowAlertButton message="Test Alert" />
+    </AlertsProvider>
+  );
+  const numberOfAlerts = 10;
+  for (let i = 0; i < numberOfAlerts; i++) {
+    addAlert();
+  }
+  let alerts = screen.getAllByRole("alert");
+  expect(alerts).toHaveLength(numberOfAlerts);
+  const removedAlert = alerts[4];
+  const deleteButton = within(removedAlert).getByRole("button", {
+    name: "Close Notification",
+  });
+  act(() => {
+    user.click(deleteButton);
+  });
+  alerts = screen.getAllByRole("alert");
+  expect(alerts).toHaveLength(numberOfAlerts - 1);
 });
 
 it("fades out an alert after 5 seconds by default", () => {
