@@ -17,11 +17,11 @@ export const Fade = ({
   children,
 }: FadeProps): JSX.Element => {
   const classNames: CSSTransitionClassNames = {
-    enter: styles["expire-enter"],
-    enterActive: styles["expire-enter-active"],
-    exit: styles["expire-exit"],
-    exitActive: styles["expire-exit-active"],
-    exitDone: styles["expire-exit-done"],
+    enter: styles["fade-enter"],
+    enterActive: styles["fade-enter-active"],
+    exit: styles["fade-exit"],
+    exitActive: styles["fade-exit-active"],
+    exitDone: styles["fade-exit-done"],
   };
 
   return (

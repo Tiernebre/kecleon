@@ -42,7 +42,7 @@ FadeableSetExpire.args = {
 };
 
 export const LongFadeableSetExpire = Template.bind({});
-FadeableSetExpire.args = {
+LongFadeableSetExpire.args = {
   fadeable: true,
   expiresInMillis: 5000,
   fadeDurationInMillis: 10000,
