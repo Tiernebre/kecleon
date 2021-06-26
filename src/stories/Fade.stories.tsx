@@ -3,8 +3,8 @@ import { Story, Meta } from "@storybook/react";
 import { Fade, FadeProps } from "../components";
 
 export default {
-  component: Fade,
   title: "Example/Fade",
+  component: Fade,
   argTypes: {
     children: {
       control: {
