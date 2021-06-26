@@ -1,21 +1,30 @@
 import { Fragment, PropsWithChildren, useEffect, useState } from "react";
 
 export type ExpireProps = PropsWithChildren<{
-  time: number;
+  expiresInMillis: number;
 }>;
 
-export const Expire = ({ time, children }: ExpireProps): JSX.Element => {
+/**
+ * Component that will hide its given children content within
+ * a provided time (in milliseconds).
+ *
+ * By "hide", the content is entirely removed from the DOM.
+ */
+export const Expire = ({
+  expiresInMillis,
+  children,
+}: ExpireProps): JSX.Element => {
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setExpired(true);
-    }, time);
+    }, expiresInMillis);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [time]);
+  }, [expiresInMillis]);
 
   return <Fragment>{!expired && children}</Fragment>;
 };
