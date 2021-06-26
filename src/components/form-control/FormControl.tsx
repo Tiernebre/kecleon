@@ -1,3 +1,7 @@
-export const FormControl = (): JSX.Element => {
-  return <div className="control">Form Control</div>;
+import { PropsWithChildren } from "react";
+
+export type FormControlProps = PropsWithChildren<unknown>;
+
+export const FormControl = ({ children }: FormControlProps): JSX.Element => {
+  return <div className="control">{children}</div>;
 };
