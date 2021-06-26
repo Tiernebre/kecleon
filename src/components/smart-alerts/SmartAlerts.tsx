@@ -30,12 +30,14 @@ export const SmartAlerts = ({
   return (
     <Alerts>
       {alerts.map((alert) => {
+        const closeAlert = () => dispatch({ type: "remove", id: alert.id });
         return (
           <ExpirableAlert
             color={alert.color}
             expiresInMillis={expiresInMillis}
             key={alert.id}
-            onExpire={() => dispatch({ type: "remove", id: alert.id })}
+            onExpire={closeAlert}
+            onClose={closeAlert}
           >
             {alert.message}
           </ExpirableAlert>
