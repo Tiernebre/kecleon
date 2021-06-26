@@ -5,12 +5,13 @@ import {
   createClassNameFromProps,
 } from "../../utilities";
 
-export type InputProps = {
+type InputHtmlAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
+export type InputProps = InputHtmlAttributes & {
   color?: Color;
   size?: Size;
   rounded?: boolean;
   isStatic?: boolean;
-} & InputHTMLAttributes<HTMLInputElement>;
+};
 
 const classNameMap: ClassNameTransformMap<InputProps> = new Map([
   ["color", (color: string) => `is-${color}`],
