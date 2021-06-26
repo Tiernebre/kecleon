@@ -3,8 +3,8 @@ import { Story, Meta } from "@storybook/react";
 import { fixedImageSizes, Image, ImageProps, imageRatios } from "../components";
 
 export default {
-  title: "Example/Image",
   component: Image,
+  title: "Example/Image",
   argTypes: {
     rounded: {
       control: {
