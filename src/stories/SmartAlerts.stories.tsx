@@ -14,10 +14,12 @@ const range = (start: number, end: number) => {
 };
 
 const ButtonContainer = () => {
-  const { showAlert } = useAlerts();
+  const { state, showAlert } = useAlerts();
+  const numberOfAlerts = state.alerts.length;
+
   const alert: AlertRequest = {
     color: "success",
-    message: "This is a test alert. Hi!",
+    message: `Alert #${numberOfAlerts + 1}`,
   };
   return (
     <Button color="success" onClick={() => showAlert(alert)}>
