@@ -5,9 +5,6 @@ import { Fade } from "../fade";
 export type ExpireProps = PropsWithChildren<{
   expiresInMillis: number;
   onRemoval?: () => void;
-  // I still don't know how I feel about Expire caring about fading animations...
-  // Maybe in the future I can abstract this functionality out into its own animation
-  // based component 🤔.
   fadeable?: boolean;
   fadeDurationInMillis?: number;
 }>;
