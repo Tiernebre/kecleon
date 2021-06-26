@@ -9,6 +9,18 @@ it("is entirely unopinionated if not given any props", () => {
   expect(input).toHaveClass("input", { exact: true });
 });
 
+it("can be disabled", () => {
+  render(<Input disabled />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeDisabled();
+});
+
+it("can be readonly", () => {
+  render(<Input readOnly />);
+  const input = screen.getByRole("textbox");
+  expect(input).toHaveAttribute("readonly");
+});
+
 it.each<Color>(colors)("renders with color %p", (color: Color) => {
   render(<Input color={color} />);
   const input = screen.getByRole("textbox");
