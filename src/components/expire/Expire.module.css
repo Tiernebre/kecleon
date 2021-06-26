@@ -1,0 +1,14 @@
+.expire-enter {
+  opacity: 0;
+}
+.expire-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.expire-exit {
+  opacity: 1;
+}
+.expire-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

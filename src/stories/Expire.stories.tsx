@@ -16,6 +16,11 @@ export default {
         type: "text",
       },
     },
+    fadeable: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
 } as Meta<ExpireProps>;
 
@@ -23,6 +28,14 @@ const Template: Story<ExpireProps> = (args) => <Expire {...args} />;
 
 export const SetExpire = Template.bind({});
 SetExpire.args = {
+  expiresInMillis: 5000,
+  children:
+    "This message will disappear within 5 seconds of being loaded. See ya later!",
+};
+
+export const FadeableSetExpire = Template.bind({});
+FadeableSetExpire.args = {
+  fadeable: true,
   expiresInMillis: 5000,
   children:
     "This message will disappear within 5 seconds of being loaded. See ya later!",
