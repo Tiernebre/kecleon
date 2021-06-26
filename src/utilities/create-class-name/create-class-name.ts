@@ -1,4 +1,7 @@
-export type ClassNameTransformFn = (() => string) | ((value: string) => string);
+export type ClassNameTransformFn =
+  | (() => string)
+  | ((value: string) => string)
+  | ((value: number) => string);
 export type ClassNameTransformMap<T> = Map<keyof T, ClassNameTransformFn>;
 
 /**

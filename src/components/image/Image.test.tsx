@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import { Image } from "./Image";
+import { fixedImageSizes, Image, ImageFixedSize } from "./Image";
 
 it("is rounded if provided", () => {
   const alt = "Test Image";
@@ -21,3 +21,15 @@ it("is not rounded by default", () => {
   const image = screen.getByAltText(alt);
   expect(image.parentElement).not.toHaveClass("is-rounded");
 });
+
+it.each(fixedImageSizes)(
+  "is rendered in fixed size with dimension %p",
+  (fixedImageSize: ImageFixedSize) => {
+    const alt = "Test Image";
+    render(<Image alt={alt} fixedSize={fixedImageSize} />);
+    const image = screen.getByAltText(alt);
+    expect(image.parentElement).toHaveClass(
+      `is-${fixedImageSize}x${fixedImageSize}`
+    );
+  }
+);

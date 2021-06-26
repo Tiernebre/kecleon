@@ -4,19 +4,30 @@ import {
   createClassNameFromProps,
 } from "../../utilities";
 
+export const fixedImageSizes = [16, 24, 32, 48, 64, 96, 128] as const;
+
+export type ImageFixedSize = typeof fixedImageSizes[number];
+
 export type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
   rounded?: boolean;
   alt: string;
+  fixedSize?: ImageFixedSize;
 };
 
 const classNameMapping: ClassNameTransformMap<ImageProps> = new Map([
   ["rounded", () => "is-rounded"],
+  ["fixedSize", (fixedSize: number) => `is-${fixedSize}x${fixedSize}`],
 ]);
 
-export const Image = ({ rounded, alt, ...props }: ImageProps): JSX.Element => {
+export const Image = ({
+  rounded,
+  fixedSize,
+  alt,
+  ...props
+}: ImageProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { rounded } as Partial<ImageProps>,
+    { rounded, fixedSize } as Partial<ImageProps>,
     ["image"]
   );
   return (
