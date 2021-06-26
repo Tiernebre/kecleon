@@ -1,6 +1,16 @@
 import { screen, render } from "@testing-library/react";
 import { fixedImageSizes, Image, ImageFixedSize } from "./Image";
 
+it("renders the provided image source", () => {
+  const src =
+    "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/other/official-artwork/25.png";
+  const alt = "Pikachu";
+  render(<Image alt={alt} src={src} />);
+  const image = screen.getByAltText(alt);
+  expect(image).toHaveAttribute("src", src);
+  expect(image).toHaveAttribute("alt", alt);
+});
+
 it("is rounded if provided", () => {
   const alt = "Test Image";
   render(<Image alt={alt} rounded />);
