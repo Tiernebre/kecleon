@@ -7,21 +7,24 @@ import {
 export type FormControlProps = PropsWithChildren<{
   hasIconsLeft?: boolean;
   hasIconsRight?: boolean;
+  loading?: boolean;
 }>;
 
 const classNameMap: ClassNameTransformMap<FormControlProps> = new Map([
   ["hasIconsLeft", () => "has-icons-left"],
   ["hasIconsRight", () => "has-icons-right"],
+  ["loading", () => "is-loading"],
 ]);
 
 export const FormControl = ({
   hasIconsLeft,
   hasIconsRight,
+  loading,
   children,
 }: FormControlProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMap,
-    { hasIconsLeft, hasIconsRight } as Partial<FormControlProps>,
+    { hasIconsLeft, hasIconsRight, loading } as Partial<FormControlProps>,
     ["control"]
   );
   return <div className={className}>{children}</div>;
