@@ -13,19 +13,71 @@ it("removes children after a set amount of time", () => {
   expect(screen.queryByText(message)).toBeNull();
 });
 
-it("invokes a handler callback if provided for on expiration", () => {
+it("invokes a handler callback if provided for on removal", () => {
   jest.useFakeTimers();
   const message = "Message!";
   const time = 10000;
-  const onExpiration = jest.fn();
+  const onRemoval = jest.fn();
   render(
-    <Expire expiresInMillis={time} onExpire={onExpiration}>
+    <Expire expiresInMillis={time} onRemoval={onRemoval}>
       {message}
     </Expire>
   );
-  expect(onExpiration).not.toHaveBeenCalled();
+  expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
     jest.advanceTimersByTime(time);
   });
-  expect(onExpiration).toHaveBeenCalledTimes(1);
+  expect(onRemoval).toHaveBeenCalledTimes(1);
+});
+
+it("supports fading animation for expired content", () => {
+  jest.useFakeTimers();
+  const message = "Message!";
+  const time = 10000;
+  const onRemoval = jest.fn();
+  render(
+    <Expire expiresInMillis={time} onRemoval={onRemoval} fadeable={true}>
+      {message}
+    </Expire>
+  );
+  const renderedContent = screen.getByText(message);
+  expect(renderedContent).toBeInTheDocument();
+  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveStyle({ transition: "opacity 500ms" });
+  expect(onRemoval).not.toHaveBeenCalled();
+  act(() => {
+    jest.advanceTimersByTime(time + 500);
+  });
+  expect(screen.queryByText(message)).toBeNull();
+  expect(onRemoval).toHaveBeenCalledTimes(1);
+});
+
+it("supports fading animation for expired content with a custom fade duration", () => {
+  jest.useFakeTimers();
+  const message = "Message!";
+  const time = 10000;
+  const fadeDuration = 1000;
+  const onRemoval = jest.fn();
+  render(
+    <Expire
+      expiresInMillis={time}
+      onRemoval={onRemoval}
+      fadeable={true}
+      fadeDurationInMillis={fadeDuration}
+    >
+      {message}
+    </Expire>
+  );
+  const renderedContent = screen.getByText(message);
+  expect(renderedContent).toBeInTheDocument();
+  expect(renderedContent).toHaveClass("expire-animation-container");
+  expect(renderedContent).toHaveStyle({
+    transition: `opacity ${fadeDuration}ms`,
+  });
+  expect(onRemoval).not.toHaveBeenCalled();
+  act(() => {
+    jest.advanceTimersByTime(time + fadeDuration);
+  });
+  expect(screen.queryByText(message)).toBeNull();
+  expect(onRemoval).toHaveBeenCalledTimes(1);
 });

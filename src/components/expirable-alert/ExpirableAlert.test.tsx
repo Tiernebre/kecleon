@@ -22,26 +22,26 @@ it("is an alert that disappears within a set amount of time", () => {
   expect(screen.queryByRole("alert")).toBeNull();
 });
 
-it("invokes a callback when the alert expires", () => {
+it("invokes a callback when the alert is removed", () => {
   jest.useFakeTimers();
   const expiresInMillis = 15000;
   const alertText = "Alert";
-  const onExpire = jest.fn();
+  const onRemoval = jest.fn();
   render(
     <ExpirableAlert
       expiresInMillis={expiresInMillis}
       color="danger"
-      onExpire={onExpire}
+      onRemoval={onRemoval}
       onClose={jest.fn()}
     >
       {alertText}
     </ExpirableAlert>
   );
-  expect(onExpire).not.toHaveBeenCalled();
+  expect(onRemoval).not.toHaveBeenCalled();
   act(() => {
     jest.advanceTimersByTime(expiresInMillis);
   });
-  expect(onExpire).toHaveBeenCalledTimes(1);
+  expect(onRemoval).toHaveBeenCalledTimes(1);
 });
 
 it("invokes a callback when the alert is closed", () => {

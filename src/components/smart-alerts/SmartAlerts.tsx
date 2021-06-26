@@ -1,8 +1,13 @@
 import { Alerts, ExpirableAlert } from "..";
 import { useAlerts } from "../../hooks";
 
+// You may be wondering -- what's the difference between these values?
+// Fade Out is when the element will _start_ to leave the page.
+// Fade Duration is how long the fade out effect will run for.
 const DEFAULT_FADE_OUT_IN_SECONDS = 5;
 const DEFAULT_FADE_OUT_IN_MILLIS = DEFAULT_FADE_OUT_IN_SECONDS * 1000;
+const DEFAULT_FADE_DURATION_IN_SECONDS = 2.5;
+const DEFAULT_FADE_DURATION_IN_MILLIS = DEFAULT_FADE_DURATION_IN_SECONDS * 1000;
 
 type SmartAlertsProps = {
   fadeOutInMillis?: number;
@@ -35,8 +40,10 @@ export const SmartAlerts = ({
             color={alert.color}
             expiresInMillis={expiresInMillis}
             key={alert.id}
-            onExpire={closeAlert}
+            onRemoval={closeAlert}
             onClose={closeAlert}
+            fadeable
+            fadeDurationInMillis={DEFAULT_FADE_DURATION_IN_MILLIS}
           >
             {alert.message}
           </ExpirableAlert>

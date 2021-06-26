@@ -1,0 +1,12 @@
+.expire-enter {
+  opacity: 0;
+}
+.expire-enter-active {
+  opacity: 1;
+}
+.expire-exit {
+  opacity: 1;
+}
+.expire-exit-active {
+  opacity: 0;
+}
