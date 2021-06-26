@@ -8,7 +8,5 @@ import { useEffect } from "react";
  * @param {Function} callback Callback function to be called on mount
  */
 export const useDidMount = (callback: () => void): void => {
-  useEffect(() => {
-    callback();
-  }, []);
+  useEffect(callback, []);
 };

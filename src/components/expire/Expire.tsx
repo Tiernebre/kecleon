@@ -20,12 +20,16 @@ export const Expire = ({
   const [expired, setExpired] = useState(false);
 
   useDidMount(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setExpired(true);
       if (onExpire) {
         onExpire();
       }
     }, expiresInMillis);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   });
 
   return <Fragment>{!expired && children}</Fragment>;
