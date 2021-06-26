@@ -17,7 +17,7 @@ const classNameMap: ClassNameTransformMap<InputProps> = new Map([
   ["color", (color: string) => `is-${color}`],
   ["size", (size: string) => `is-${size}`],
   ["rounded", () => "is-rounded"],
-  ["isStatic", (staticc: string) => `is-${staticc}`],
+  ["isStatic", () => "is-static"],
 ]);
 
 export const Input = ({

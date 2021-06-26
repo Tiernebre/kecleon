@@ -32,3 +32,15 @@ it("is not displayed as rounded if provided as false", () => {
   const input = screen.getByRole("textbox");
   expect(input).not.toHaveClass("is-rounded");
 });
+
+it("is displayed as static if provided", () => {
+  render(<Input isStatic />);
+  const input = screen.getByRole("textbox");
+  expect(input).toHaveClass("is-static");
+});
+
+it("is not displayed as static if provided as false", () => {
+  render(<Input isStatic={false} />);
+  const input = screen.getByRole("textbox");
+  expect(input).not.toHaveClass("is-static");
+});
