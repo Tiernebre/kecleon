@@ -1,7 +1,9 @@
-import { PropsWithChildren } from "react";
+import { LabelHTMLAttributes } from "react";
 
-export const Label = ({
-  children,
-}: PropsWithChildren<unknown>): JSX.Element => (
-  <label className="label">{children}</label>
+export type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
+
+export const Label = ({ children, ...props }: LabelProps): JSX.Element => (
+  <label className="label" {...props}>
+    {children}
+  </label>
 );
