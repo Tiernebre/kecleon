@@ -1,11 +1,11 @@
 import { Story, Meta } from "@storybook/react";
 import { Fragment } from "react";
 
-import { Input, InputProps } from "../components";
-import { colors, sizes } from "../types";
+import { Input, InputProps } from "../../components";
+import { colors, sizes } from "../../types";
 
 export default {
-  title: "Example/Input",
+  title: "Form/Input",
   component: Input,
   argTypes: {
     rounded: {
