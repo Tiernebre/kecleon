@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { colors } from "../../..";
 import { Color, Size, sizes } from "../../../types";
 import { Input } from ".";
+import user from "@testing-library/user-event";
 
 it("is entirely unopinionated if not given any props", () => {
   render(<Input />);
@@ -32,6 +33,15 @@ it("can have a specific type", () => {
   render(<Input type="number" />);
   const input = screen.getByRole("spinbutton");
   expect(input).toHaveAttribute("type", "number");
+});
+
+it("can bind to a given callback", () => {
+  const onInput = jest.fn();
+  render(<Input onInput={onInput} />);
+  expect(onInput).not.toHaveBeenCalled();
+  const input = screen.getByRole("textbox");
+  user.type(input, "hello world");
+  expect(onInput).toHaveBeenCalled();
 });
 
 it.each<Color>(colors)("renders with color %p", (color: Color) => {
