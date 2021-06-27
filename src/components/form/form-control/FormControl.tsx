@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react";
-import { Size } from "../../types";
+import { Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
-} from "../../utilities";
+} from "../../../utilities";
 
 export type FormControlProps = PropsWithChildren<{
   hasIconsLeft?: boolean;

@@ -1,9 +1,9 @@
 import { InputHTMLAttributes } from "react";
-import { Color, Size } from "../../types";
+import { Color, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
-} from "../../utilities";
+} from "../../../utilities";
 
 type InputHtmlAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
 export type InputProps = InputHtmlAttributes & {

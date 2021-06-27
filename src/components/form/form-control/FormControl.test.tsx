@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Size, sizes } from "../../types";
+import { Size, sizes } from "../../../types";
 import { Input } from "../input";
 import { FormControl } from "./FormControl";
 
