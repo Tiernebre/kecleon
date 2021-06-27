@@ -1,6 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { Textarea } from "./Textarea";
 import user from "@testing-library/user-event";
+import { Size, sizes } from "../../../types";
+
+it("displays without opinionated styling by default", () => {
+  render(<Textarea />);
+  expect(screen.getByRole("textbox")).toHaveClass("textarea", { exact: true });
+});
 
 it("displays a given placeholder", () => {
   const placeholder = "e.g. Hello World";
@@ -21,4 +27,10 @@ it("can bind to a callback for events", () => {
   const textarea = screen.getByRole("textbox");
   user.type(textarea, "Hello World!");
   expect(onInput).toHaveBeenCalled();
+});
+
+it.each<Size>(sizes)("can render in size %p", (size: Size) => {
+  render(<Textarea size={size} />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toHaveClass(`is-${size}`);
 });
