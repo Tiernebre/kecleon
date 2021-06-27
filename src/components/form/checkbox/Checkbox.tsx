@@ -11,8 +11,8 @@ export const Checkbox = ({
 }: CheckboxProps): JSX.Element => {
   return (
     <label htmlFor={id} className="checkbox">
-      {children}
       <input {...props} id={id} type="checkbox" />
+      {children}
     </label>
   );
 };

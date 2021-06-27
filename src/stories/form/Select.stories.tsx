@@ -5,8 +5,8 @@ import { Select, SelectProps } from "../../components";
 import { colors, sizes } from "../../types";
 
 export default {
-  title: "Form/Select",
   component: Select,
+  title: "Form/Select",
   argTypes: {
     size: {
       control: {
