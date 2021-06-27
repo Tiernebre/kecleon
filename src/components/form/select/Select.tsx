@@ -7,7 +7,11 @@ import {
   mapClassNameForSize,
 } from "../../../utilities";
 
-export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
+type HTMLSelectAttributes = Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  "size"
+>;
+export type SelectProps = HTMLSelectAttributes & {
   color?: Color;
   size?: Size;
 };
