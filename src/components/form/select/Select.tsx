@@ -19,23 +19,27 @@ export type SelectProps = HTMLSelectAttributes & {
 const classNameMap: ClassNameTransformMap<SelectProps> = new Map([
   mapClassNameForColor(),
   mapClassNameForSize(),
+  ["multiple", () => "is-multiple"],
 ]);
 
 export const Select = ({
   color,
   size,
+  multiple,
   children,
   ...props
 }: SelectProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMap,
-    { color, size } as Partial<SelectProps>,
+    { color, size, multiple } as Partial<SelectProps>,
     ["select"]
   );
 
   return (
     <div className={className}>
-      <select {...props}>{children}</select>
+      <select multiple={multiple} {...props}>
+        {children}
+      </select>
     </div>
   );
 };

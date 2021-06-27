@@ -19,3 +19,17 @@ it.each<Size>(sizes)("renders in size %p", (size: Size) => {
   const select = screen.getByRole("combobox");
   expect(select.parentElement).toHaveClass(`is-${size}`);
 });
+
+it("can support selecting multiple", () => {
+  render(<Select multiple />);
+  const select = screen.getByRole("listbox");
+  expect(select).toBeInTheDocument();
+  expect(select.parentElement).toHaveClass("is-multiple");
+});
+
+it("can support selecting single (with multiple as false)", () => {
+  render(<Select multiple={false} />);
+  const select = screen.getByRole("combobox");
+  expect(select).toBeInTheDocument();
+  expect(select.parentElement).not.toHaveClass("is-multiple");
+});
