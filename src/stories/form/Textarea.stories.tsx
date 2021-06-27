@@ -5,8 +5,8 @@ import { Textarea, TextareaProps } from "../../components";
 import { colors, sizes } from "../../types";
 
 export default {
-  title: "Form/Textarea",
   component: Textarea,
+  title: "Form/Textarea",
   argTypes: {
     size: {
       control: {
