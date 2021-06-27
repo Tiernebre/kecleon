@@ -3,6 +3,8 @@ import { Color, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
+  mapClassNameForColor,
+  mapClassNameForSize,
 } from "../../../utilities";
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -12,8 +14,8 @@ export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 };
 
 const classNameMap: ClassNameTransformMap<TextareaProps> = new Map([
-  ["color", (color: string) => `is-${color}`],
-  ["size", (size: string) => `is-${size}`],
+  mapClassNameForColor<TextareaProps>(),
+  mapClassNameForSize<TextareaProps>(),
   ["fixed", () => "has-fixed-size"],
 ]);
 

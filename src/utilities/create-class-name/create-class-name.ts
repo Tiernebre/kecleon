@@ -1,5 +1,5 @@
 export type ClassNameTransformFn = (() => string) | ((value: string) => string);
-export type ClassNameTransformFnMapEntry = [string, ClassNameTransformFn];
+export type ClassNameTransformFnMapEntry<T> = [keyof T, ClassNameTransformFn];
 export type ClassNameTransformMap<T> = Map<keyof T, ClassNameTransformFn>;
 
 /**
