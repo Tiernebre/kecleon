@@ -1,10 +1,32 @@
 import { SelectHTMLAttributes } from "react";
+import { Color } from "../../../types";
+import {
+  ClassNameTransformMap,
+  createClassNameFromProps,
+  mapClassNameForColor,
+} from "../../../utilities";
 
-export type SelectProps = SelectHTMLAttributes<HTMLSelectElement>;
+export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
+  color?: Color;
+};
 
-export const Select = ({ children, ...props }: SelectProps): JSX.Element => {
+const classNameMap: ClassNameTransformMap<SelectProps> = new Map([
+  mapClassNameForColor(),
+]);
+
+export const Select = ({
+  color,
+  children,
+  ...props
+}: SelectProps): JSX.Element => {
+  const className = createClassNameFromProps(
+    classNameMap,
+    { color } as Partial<SelectProps>,
+    ["select"]
+  );
+
   return (
-    <div className="select">
+    <div className={className}>
       <select {...props}>{children}</select>
     </div>
   );
