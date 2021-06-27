@@ -1,9 +1,9 @@
 import { Story, Meta } from "@storybook/react";
-import { FormControl, FormControlProps, Icon, Input } from "../components";
+import { FormControl, FormControlProps, Icon, Input } from "../../components";
 
 export default {
-  title: "Example/FormControl",
   component: FormControl,
+  title: "Form/FormControl",
   argTypes: {
     children: {
       control: {

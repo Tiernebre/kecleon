@@ -3,6 +3,8 @@ import { Color, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
+  mapClassNameForColor,
+  mapClassNameForSize,
 } from "../../../utilities";
 
 type InputHtmlAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
@@ -14,8 +16,8 @@ export type InputProps = InputHtmlAttributes & {
 };
 
 const classNameMap: ClassNameTransformMap<InputProps> = new Map([
-  ["color", (color: string) => `is-${color}`],
-  ["size", (size: string) => `is-${size}`],
+  mapClassNameForColor<InputProps>(),
+  mapClassNameForSize<InputProps>(),
   ["rounded", () => "is-rounded"],
   ["isStatic", () => "is-static"],
 ]);
