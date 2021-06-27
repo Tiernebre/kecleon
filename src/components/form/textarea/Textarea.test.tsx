@@ -40,3 +40,15 @@ it.each<Color>(colors)("can render in color %p", (color: Color) => {
   const textarea = screen.getByRole("textbox");
   expect(textarea).toHaveClass(`is-${color}`);
 });
+
+it("displays with fixed height if fixed is true", () => {
+  render(<Textarea fixed />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toHaveClass(`has-fixed-size`);
+});
+
+it("does not display with fixed height if fixed is false", () => {
+  render(<Textarea fixed={false} />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).not.toHaveClass(`has-fixed-size`);
+});
