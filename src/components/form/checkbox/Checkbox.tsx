@@ -1,8 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
-  id?: string;
-};
+export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
 export const Checkbox = ({
   id,
