@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Textarea } from "./Textarea";
+import user from "@testing-library/user-event";
 
 it("displays a given placeholder", () => {
   const placeholder = "e.g. Hello World";
@@ -11,4 +12,13 @@ it("displays with the given amount of rows for height", () => {
   const rows = 10;
   render(<Textarea rows={rows} />);
   expect(screen.getByRole("textbox")).toHaveAttribute("rows", rows.toString());
+});
+
+it("can bind to a callback for events", () => {
+  const onInput = jest.fn();
+  render(<Textarea onInput={onInput} />);
+  expect(onInput).not.toHaveBeenCalled();
+  const textarea = screen.getByRole("textbox");
+  user.type(textarea, "Hello World!");
+  expect(onInput).toHaveBeenCalled();
 });
