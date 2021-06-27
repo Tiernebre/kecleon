@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Color, colors, Size, sizes } from "../../../types";
 import { Select } from "./Select";
+import user from "@testing-library/user-event";
 
 it("has unopinionated styling by default", () => {
   render(<Select />);
@@ -32,4 +33,30 @@ it("can support selecting single (with multiple as false)", () => {
   const select = screen.getByRole("combobox");
   expect(select).toBeInTheDocument();
   expect(select.parentElement).not.toHaveClass("is-multiple");
+});
+
+it("invokes a callback when a user changes their selected option", () => {
+  const onChange = jest.fn();
+  render(
+    <Select onChange={onChange}>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </Select>
+  );
+  expect(onChange).not.toHaveBeenCalled();
+  expect(
+    (screen.getByRole("option", { name: "B" }) as HTMLOptionElement).selected
+  ).toBe(false);
+  user.selectOptions(screen.getByRole("combobox"), ["B"]);
+  expect(
+    (screen.getByRole("option", { name: "A" }) as HTMLOptionElement).selected
+  ).toBe(false);
+  expect(
+    (screen.getByRole("option", { name: "B" }) as HTMLOptionElement).selected
+  ).toBe(true);
+  expect(
+    (screen.getByRole("option", { name: "C" }) as HTMLOptionElement).selected
+  ).toBe(false);
+  expect(onChange).toHaveBeenCalledTimes(1);
 });
