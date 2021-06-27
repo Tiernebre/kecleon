@@ -6,3 +6,9 @@ it("displays a given placeholder", () => {
   render(<Textarea placeholder={placeholder} />);
   expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument();
 });
+
+it("displays with the given amount of rows for height", () => {
+  const rows = 10;
+  render(<Textarea rows={rows} />);
+  expect(screen.getByRole("textbox")).toHaveAttribute("rows", rows.toString());
+});
