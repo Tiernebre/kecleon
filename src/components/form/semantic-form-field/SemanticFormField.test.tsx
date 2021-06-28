@@ -16,7 +16,9 @@ it("displays the given label", () => {
     label,
   };
   render(<SemanticFormField {...props} />);
-  expect(screen.getByLabelText(label)).toBeInTheDocument();
+  const inputAssociatedWithLabel = screen.getByLabelText(label);
+  expect(inputAssociatedWithLabel).toBeInTheDocument();
+  expect(inputAssociatedWithLabel).toBeValid();
 });
 
 it("displays a help message if provided", () => {
