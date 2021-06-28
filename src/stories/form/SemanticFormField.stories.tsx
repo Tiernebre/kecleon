@@ -1,5 +1,4 @@
 import { Story, Meta } from "@storybook/react";
-import { Fragment } from "react";
 import { FormField, Icon } from "../../components";
 import { SemanticFormField } from "../../components/form/semantic-form-field";
 
