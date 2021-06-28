@@ -5,4 +5,5 @@ export * from "./input";
 export * from "./label";
 export * from "./radio";
 export * from "./select";
+export * from "./select-options";
 export * from "./textarea";
