@@ -5,9 +5,9 @@ import { FormField } from "../form-field";
 
 type SemanticFormFieldProps = {
   control: FormControlProps;
-  input: FormControlInputProps;
   help?: string;
   id: string;
+  input: FormControlInputProps;
   label: string;
 };
 
@@ -27,12 +27,15 @@ export const SemanticFormField = ({
   help,
   control,
   input,
-}: SemanticFormFieldProps): JSX.Element => (
-  <FormField>
-    <Label htmlFor={id}>{label}</Label>
-    <FormControl {...control}>
-      <FormControlInput {...input} />
-    </FormControl>
-    {help && <Help>help</Help>}
-  </FormField>
-);
+}: SemanticFormFieldProps): JSX.Element => {
+  const helpId = `${id}-help`;
+  return (
+    <FormField>
+      <Label htmlFor={id}>{label}</Label>
+      <FormControl {...control}>
+        <FormControlInput aria-describedby={helpId} id={id} {...input} />
+      </FormControl>
+      {help && <Help id={helpId}>help</Help>}
+    </FormField>
+  );
+};
