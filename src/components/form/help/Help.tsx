@@ -27,9 +27,10 @@ export const Help = ({
 
   const message = error?.message ? error.message : children;
   const shouldRender = error || children;
+  const role = error ? "alert" : undefined;
 
   return shouldRender ? (
-    <p id={id} className={className}>
+    <p id={id} className={className} role={role}>
       {message}
     </p>
   ) : null;

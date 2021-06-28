@@ -1,10 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { Help } from "./Help";
 
-it("renders given content", () => {
+it("renders given content if no error exists", () => {
   const message = "This is a help text";
   render(<Help>{message}</Help>);
-  expect(screen.getByText(message)).toBeInTheDocument();
+  const help = screen.getByText(message);
+  expect(help).toBeInTheDocument();
+  expect(help).not.toHaveClass("is-danger");
+  expect(screen.queryByRole("alert")).toBeNull();
 });
 
 it("has the correct corresponding class", () => {
@@ -35,6 +38,7 @@ it("displays an error message if an error passed in is truthy", () => {
   const help = screen.getByText(error.message);
   expect(help).toBeInTheDocument();
   expect(help).toHaveClass("is-danger");
+  expect(screen.getByRole("alert")).toBeInTheDocument();
   expect(screen.queryByText(message)).toBeNull();
 });
 
