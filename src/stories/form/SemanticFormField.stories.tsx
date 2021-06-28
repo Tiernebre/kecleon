@@ -34,3 +34,15 @@ const IconSemanticFormFieldTemplate: Story = () => (
   </form>
 );
 export const IconSemanticFormField = IconSemanticFormFieldTemplate.bind({});
+
+const ErrorSemanticFormFieldTemplate: Story = () => (
+  <form>
+    <SemanticFormField
+      id="semantic-form-field"
+      input={{ type: "text", placeholder: "Home Input" }}
+      label="Standard Semantic Form Field"
+      error={{ type: "required", message: "This field is required." }}
+    />
+  </form>
+);
+export const ErrorSemanticFormField = ErrorSemanticFormFieldTemplate.bind({});
