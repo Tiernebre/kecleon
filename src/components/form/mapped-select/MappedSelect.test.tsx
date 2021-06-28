@@ -30,4 +30,9 @@ it("renders a data structure into a select with corresponding options", () => {
   });
   render(<MappedSelect options={options} mapToOption={mapToOption} />);
   expect(screen.queryAllByRole("option")).toHaveLength(2);
+  options.forEach((option) => {
+    const optionFound = screen.getByRole("option", { name: option.name });
+    expect(optionFound).toBeInTheDocument();
+    expect(optionFound).toHaveAttribute("value", option.id.toString());
+  });
 });
