@@ -54,7 +54,9 @@ export const SemanticFormField = ({
           valid={valid}
         />
       </FormControl>
-      <Help id={helpId}>{help}</Help>
+      <Help id={helpId} error={error}>
+        {help}
+      </Help>
     </FormField>
   );
 };

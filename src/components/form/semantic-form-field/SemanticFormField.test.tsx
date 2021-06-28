@@ -65,3 +65,24 @@ it("displays given icons", () => {
   render(<SemanticFormField {...props} />);
   expect(screen.getByText(iconMessage)).toBeInTheDocument();
 });
+
+it("is formatted to handle an error", () => {
+  const id = "test-semantic-form-field";
+  const input: InputProps = {
+    type: "text",
+  };
+  const label = "Test Label";
+  const error = {
+    type: "required",
+    message: "This field is required. Please fill in information",
+  };
+  const props: SemanticFormFieldProps = {
+    id,
+    input,
+    label,
+    error,
+  };
+  render(<SemanticFormField {...props} />);
+  expect(screen.getByRole("textbox")).toBeInvalid();
+  expect(screen.getByText(error.message)).toBeInTheDocument();
+});
