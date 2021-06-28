@@ -36,7 +36,7 @@ export const SemanticFormField = ({
       <FormControl {...control}>
         <Input {...input} id={id} aria-describedby={helpId} />
       </FormControl>
-      {help && <Help id={helpId}>help</Help>}
+      {help && <Help id={helpId}>{help}</Help>}
     </FormField>
   );
 };
