@@ -1,8 +1,14 @@
 import { ReactNode } from "react";
-import { Label, FormControl, Help } from "..";
-import { FormControlProps } from "../form-control";
-import { FormField } from "../form-field";
-import { Input, InputProps } from "../input";
+import {
+  Label,
+  FormControl,
+  Help,
+  ValidatedInput,
+  InputProps,
+  FormField,
+  FormControlProps,
+} from "..";
+import { FieldError } from "react-hook-form";
 
 export type SemanticFormFieldProps = {
   control?: FormControlProps;
@@ -11,6 +17,7 @@ export type SemanticFormFieldProps = {
   input: InputProps;
   label: string;
   icons?: ReactNode;
+  error?: FieldError;
 };
 
 /**
@@ -30,15 +37,22 @@ export const SemanticFormField = ({
   control,
   input,
   icons,
+  error,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help ? `${id}-help` : undefined;
+  const valid = !error;
 
   return (
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
         {icons}
-        <Input {...input} id={id} aria-describedby={helpId} />
+        <ValidatedInput
+          {...input}
+          id={id}
+          aria-describedby={helpId}
+          valid={valid}
+        />
       </FormControl>
       {help && <Help id={helpId}>{help}</Help>}
     </FormField>
