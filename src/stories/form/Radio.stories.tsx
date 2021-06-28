@@ -3,8 +3,8 @@ import { Radio, RadioProps } from "../../components";
 import { CheckboxProps } from "../../components/form/checkbox";
 
 export default {
-  component: Radio,
   title: "Form/Radio",
+  component: Radio,
   argTypes: {
     children: {
       control: {
