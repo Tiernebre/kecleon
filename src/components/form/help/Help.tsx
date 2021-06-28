@@ -14,7 +14,11 @@ const classNameMap: ClassNameTransformMap<HelpProps> = new Map([
   ["error", () => "is-danger"],
 ]);
 
-export const Help = ({ id, error, children }: HelpProps): JSX.Element => {
+export const Help = ({
+  id,
+  error,
+  children,
+}: HelpProps): JSX.Element | null => {
   const className = createClassNameFromProps(
     classNameMap,
     { error } as Partial<HelpProps>,
@@ -22,10 +26,11 @@ export const Help = ({ id, error, children }: HelpProps): JSX.Element => {
   );
 
   const message = error?.message ? error.message : children;
+  const shouldRender = error || children;
 
-  return (
+  return shouldRender ? (
     <p id={id} className={className}>
       {message}
     </p>
-  );
+  ) : null;
 };

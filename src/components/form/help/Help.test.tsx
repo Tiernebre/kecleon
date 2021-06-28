@@ -37,3 +37,9 @@ it("displays an error message if an error passed in is truthy", () => {
   expect(help).toHaveClass("is-danger");
   expect(screen.queryByText(message)).toBeNull();
 });
+
+it("does not render anything if not given children or an error", () => {
+  const dataTestId = "emptyHelp";
+  render(<Help data-testid={dataTestId}></Help>);
+  expect(screen.queryByTestId(dataTestId)).toBeNull();
+});
