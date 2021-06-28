@@ -39,7 +39,7 @@ export const SemanticFormField = ({
   icons,
   error,
 }: SemanticFormFieldProps): JSX.Element => {
-  const helpId = help ? `${id}-help` : undefined;
+  const helpId = help || error ? `${id}-help` : undefined;
   const valid = !error;
 
   return (
@@ -54,7 +54,7 @@ export const SemanticFormField = ({
           valid={valid}
         />
       </FormControl>
-      {help && <Help id={helpId}>{help}</Help>}
+      <Help id={helpId}>{help}</Help>
     </FormField>
   );
 };
