@@ -35,3 +35,22 @@ it("renders given options", () => {
     screen.getByRole("option", { name: optionTwo.label })
   ).toBeInTheDocument();
 });
+
+it("disables options correcly", () => {
+  const optionOne = {
+    label: "Option 1",
+    value: "1",
+    disabled: true,
+  };
+  const optionTwo = {
+    label: "Option 2",
+    value: "2",
+    disabled: false,
+  };
+  render(<SelectOptions options={[optionOne, optionTwo]} />);
+  expect(screen.getAllByRole("option")).toHaveLength(2);
+  expect(screen.getByRole("option", { name: optionOne.label })).toBeDisabled();
+  expect(
+    screen.getByRole("option", { name: optionTwo.label })
+  ).not.toBeDisabled();
+});
