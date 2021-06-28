@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { Icon } from "../../icon";
+import { FormControlProps } from "../form-control";
 import { InputProps } from "../input";
 import { SemanticFormField, SemanticFormFieldProps } from "./SemanticFormField";
 
@@ -38,4 +40,28 @@ it("displays a help message if provided", () => {
     "aria-describedby",
     `${id}-help`
   );
+});
+
+it("displays given icons", () => {
+  const id = "test-semantic-form-field";
+  const control: FormControlProps = {
+    hasIconsLeft: true,
+  };
+  const input: InputProps = {
+    type: "text",
+  };
+  const help = "Help";
+  const label = "Test Label";
+  const iconMessage = "Hi, I'm an icon";
+  const icon = <Icon name="home" direction="left" message={iconMessage} />;
+  const props: SemanticFormFieldProps = {
+    id,
+    control,
+    input,
+    label,
+    help,
+    icons: icon,
+  };
+  render(<SemanticFormField {...props} />);
+  expect(screen.getByText(iconMessage)).toBeInTheDocument();
 });

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Label, FormControl, Help } from "..";
 import { FormControlProps } from "../form-control";
 import { FormField } from "../form-field";
@@ -9,6 +10,7 @@ export type SemanticFormFieldProps = {
   id: string;
   input: InputProps;
   label: string;
+  icons?: ReactNode;
 };
 
 /**
@@ -27,6 +29,7 @@ export const SemanticFormField = ({
   help,
   control,
   input,
+  icons,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help ? `${id}-help` : undefined;
 
@@ -34,6 +37,7 @@ export const SemanticFormField = ({
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
+        {icons}
         <Input {...input} id={id} aria-describedby={helpId} />
       </FormControl>
       {help && <Help id={helpId}>{help}</Help>}
