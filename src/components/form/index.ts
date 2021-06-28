@@ -1,4 +1,5 @@
 export * from "./form-control";
+export * from "./form-control-input";
 export * from "./form-field";
 export * from "./help";
 export * from "./input";
