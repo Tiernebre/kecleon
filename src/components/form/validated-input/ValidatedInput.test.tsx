@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Color } from "../../../types";
 import { ValidatedInput } from "./ValidatedInput";
+import user from "@testing-library/user-event";
 
 const getInput = () => screen.getByRole("textbox");
 
@@ -37,4 +38,15 @@ it("is marked accessibly as invalid if invalid", () => {
 it("is marked accessibly as valid if valid", () => {
   render(<ValidatedInput valid={true} />);
   expect(getInput()).toBeValid();
+});
+
+it("still allows for regular input props", () => {
+  const type = "text";
+  const onInput = jest.fn();
+  render(<ValidatedInput valid type={type} onInput={onInput} />);
+  expect(onInput).not.toHaveBeenCalled();
+  const input = getInput();
+  expect(input).toHaveAttribute("type", type);
+  user.type(input, "Hello World!");
+  expect(onInput).toHaveBeenCalled();
 });
