@@ -19,7 +19,9 @@ export const SelectOptions = ({ options }: SelectOptionsProps): JSX.Element => {
   return (
     <Fragment>
       {options.map(({ label, ...props }) => (
-        <option {...props}>{label}</option>
+        <option key={label} {...props}>
+          {label}
+        </option>
       ))}
     </Fragment>
   );
