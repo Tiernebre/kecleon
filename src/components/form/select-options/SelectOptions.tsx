@@ -1,8 +1,6 @@
 import { Fragment, OptionHTMLAttributes } from "react";
 
-type Option = OptionHTMLAttributes<HTMLOptionElement> & {
-  label: "string";
-};
+type Option = OptionHTMLAttributes<HTMLOptionElement>;
 
 type SelectOptionsProps = {
   options: Option[];
