@@ -1,10 +1,12 @@
 import { Label, FormControl, Input, Help } from "..";
+import { FormControlInput } from "../../../types";
 import { FormField } from "../form-field";
 
 type SemanticFormFieldProps = {
+  control: FormControlInput;
+  help?: string;
   id: string;
   label: string;
-  help?: string;
 };
 
 /**
