@@ -18,3 +18,8 @@ it.each<Color>(["success", "warning", "primary"])(
     expect(input).not.toHaveClass(`is-${originalColor}`);
   }
 );
+
+it("is marked accessibly as invalid if invalid", () => {
+  render(<ValidatedInput valid={false} />);
+  expect(getInput()).toBeInvalid();
+});
