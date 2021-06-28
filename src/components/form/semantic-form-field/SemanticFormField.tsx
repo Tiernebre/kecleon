@@ -1,18 +1,18 @@
 import { Label, FormControl, Help } from "..";
 import { FormControlProps } from "../form-control";
-import { FormControlInput, FormControlInputProps } from "../form-control-input";
 import { FormField } from "../form-field";
+import { Input, InputProps } from "../input";
 
-type SemanticFormFieldProps = {
-  control: FormControlProps;
+export type SemanticFormFieldProps = {
+  control?: FormControlProps;
   help?: string;
   id: string;
-  input: FormControlInputProps;
+  input: InputProps;
   label: string;
 };
 
 /**
- * SemanticFormField is a component that combines Label, FormField,
+ * SemanticFormField is a component that combines Label, FormControl,
  * and Help components to create a fully composed Form Field
  * for a typical form.
  *
@@ -28,12 +28,13 @@ export const SemanticFormField = ({
   control,
   input,
 }: SemanticFormFieldProps): JSX.Element => {
-  const helpId = `${id}-help`;
+  const helpId = help ? `${id}-help` : undefined;
+
   return (
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
-        <FormControlInput aria-describedby={helpId} id={id} {...input} />
+        <Input {...input} id={id} aria-describedby={helpId} />
       </FormControl>
       {help && <Help id={helpId}>help</Help>}
     </FormField>
