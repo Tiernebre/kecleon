@@ -1,7 +1,7 @@
-import { InputProps, SelectProps } from "..";
+import { Input, InputProps, Select, SelectProps } from "..";
 import { FormControlInputType } from "../../../types";
 import { Button, ButtonProps } from "../../button";
-import { IconProps } from "../../icon";
+import { Icon, IconProps } from "../../icon";
 
 export type FormControlInputProps = InputProps &
   SelectProps &
@@ -17,6 +17,12 @@ export const FormControlInput = ({
   switch (input) {
     case "button":
       return <Button {...props} />;
+    case "icon":
+      return <Icon {...props} />;
+    case "input":
+      return <Input {...props} />;
+    case "select":
+      return <Select {...props} />;
     default:
       return null;
   }
