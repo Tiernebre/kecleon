@@ -26,10 +26,11 @@
     "url": "https://github.com/Tiernebre/kecleon.git"
   },
   "scripts": {
+    "bundle:css": "copyfiles -u 1 src/styles/**/* lib && copyfiles -u 1 src/**/*.css lib",
     "clean": "rimraf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --p tsconfig.lib.json",
-    "postbuild": "copyfiles -u 1 src/styles/**/* lib",
+    "postbuild": "yarn bundle:css",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint . --max-warnings=0",
     "test": "react-scripts test",
