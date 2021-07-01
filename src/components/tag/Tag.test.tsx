@@ -19,3 +19,15 @@ it.each<Size>(sizes)("can be displayed in size %p", (size: Size) => {
   render(<Tag size={size}>{text}</Tag>);
   expect(screen.getByText(text)).toHaveClass(`is-${size}`);
 });
+
+it("can display as rounded", () => {
+  const text = "Tag";
+  render(<Tag rounded>{text}</Tag>);
+  expect(screen.getByText(text)).toHaveClass("is-rounded");
+});
+
+it("can display as not rounded if provided as false", () => {
+  const text = "Tag";
+  render(<Tag rounded={false}>{text}</Tag>);
+  expect(screen.getByText(text)).not.toHaveClass("is-rounded");
+});
