@@ -40,3 +40,23 @@ it.each<Size>(sizes)(
     expect(screen.getByText(tag).parentElement).toHaveClass(`are-${size}`);
   }
 );
+
+it("can render with addons support", () => {
+  const tag = "Test Tag 1";
+  render(
+    <Tags addons>
+      <Tag>{tag}</Tag>
+    </Tags>
+  );
+  expect(screen.getByText(tag).parentElement).toHaveClass("has-addons");
+});
+
+it("can render without addons support if false", () => {
+  const tag = "Test Tag 1";
+  render(
+    <Tags addons={false}>
+      <Tag>{tag}</Tag>
+    </Tags>
+  );
+  expect(screen.getByText(tag).parentElement).not.toHaveClass("has-addons");
+});
