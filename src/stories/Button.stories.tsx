@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/react";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 import {
   Button,
