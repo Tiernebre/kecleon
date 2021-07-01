@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, HTMLAttributes } from "react";
 import { Color, Size } from "../../types";
 import {
   ClassNameTransformMap,
@@ -7,12 +7,13 @@ import {
   mapClassNameForSize,
 } from "../../utilities";
 
-export type TagProps = PropsWithChildren<{
-  color?: Color;
-  size?: Size;
-  rounded?: boolean;
-  deletable?: boolean;
-}>;
+export type TagProps = HTMLAttributes<HTMLSpanElement> &
+  PropsWithChildren<{
+    color?: Color;
+    size?: Size;
+    rounded?: boolean;
+    deletable?: boolean;
+  }>;
 
 const classNameMapping: ClassNameTransformMap<TagProps> = new Map([
   mapClassNameForColor(),
@@ -27,11 +28,16 @@ export const Tag = ({
   rounded,
   children,
   deletable,
+  ...props
 }: TagProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
     { color, size, rounded, deletable } as Partial<TagProps>,
     ["tag"]
   );
-  return <span className={className}>{children}</span>;
+  return (
+    <span className={className} {...props}>
+      {children}
+    </span>
+  );
 };

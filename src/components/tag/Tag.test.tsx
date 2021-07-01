@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Color, colors, Size, sizes } from "../../types";
 import { Tag } from "./Tag";
+import user from "@testing-library/user-event";
 
 it("is displayed without opinionated styling by default", () => {
   const text = "Tag";
@@ -42,4 +43,20 @@ it("won't display as a delete button if provided as false", () => {
   const text = "Tag";
   render(<Tag deletable={false}>{text}</Tag>);
   expect(screen.getByText(text)).not.toHaveClass("is-delete");
+});
+
+it("can be provided normal span attributes", () => {
+  const text = "Tag";
+  const className = "test-class";
+  const onClick = jest.fn();
+  render(
+    <Tag className={className} onClick={onClick}>
+      {text}
+    </Tag>
+  );
+  const tag = screen.getByText(text);
+  expect(tag).toHaveClass(className);
+  expect(onClick).not.toHaveBeenCalled();
+  user.click(tag);
+  expect(onClick).toHaveBeenCalledTimes(1);
 });
