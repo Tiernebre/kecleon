@@ -40,6 +40,11 @@ export default {
         type: "boolean",
       },
     },
+    fullWidth: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   args: {
     children: "Button",
