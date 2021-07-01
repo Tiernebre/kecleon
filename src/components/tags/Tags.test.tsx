@@ -14,3 +14,15 @@ it("renders given children", () => {
   expect(screen.getByText(firstTag)).toBeInTheDocument();
   expect(screen.getByText(secondTag)).toBeInTheDocument();
 });
+
+it("by default is unopinionated in its styling", () => {
+  const tag = "Test Tag 1";
+  render(
+    <Tags>
+      <Tag>{tag}</Tag>
+    </Tags>
+  );
+  expect(screen.getByText(tag).parentElement).toHaveClass("tags", {
+    exact: true,
+  });
+});
