@@ -18,6 +18,7 @@ export type ButtonProps = {
   light?: boolean;
   size?: ButtonSize;
   loading?: boolean;
+  fullWidth?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const buttonClassNameMapping: ClassNameTransformMap<ButtonProps> = new Map([
@@ -25,6 +26,7 @@ const buttonClassNameMapping: ClassNameTransformMap<ButtonProps> = new Map([
   ["light", () => "is-light"],
   ["size", (size: string) => `is-${size}`],
   ["loading", () => `is-loading`],
+  ["fullWidth", () => "is-fullwidth"],
 ]);
 
 export const Button = ({
@@ -32,6 +34,7 @@ export const Button = ({
   light,
   size,
   loading,
+  fullWidth,
   ...props
 }: ButtonProps): JSX.Element => {
   const classNameProps: Partial<ButtonProps> = {
@@ -39,6 +42,7 @@ export const Button = ({
     light,
     size,
     loading,
+    fullWidth,
   };
 
   const className = createClassNameFromProps(

@@ -169,3 +169,12 @@ it("by default is not loading", () => {
   });
   expect(foundButton).not.toHaveClass("is-loading");
 });
+
+it("renders a button in full width if provided", () => {
+  const text = "Button Loading Test";
+  render(<Button fullWidth>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toHaveClass("is-fullwidth");
+});
