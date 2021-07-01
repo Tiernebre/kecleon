@@ -1,3 +1,4 @@
+import { forwardRef, Ref } from "react";
 import { Input, InputProps } from "../input";
 
 export type ValidatedInputProps = InputProps & {
@@ -10,10 +11,12 @@ export type ValidatedInputProps = InputProps & {
  * `valid` prop passed by the consumer, so there is no opinion on how
  * an input is technically validated.
  */
-export const ValidatedInput = ({
-  valid,
-  ...props
-}: ValidatedInputProps): JSX.Element => {
-  const color = valid ? props.color : "danger";
-  return <Input {...props} color={color} aria-invalid={!valid} />;
-};
+export const ValidatedInput = forwardRef(
+  (
+    { valid, ...props }: ValidatedInputProps,
+    ref: Ref<HTMLInputElement>
+  ): JSX.Element => {
+    const color = valid ? props.color : "danger";
+    return <Input {...props} color={color} aria-invalid={!valid} ref={ref} />;
+  }
+);
