@@ -11,12 +11,14 @@ export type TagProps = PropsWithChildren<{
   color?: Color;
   size?: Size;
   rounded?: boolean;
+  deletable?: boolean;
 }>;
 
 const classNameMapping: ClassNameTransformMap<TagProps> = new Map([
   mapClassNameForColor(),
   mapClassNameForSize(),
   ["rounded", () => "is-rounded"],
+  ["deletable", () => "is-delete"],
 ]);
 
 export const Tag = ({
@@ -24,10 +26,11 @@ export const Tag = ({
   size,
   rounded,
   children,
+  deletable,
 }: TagProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { color, size, rounded } as Partial<TagProps>,
+    { color, size, rounded, deletable } as Partial<TagProps>,
     ["tag"]
   );
   return <span className={className}>{children}</span>;

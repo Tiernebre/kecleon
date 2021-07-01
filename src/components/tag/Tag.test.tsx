@@ -31,3 +31,15 @@ it("can display as not rounded if provided as false", () => {
   render(<Tag rounded={false}>{text}</Tag>);
   expect(screen.getByText(text)).not.toHaveClass("is-rounded");
 });
+
+it("can display as a delete button", () => {
+  const text = "Tag";
+  render(<Tag deletable>{text}</Tag>);
+  expect(screen.getByText(text)).toHaveClass("is-delete");
+});
+
+it("won't display as a delete button if provided as false", () => {
+  const text = "Tag";
+  render(<Tag deletable={false}>{text}</Tag>);
+  expect(screen.getByText(text)).not.toHaveClass("is-delete");
+});
