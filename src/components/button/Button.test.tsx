@@ -24,6 +24,7 @@ it("renders a button", () => {
     name: text,
   });
   expect(foundButton).toBeInTheDocument();
+  expect(foundButton).toHaveClass("button", { exact: true });
 });
 
 it("renders a button with passed to natural HTML button attributes", () => {
@@ -168,4 +169,22 @@ it("by default is not loading", () => {
     name: text,
   });
   expect(foundButton).not.toHaveClass("is-loading");
+});
+
+it("renders a button in full width if provided", () => {
+  const text = "Button Loading Test";
+  render(<Button fullWidth>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toHaveClass("is-fullwidth");
+});
+
+it("does not renders a button in full width if specifically provided as false", () => {
+  const text = "Button Loading Test";
+  render(<Button fullWidth={false}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).not.toHaveClass("is-fullwidth");
 });
