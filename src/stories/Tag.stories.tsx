@@ -1,5 +1,4 @@
 import { Story, Meta } from "@storybook/react";
-import { Fragment } from "react";
 
 import { Tag, TagProps } from "../components";
 import { colors, sizes } from "../types";
