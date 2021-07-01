@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { Size, sizes } from "../../types";
 import { Tag } from "../tag/Tag";
 import { Tags } from "./Tags";
 
@@ -26,3 +27,16 @@ it("by default is unopinionated in its styling", () => {
     exact: true,
   });
 });
+
+it.each<Size>(sizes)(
+  "can render its nested tags with size = %p",
+  (size: Size) => {
+    const tag = "Test Tag 1";
+    render(
+      <Tags size={size}>
+        <Tag>{tag}</Tag>
+      </Tags>
+    );
+    expect(screen.getByText(tag).parentElement).toHaveClass(`are-${size}`);
+  }
+);
