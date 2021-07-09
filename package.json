@@ -36,7 +36,8 @@
     "test": "react-scripts test",
     "start": "start-storybook -p 6006 -s public",
     "build:storybook": "build-storybook -s public",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "pre-commit": "yarn lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -111,11 +112,6 @@
   },
   "resolutions": {
     "babel-loader": "8.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,scss,md,yml}": "prettier --write"
