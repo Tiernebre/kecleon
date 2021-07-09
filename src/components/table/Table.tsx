@@ -1,3 +1,3 @@
 export const Table = (): JSX.Element => {
-  return <table>Table</table>;
+  return <table className="table">Table</table>;
 };
