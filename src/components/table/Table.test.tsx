@@ -8,6 +8,20 @@ it("is rendered with unopinionated styling by default", () => {
   expect(getTable()).toHaveClass("table", { exact: true });
 });
 
+it("renders children elements", () => {
+  const message = "Hello World";
+  render(
+    <Table>
+      <tbody>
+        <tr>
+          <td>{message}</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+  expect(screen.getByText(message)).toBeInTheDocument();
+});
+
 it("can be rendered with borders", () => {
   render(<Table bordered />);
   expect(getTable()).toHaveClass("is-bordered");

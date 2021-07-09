@@ -1,16 +1,18 @@
-import { TableHTMLAttributes } from "react";
+import { PropsWithChildren, TableHTMLAttributes } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
-export type TableProps = TableHTMLAttributes<HTMLTableElement> & {
-  bordered?: boolean;
-  striped?: boolean;
-  narrow?: boolean;
-  hoverable?: boolean;
-  fullwidth?: boolean;
-};
+export type TableProps = PropsWithChildren<
+  TableHTMLAttributes<HTMLTableElement> & {
+    bordered?: boolean;
+    striped?: boolean;
+    narrow?: boolean;
+    hoverable?: boolean;
+    fullwidth?: boolean;
+  }
+>;
 
 const classNameMapping: ClassNameTransformMap<TableProps> = new Map([
   ["bordered", () => "is-bordered"],
@@ -26,6 +28,7 @@ export const Table = ({
   narrow,
   hoverable,
   fullwidth,
+  children,
   ...props
 }: TableProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -35,7 +38,7 @@ export const Table = ({
   );
   return (
     <table {...props} className={className}>
-      Table
+      {children}
     </table>
   );
 };
