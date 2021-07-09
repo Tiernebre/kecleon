@@ -15,5 +15,6 @@ export * from "./icon";
 export * from "./icon-button";
 export * from "./image";
 export * from "./notification";
+export * from "./table";
 export * from "./tag";
 export * from "./tags";
