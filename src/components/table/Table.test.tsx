@@ -27,3 +27,13 @@ it("can be rendered without stripes", () => {
   render(<Table striped={false} />);
   expect(getTable()).not.toHaveClass("is-striped");
 });
+
+it("can be rendered with hoverable focus", () => {
+  render(<Table hoverable />);
+  expect(getTable()).toHaveClass("is-hoverable");
+});
+
+it("can be rendered without hoverable focus", () => {
+  render(<Table hoverable={false} />);
+  expect(getTable()).not.toHaveClass("is-hoverable");
+});
