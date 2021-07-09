@@ -33,5 +33,9 @@ export const Table = ({
     { bordered, striped, narrow, hoverable, fullwidth } as Partial<TableProps>,
     ["table"]
   );
-  return <table className={className}>Table</table>;
+  return (
+    <table {...props} className={className}>
+      Table
+    </table>
+  );
 };

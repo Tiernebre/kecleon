@@ -47,3 +47,12 @@ it("can be rendered in non full width", () => {
   render(<Table fullwidth={false} />);
   expect(getTable()).not.toHaveClass("is-fullwidth");
 });
+
+it("supports HTML Table attributes in props", () => {
+  const cellPadding = 5;
+  const cellSpacing = 10;
+  render(<Table cellPadding={cellPadding} cellSpacing={cellSpacing} />);
+  const table = getTable();
+  expect(table).toHaveAttribute("cellPadding", cellPadding.toString());
+  expect(table).toHaveAttribute("cellSpacing", cellSpacing.toString());
+});
