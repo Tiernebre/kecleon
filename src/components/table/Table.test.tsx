@@ -1,17 +1,29 @@
 import { screen, render } from "@testing-library/react";
 import { Table } from "./Table";
 
+const getTable = () => screen.getByRole("table");
+
 it("is rendered with unopinionated styling by default", () => {
   render(<Table />);
-  expect(screen.getByRole("table")).toHaveClass("table", { exact: true });
+  expect(getTable()).toHaveClass("table", { exact: true });
 });
 
 it("can be rendered with borders", () => {
   render(<Table bordered />);
-  expect(screen.getByRole("table")).toHaveClass("is-bordered");
+  expect(getTable()).toHaveClass("is-bordered");
 });
 
 it("can be rendered without borders", () => {
   render(<Table bordered={false} />);
-  expect(screen.getByRole("table")).not.toHaveClass("is-bordered");
+  expect(getTable()).not.toHaveClass("is-bordered");
+});
+
+it("can be rendered with stripes", () => {
+  render(<Table striped />);
+  expect(getTable()).toHaveClass("is-striped");
+});
+
+it("can be rendered without stripes", () => {
+  render(<Table striped={false} />);
+  expect(getTable()).not.toHaveClass("is-striped");
 });
