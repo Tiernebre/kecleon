@@ -1,7 +1,6 @@
-import { Link, LinkProps } from "react-router-dom";
-import { PartialBy } from "../../..";
+import { Anchor, AnchorProps } from "../../anchor";
 
-export type NavbarItemLinkProps = PartialBy<LinkProps, "to">;
+export type NavbarItemLinkProps = AnchorProps;
 
 /**
  * A navigation item link that supports the ability to be a
@@ -14,25 +13,8 @@ export type NavbarItemLinkProps = PartialBy<LinkProps, "to">;
  * If you wish to use the traditional server-side anchor tag, you will need
  * to provide the `href` attribute.
  */
-export const NavbarItemLink = ({
-  children,
-  to,
-  href,
-  ...props
-}: NavbarItemLinkProps): JSX.Element | null => {
-  if (to) {
-    return (
-      <Link className="navbar-item" to={to} {...props}>
-        {children}
-      </Link>
-    );
-  } else if (href) {
-    return (
-      <a className="navbar-item" href={href} {...props}>
-        {children}
-      </a>
-    );
-  } else {
-    return null;
-  }
+export const NavbarItemLink = (
+  props: NavbarItemLinkProps
+): JSX.Element | null => {
+  return <Anchor {...props} className="navbar-item" />;
 };
