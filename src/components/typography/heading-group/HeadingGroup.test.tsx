@@ -9,6 +9,12 @@ it("renders with a default level of 3 for the title", () => {
   expect(foundTitle.nodeName).toEqual("H3");
 });
 
+it("does not render an empty subtitle if one is not provided", () => {
+  const title = "Title";
+  render(<HeadingGroup title={title} />);
+  expect(screen.getAllByRole("heading")).toHaveLength(1);
+});
+
 it("renders a given subtitle", () => {
   const title = "Title";
   const subtitle = "subtitle";
@@ -17,6 +23,7 @@ it("renders a given subtitle", () => {
   expect(foundTitle).toBeInTheDocument();
   const foundSubtitle = screen.getByText(subtitle);
   expect(foundSubtitle).toBeInTheDocument();
+  expect(screen.getAllByRole("heading")).toHaveLength(2);
 });
 
 it("renders a subtitle with level of 5 by default", () => {
