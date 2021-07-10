@@ -1,4 +1,4 @@
-import { TitleLevel } from "../title-levels";
+import { TitleLevel } from "../../../types";
 
 export type TitleProps = {
   level?: TitleLevel;
