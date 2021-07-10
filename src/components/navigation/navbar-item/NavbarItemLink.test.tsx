@@ -6,9 +6,21 @@ it("is rendered without opinionated styling by default", () => {
   const text = "NavbarItemLink";
   render(
     <MemoryRouter>
-      <NavbarItemLink to="localhost">{text}</NavbarItemLink>
+      <NavbarItemLink to="some-custom-path">{text}</NavbarItemLink>
     </MemoryRouter>
   );
-  expect(screen.getByText(text)).toHaveClass("navbar-item", { exact: true });
-  expect(screen.getByText(text).nodeName).toEqual("A");
+  const renderedLink = screen.getByText(text);
+  expect(renderedLink).toHaveClass("navbar-item", { exact: true });
+});
+
+it("is rendered as a traditional anchor element tag if href is provided", () => {
+  const text = "NavbarItemLink";
+  const href = "https://www.google.com";
+  render(
+    <MemoryRouter>
+      <NavbarItemLink href={href}>{text}</NavbarItemLink>
+    </MemoryRouter>
+  );
+  const renderedLink = screen.getByText(text);
+  expect(renderedLink).toHaveClass("navbar-item", { exact: true });
 });
