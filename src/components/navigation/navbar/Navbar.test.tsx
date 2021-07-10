@@ -9,6 +9,12 @@ it("by default has unopinionated styling", () => {
   expect(getNavbar()).toHaveClass("navbar", { exact: true });
 });
 
+it("renders given children", () => {
+  const text = "Navbar Text";
+  render(<Navbar>{text}</Navbar>);
+  expect(screen.getByText(text)).toBeInTheDocument();
+});
+
 it("can be rendered in transparent color", () => {
   render(<Navbar transparent />);
   expect(getNavbar()).toHaveClass("is-transparent");
