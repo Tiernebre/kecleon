@@ -67,6 +67,9 @@
       "project": [
         "./tsconfig.eslint.json"
       ]
+    },
+    "rules": {
+      "testing-library/no-node-access": "off"
     }
   },
   "browserslist": {
