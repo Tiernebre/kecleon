@@ -5,27 +5,22 @@ import {
   createClassNameFromProps,
 } from "../../../utilities";
 
-export type TitleProps = PropsWithChildren<{
+export type SubtitleProps = PropsWithChildren<{
   level?: HeadingLevel;
-  spaced?: boolean;
 }>;
 
-const classNameMapping: ClassNameTransformMap<TitleProps> = new Map([
+const classNameMapping: ClassNameTransformMap<SubtitleProps> = new Map([
   ["level", (level: string) => `is-${level}`],
-  ["spaced", () => "is-spaced"],
 ]);
 
-const DEFAULT_LEVEL = 3;
-
-export const Title = ({
-  level = DEFAULT_LEVEL,
-  spaced,
+export const Subtitle = ({
+  level = 5,
   children,
-}: TitleProps): JSX.Element => {
+}: SubtitleProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { spaced, level } as Partial<TitleProps>,
-    ["title"]
+    { level } as Partial<SubtitleProps>,
+    ["subtitle"]
   );
   const Heading = `h${level}` as keyof JSX.IntrinsicElements;
   return <Heading className={className}>{children}</Heading>;

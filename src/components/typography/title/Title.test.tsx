@@ -4,9 +4,11 @@ import { Title } from "./Title";
 
 const getTitle = () => screen.getByRole("heading");
 
-it("by default is heading level 1", () => {
+it("by default is heading level 3", () => {
   render(<Title />);
-  expect(getTitle()).toHaveClass("title is-1", { exact: true });
+  const title = getTitle();
+  expect(title).toHaveClass("title is-3", { exact: true });
+  expect(title.nodeName).toEqual("H3");
 });
 
 it("renders children data", () => {
@@ -19,8 +21,9 @@ it.each<HeadingLevel>(headingLevels)(
   "can be rendered in level %p",
   (level: HeadingLevel) => {
     render(<Title level={level} />);
-    expect(getTitle()).toHaveClass(`is-${level}`);
-    expect(getTitle().nodeName).toEqual(`H${level}`);
+    const title = getTitle();
+    expect(title).toHaveClass(`is-${level}`);
+    expect(title.nodeName).toEqual(`H${level}`);
   }
 );
 
