@@ -15,8 +15,10 @@ const classNameMapping: ClassNameTransformMap<TitleProps> = new Map([
   ["spaced", () => "is-spaced"],
 ]);
 
+const DEFAULT_LEVEL = 3;
+
 export const Title = ({
-  level = 1,
+  level = DEFAULT_LEVEL,
   spaced,
   children,
 }: TitleProps): JSX.Element => {

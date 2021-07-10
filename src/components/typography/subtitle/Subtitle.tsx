@@ -14,7 +14,7 @@ const classNameMapping: ClassNameTransformMap<SubtitleProps> = new Map([
 ]);
 
 export const Subtitle = ({
-  level = 2,
+  level = 5,
   children,
 }: SubtitleProps): JSX.Element => {
   const className = createClassNameFromProps(

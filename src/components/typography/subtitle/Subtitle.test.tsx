@@ -4,11 +4,11 @@ import { Subtitle } from "./Subtitle";
 
 const getSubtitle = () => screen.getByRole("heading");
 
-it("by default is heading level 2", () => {
+it("by default is heading level 5", () => {
   render(<Subtitle />);
   const subtitle = getSubtitle();
-  expect(subtitle).toHaveClass("subtitle is-2", { exact: true });
-  expect(subtitle.nodeName).toEqual("H2");
+  expect(subtitle).toHaveClass("subtitle is-5", { exact: true });
+  expect(subtitle.nodeName).toEqual("H5");
 });
 
 it("renders children data", () => {
