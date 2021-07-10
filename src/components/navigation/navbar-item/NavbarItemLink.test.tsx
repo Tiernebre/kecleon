@@ -48,3 +48,8 @@ it("will server side route to an external page", () => {
   render(<NavbarItemLink href={href}>Link</NavbarItemLink>);
   expect(getLink()).toHaveAttribute("href", href);
 });
+
+it("renders nothing if href or to are not provided", () => {
+  render(<NavbarItemLink>Link</NavbarItemLink>);
+  expect(screen.queryByRole("link")).toBeNull();
+});
