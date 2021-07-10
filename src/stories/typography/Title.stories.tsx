@@ -4,8 +4,8 @@ import { Title, TitleProps } from "../../components";
 import { headingLevels } from "../../types";
 
 export default {
-  title: "Typography/Title",
   component: Title,
+  title: "Typography/Title",
   argTypes: {
     level: {
       control: {
@@ -25,7 +25,7 @@ export default {
     },
   },
   args: {
-    children: "Title",
+    children: "Subtitle",
   },
 } as Meta<TitleProps>;
 
