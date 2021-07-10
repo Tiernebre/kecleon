@@ -1,1 +1,1 @@
-export * from "./title-levels";
+export * from "./heading-levels";

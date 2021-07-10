@@ -1,7 +1,7 @@
-import { TitleLevel } from "../../../types";
+import { HeadingLevel } from "../../../types";
 
 export type TitleProps = {
-  level?: TitleLevel;
+  level?: HeadingLevel;
 };
 
 export const Title = ({ level = 1 }: TitleProps): JSX.Element => {
