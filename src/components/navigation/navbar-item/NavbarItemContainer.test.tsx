@@ -12,3 +12,14 @@ it("is rendered with unopinionated styling", () => {
   render(<NavbarItemContainer>{content}</NavbarItemContainer>);
   expect(screen.getByText(content)).toHaveClass("navbar-item", { exact: true });
 });
+
+it("can be rendered with a dropdown", () => {
+  const dropdownText = "Test Dropdown";
+  const dropdown = <div className="navbar-dropdown">{dropdownText}</div>;
+  const content = "Navbar Item Container";
+  render(
+    <NavbarItemContainer dropdown={dropdown}>{content}</NavbarItemContainer>
+  );
+  expect(screen.getByText(content)).toHaveClass("has-dropdown");
+  expect(screen.getByText(dropdownText)).toBeInTheDocument();
+});
