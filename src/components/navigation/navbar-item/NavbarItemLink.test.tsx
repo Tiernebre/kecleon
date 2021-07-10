@@ -15,10 +15,6 @@ it("is rendered without opinionated styling by default for single page routing",
 
 it("is rendered without opionated styling by default for server side routing", () => {
   const href = "https://www.google.com";
-  render(
-    <MemoryRouter>
-      <NavbarItemLink href={href}>Link</NavbarItemLink>
-    </MemoryRouter>
-  );
+  render(<NavbarItemLink href={href}>Link</NavbarItemLink>);
   expect(getLink()).toHaveClass("navbar-item", { exact: true });
 });
