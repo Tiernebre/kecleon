@@ -1,18 +1,21 @@
 import { PropsWithChildren } from "react";
-import { Position } from "../../../types";
+import { Color, Position } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
+  mapClassNameForColor,
 } from "../../../utilities";
 
 export type NavbarProps = PropsWithChildren<{
   transparent?: boolean;
   fixed?: Position;
+  color?: Color;
 }>;
 
 const classNameMapping: ClassNameTransformMap<NavbarProps> = new Map([
   ["transparent", () => "is-transparent"],
   ["fixed", (position: string) => `is-fixed-${position}`],
+  mapClassNameForColor<NavbarProps>(),
 ]);
 
 /**
@@ -27,11 +30,12 @@ const classNameMapping: ClassNameTransformMap<NavbarProps> = new Map([
 export const Navbar = ({
   transparent,
   fixed,
+  color,
   children,
 }: NavbarProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { transparent, fixed } as Partial<NavbarProps>,
+    { transparent, fixed, color } as Partial<NavbarProps>,
     ["navbar"]
   );
   return <nav className={className}>{children}</nav>;

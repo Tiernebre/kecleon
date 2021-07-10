@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Position, positions } from "../../../types";
+import { Color, colors, Position, positions } from "../../../types";
 import { Navbar } from "./Navbar";
 
 const getNavbar = () => screen.getByRole("navigation");
@@ -32,3 +32,8 @@ it.each<Position>(positions)(
     expect(getNavbar()).toHaveClass(`is-fixed-${position}`);
   }
 );
+
+it.each<Color>(colors)("can be displayed in color %p", (color: Color) => {
+  render(<Navbar color={color} />);
+  expect(getNavbar()).toHaveClass(`is-${color}`);
+});
