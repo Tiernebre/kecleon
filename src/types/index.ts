@@ -5,3 +5,4 @@ export * from "./form";
 export * from "./position";
 export * from "./size";
 export * from "./typography";
+export * from "./utilities";
