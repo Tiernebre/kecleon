@@ -3,7 +3,7 @@ import { HeadingLevel } from "../../../types";
 import { Subtitle } from "../subtitle";
 import { Title } from "../title";
 
-type HeadingGroupLevel = Exclude<HeadingLevel, 5 | 6>;
+export type HeadingGroupLevel = Exclude<HeadingLevel, 5 | 6>;
 
 export type HeadingGroupProps = {
   title: string;
