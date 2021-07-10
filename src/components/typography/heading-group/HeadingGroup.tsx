@@ -1,3 +1,28 @@
-export const HeadingGroup = (): JSX.Element => {
-  return <div>Heading Group</div>;
+import { Fragment } from "react";
+import { HeadingLevel } from "../../../types";
+import { Subtitle } from "../subtitle";
+import { Title } from "../title";
+
+type HeadingGroupLevel = Exclude<HeadingLevel, 5 | 6>;
+
+export type HeadingGroupProps = {
+  title: string;
+  subtitle?: string;
+  level?: HeadingGroupLevel;
+};
+
+const DEFAULT_HEADING_GROUP_LEVEL = 3;
+
+export const HeadingGroup = ({
+  title,
+  level = DEFAULT_HEADING_GROUP_LEVEL,
+  subtitle,
+}: HeadingGroupProps): JSX.Element => {
+  const subtitleLevel = (level + 2) as HeadingLevel;
+  return (
+    <Fragment>
+      <Title level={level}>{title}</Title>
+      {subtitle && <Subtitle level={subtitleLevel}>{subtitle}</Subtitle>}
+    </Fragment>
+  );
 };
