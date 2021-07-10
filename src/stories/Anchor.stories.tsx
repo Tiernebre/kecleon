@@ -1,5 +1,10 @@
 import { Story, Meta } from "@storybook/react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  MemoryRouter,
+} from "react-router-dom";
 
 import { Anchor, AnchorProps } from "../components";
 
@@ -69,9 +74,14 @@ const ServerSideTemplate: Story<AnchorProps> = () => (
 export const ServerSideAnchor = ServerSideTemplate.bind({});
 ServerSideAnchor.args = {};
 
-const InteractiveTemplate: Story<AnchorProps> = (args) => <Anchor {...args} />;
+const InteractiveTemplate: Story<AnchorProps> = (args) => (
+  <MemoryRouter>
+    <Anchor {...args} />
+  </MemoryRouter>
+);
 
 export const InteractiveAnchor = InteractiveTemplate.bind({});
 InteractiveAnchor.args = {
   children: "Interactive Anchor",
+  href: "https://www.google.com",
 };
