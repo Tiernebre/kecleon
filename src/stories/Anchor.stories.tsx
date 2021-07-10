@@ -59,3 +59,12 @@ const SinglePageAppTemplate: Story<AnchorProps> = () => (
 
 export const SinglePageAppAnchors = SinglePageAppTemplate.bind({});
 SinglePageAppAnchors.args = {};
+
+const ServerSideTemplate: Story<AnchorProps> = () => (
+  <Anchor href="https://www.google.com" target="_blank">
+    Server Side Link. Click on me to load Google in a new tab.
+  </Anchor>
+);
+
+export const ServerSideAnchor = ServerSideTemplate.bind({});
+ServerSideAnchor.args = {};
