@@ -20,7 +20,7 @@ export default {
     },
   },
   args: {
-    children: "Title",
+    children: "Subtitle",
   },
 } as Meta<SubtitleProps>;
 
