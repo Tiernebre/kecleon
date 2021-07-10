@@ -9,6 +9,12 @@ it("by default is heading level 1", () => {
   expect(getTitle()).toHaveClass("title is-1", { exact: true });
 });
 
+it("renders children data", () => {
+  const text = "This is a custom title. Cool!";
+  render(<Title>{text}</Title>);
+  expect(screen.getByText(text)).toBeInTheDocument();
+});
+
 it.each<HeadingLevel>(headingLevels)(
   "can be rendered in level %p",
   (level: HeadingLevel) => {

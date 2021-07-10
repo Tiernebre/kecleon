@@ -12,10 +12,20 @@ export default {
         type: "select",
         options: headingLevels,
       },
-      spaced: {
+    },
+    spaced: {
+      control: {
         type: "boolean",
       },
     },
+    children: {
+      control: {
+        type: "text",
+      },
+    },
+  },
+  args: {
+    children: "Title",
   },
 } as Meta<TitleProps>;
 
