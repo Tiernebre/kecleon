@@ -20,5 +20,6 @@ export const Title = ({ level = 1, spaced }: TitleProps): JSX.Element => {
     { spaced, level } as Partial<TitleProps>,
     ["title"]
   );
-  return <h1 className={className}>Title</h1>;
+  const Heading = `h${level}` as keyof JSX.IntrinsicElements;
+  return <Heading className={className}>Title</Heading>;
 };
