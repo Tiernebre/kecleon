@@ -18,3 +18,4 @@ export * from "./notification";
 export * from "./table";
 export * from "./tag";
 export * from "./tags";
+export * from "./typography";
