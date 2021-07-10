@@ -4,9 +4,9 @@ import { Title } from "./Title";
 
 const getTitle = () => screen.getByRole("heading");
 
-it("by default has unopinionated styling", () => {
+it("by default is heading level 1", () => {
   render(<Title />);
-  expect(getTitle()).toHaveClass("title", { exact: true });
+  expect(getTitle()).toHaveClass("title is-1", { exact: true });
 });
 
 it.each<HeadingLevel>(headingLevels)(
