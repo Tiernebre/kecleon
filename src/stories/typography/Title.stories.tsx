@@ -25,6 +25,7 @@ export default {
     },
   },
   args: {
+    level: 3,
     children: "Subtitle",
   },
 } as Meta<TitleProps>;
