@@ -4,8 +4,8 @@ import { Subtitle, SubtitleProps } from "../../components";
 import { headingLevels } from "../../types";
 
 export default {
-  title: "Typography/Subtitle",
   component: Subtitle,
+  title: "Typography/Subtitle",
   argTypes: {
     level: {
       control: {
