@@ -23,3 +23,9 @@ it("can be rendered with a dropdown", () => {
   expect(screen.getByText(content)).toHaveClass("has-dropdown");
   expect(screen.getByText(dropdownText)).toBeInTheDocument();
 });
+
+it("can be rendered without a dropdown", () => {
+  const content = "Navbar Item Container";
+  render(<NavbarItemContainer>{content}</NavbarItemContainer>);
+  expect(screen.getByText(content)).not.toHaveClass("has-dropdown");
+});
