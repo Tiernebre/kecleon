@@ -1,14 +1,14 @@
-import { AnchorHTMLAttributes } from "react";
+import { Link, LinkProps } from "react-router-dom";
 
-export type NavbarItemProps = AnchorHTMLAttributes<HTMLAnchorElement>;
+export type NavbarItemProps = LinkProps;
 
 export const NavbarItemLink = ({
   children,
   ...props
 }: NavbarItemProps): JSX.Element => {
   return (
-    <a {...props} className="navbar-item">
+    <Link {...props} className="navbar-item">
       {children}
-    </a>
+    </Link>
   );
 };
