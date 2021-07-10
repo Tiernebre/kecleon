@@ -46,8 +46,12 @@
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "react-app",
       "react-app/jest",
+      "plugin:testing-library/react",
       "plugin:jsx-a11y/recommended",
       "prettier"
+    ],
+    "plugins": [
+      "testing-library"
     ],
     "overrides": [
       {
@@ -63,6 +67,9 @@
       "project": [
         "./tsconfig.eslint.json"
       ]
+    },
+    "rules": {
+      "testing-library/no-node-access": "off"
     }
   },
   "browserslist": {
@@ -97,6 +104,7 @@
     "copyfiles": "^2.4.1",
     "css-loader": "^5.2.6",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-testing-library": "^4.9.0",
     "husky": "^7.0.0",
     "lint-staged": ">=10",
     "prettier": "^2.3.2",
