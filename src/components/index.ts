@@ -1,5 +1,6 @@
 export * from "./alert";
 export * from "./alerts";
+export * from "./anchor";
 export * from "./box";
 export * from "./button";
 export * from "./buttons";
