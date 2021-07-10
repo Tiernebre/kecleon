@@ -1,11 +1,11 @@
 import { Link, LinkProps } from "react-router-dom";
 
-export type NavbarItemProps = LinkProps;
+export type NavbarItemLinkProps = LinkProps;
 
 export const NavbarItemLink = ({
   children,
   ...props
-}: NavbarItemProps): JSX.Element => {
+}: NavbarItemLinkProps): JSX.Element => {
   return (
     <Link {...props} className="navbar-item">
       {children}

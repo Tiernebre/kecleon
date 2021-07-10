@@ -10,4 +10,5 @@ it("is rendered without opinionated styling by default", () => {
     </MemoryRouter>
   );
   expect(screen.getByText(text)).toHaveClass("navbar-item", { exact: true });
+  expect(screen.getByText(text).nodeName).toEqual("A");
 });
