@@ -1,7 +1,16 @@
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
+
+export type NavbarBrandProps = {
+  items?: ReactNode;
+  burger?: ReactNode;
+};
 
 export const NavbarBrand = ({
-  children,
-}: PropsWithChildren<unknown>): JSX.Element => (
-  <div className="navbar-brand">{children}</div>
+  items,
+  burger,
+}: NavbarBrandProps): JSX.Element => (
+  <div className="navbar-brand">
+    {items}
+    {burger}
+  </div>
 );
