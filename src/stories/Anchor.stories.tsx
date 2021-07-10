@@ -68,3 +68,10 @@ const ServerSideTemplate: Story<AnchorProps> = () => (
 
 export const ServerSideAnchor = ServerSideTemplate.bind({});
 ServerSideAnchor.args = {};
+
+const InteractiveTemplate: Story<AnchorProps> = (args) => <Anchor {...args} />;
+
+export const InteractiveAnchor = InteractiveTemplate.bind({});
+InteractiveAnchor.args = {
+  children: "Interactive Anchor",
+};

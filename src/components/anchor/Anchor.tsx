@@ -15,21 +15,16 @@ export type AnchorProps = PartialBy<LinkProps, "to">;
  * to provide the `href` attribute.
  */
 export const Anchor = ({
-  children,
   to,
   href,
   ...props
 }: AnchorProps): JSX.Element | null => {
   if (to) {
-    return (
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    );
+    return <Link to={to} {...props} />;
   } else if (href) {
     return (
       <a href={href} {...props}>
-        {children}
+        {props.children}
       </a>
     );
   } else {
