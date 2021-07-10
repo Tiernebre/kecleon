@@ -1,9 +1,18 @@
-export type NavbarItemProps = {
-  link?: boolean;
-};
+import { AnchorHTMLAttributes, PropsWithChildren } from "react";
 
-export const NavbarItem = (): JSX.Element => (
-  <a className="navbar-item" href="localhost">
-    NavbarItem
-  </a>
-);
+export type NavbarItemProps = PropsWithChildren<{
+  link?: AnchorHTMLAttributes<HTMLAnchorElement>;
+}>;
+
+export const NavbarItem = ({
+  link,
+  children,
+}: NavbarItemProps): JSX.Element => {
+  const ContainerElement: keyof JSX.IntrinsicElements = link ? "a" : "div";
+
+  return (
+    <ContainerElement className="navbar-item" href="localhost">
+      {children}
+    </ContainerElement>
+  );
+};
