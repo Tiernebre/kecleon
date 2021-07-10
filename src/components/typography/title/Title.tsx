@@ -1,9 +1,23 @@
 import { HeadingLevel } from "../../../types";
+import {
+  ClassNameTransformMap,
+  createClassNameFromProps,
+} from "../../../utilities";
 
 export type TitleProps = {
   level?: HeadingLevel;
+  spaced?: boolean;
 };
 
-export const Title = ({ level = 1 }: TitleProps): JSX.Element => {
-  return <h1>Title</h1>;
+const classNameMapping: ClassNameTransformMap<TitleProps> = new Map([
+  ["spaced", () => "is-spaced"],
+]);
+
+export const Title = ({ level = 1, spaced }: TitleProps): JSX.Element => {
+  const className = createClassNameFromProps(
+    classNameMapping,
+    { spaced } as Partial<TitleProps>,
+    ["title"]
+  );
+  return <h1 className={className}>Title</h1>;
 };
