@@ -10,12 +10,14 @@ export type NavbarProps = PropsWithChildren<{
   transparent?: boolean;
   fixed?: Position;
   color?: Color;
+  shadowed?: boolean;
 }>;
 
 const classNameMapping: ClassNameTransformMap<NavbarProps> = new Map([
   ["transparent", () => "is-transparent"],
   ["fixed", (position: string) => `is-fixed-${position}`],
   mapClassNameForColor<NavbarProps>(),
+  ["shadowed", () => "has-shadow"],
 ]);
 
 /**
@@ -31,11 +33,12 @@ export const Navbar = ({
   transparent,
   fixed,
   color,
+  shadowed,
   children,
 }: NavbarProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { transparent, fixed, color } as Partial<NavbarProps>,
+    { transparent, fixed, color, shadowed } as Partial<NavbarProps>,
     ["navbar"]
   );
   return <nav className={className}>{children}</nav>;

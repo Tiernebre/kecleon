@@ -37,3 +37,13 @@ it.each<Color>(colors)("can be displayed in color %p", (color: Color) => {
   render(<Navbar color={color} />);
   expect(getNavbar()).toHaveClass(`is-${color}`);
 });
+
+it("can be displayed with a shadow", () => {
+  render(<Navbar shadowed />);
+  expect(getNavbar()).toHaveClass("has-shadow");
+});
+
+it("can be displayed without a shadow", () => {
+  render(<Navbar shadowed={false} />);
+  expect(getNavbar()).not.toHaveClass("has-shadow");
+});
