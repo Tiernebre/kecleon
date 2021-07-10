@@ -7,3 +7,8 @@ it("by default has unopinionated styling", () => {
   render(<Title />);
   expect(getTitle()).toHaveClass("title", { exact: true });
 });
+
+it("can be rendered with spacing", () => {
+  render(<Title spaced />);
+  expect(getTitle()).toHaveClass("is-spaced");
+});
