@@ -45,3 +45,17 @@ it.each<HeadingGroupLevel>([1, 2, 3, 4])(
     expect(foundSubtitle.nodeName).toEqual(`H${expectedSubtitleLevel}`);
   }
 );
+
+it("renders with space", () => {
+  const title = "Title";
+  render(<HeadingGroup title={title} spaced />);
+  const foundTitle = screen.getByText(title);
+  expect(foundTitle).toHaveClass("is-spaced");
+});
+
+it("renders without space", () => {
+  const title = "Title";
+  render(<HeadingGroup title={title} spaced={false} />);
+  const foundTitle = screen.getByText(title);
+  expect(foundTitle).not.toHaveClass("is-spaced");
+});
