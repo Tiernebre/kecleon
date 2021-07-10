@@ -12,3 +12,8 @@ it("can be rendered with spacing", () => {
   render(<Title spaced />);
   expect(getTitle()).toHaveClass("is-spaced");
 });
+
+it("can be rendered without spacing", () => {
+  render(<Title spaced={false} />);
+  expect(getTitle()).not.toHaveClass("is-spaced");
+});
