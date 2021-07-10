@@ -47,3 +47,13 @@ it("can be displayed without a shadow", () => {
   render(<Navbar shadowed={false} />);
   expect(getNavbar()).not.toHaveClass("has-shadow");
 });
+
+it("can be displayed with spacing", () => {
+  render(<Navbar spaced />);
+  expect(getNavbar()).toHaveClass("is-spaced");
+});
+
+it("can be displayed without spacing", () => {
+  render(<Navbar spaced={false} />);
+  expect(getNavbar()).not.toHaveClass("is-spaced");
+});
