@@ -42,3 +42,9 @@ it("will single page route to an existing route in the page", async () => {
   expect(screen.getByText(expectedRouteContent)).toBeInTheDocument();
   expect(screen.queryByText(unexpectedRouteContent)).toBeNull();
 });
+
+it("will server side route to an external page", () => {
+  const href = "https://www.google.com";
+  render(<NavbarItemLink href={href}>Link</NavbarItemLink>);
+  expect(getLink()).toHaveAttribute("href", href);
+});
