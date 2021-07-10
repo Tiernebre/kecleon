@@ -24,10 +24,14 @@ const classNameMapping: ClassNameTransformMap<NavbarProps> = new Map([
  * **has-navbar-fixed-bottom** dependent upon your position. Eventually
  * I may automate this to be added a class to the HTML/Body... stay tuned.
  */
-export const Navbar = ({ transparent, children }: NavbarProps): JSX.Element => {
+export const Navbar = ({
+  transparent,
+  fixed,
+  children,
+}: NavbarProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { transparent } as Partial<NavbarProps>,
+    { transparent, fixed } as Partial<NavbarProps>,
     ["navbar"]
   );
   return <nav className={className}>{children}</nav>;
