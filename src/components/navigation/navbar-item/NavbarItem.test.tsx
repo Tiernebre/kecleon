@@ -17,3 +17,11 @@ it("renders a container if container props are given", () => {
   expect(navbarItem).toBeInTheDocument();
   expect(navbarItem.nodeName).toEqual("DIV");
 });
+
+it("renders a container even if no props are given at all", () => {
+  const text = "Container";
+  render(<NavbarItem>{text}</NavbarItem>);
+  const navbarItem = screen.getByText(text);
+  expect(navbarItem).toBeInTheDocument();
+  expect(navbarItem.nodeName).toEqual("DIV");
+});
