@@ -23,6 +23,18 @@ it("renders a navbar end if provided", () => {
   expect(foundEnd).toHaveClass("navbar-end");
 });
 
+it("renders a navbar start end if both are provided", () => {
+  const startText = "Start";
+  const endText = "End";
+  render(<NavbarMenu start={startText} end={endText} />);
+  const foundStart = screen.getByText(startText);
+  expect(foundStart).toBeInTheDocument();
+  expect(foundStart).toHaveClass("navbar-start");
+  const foundEnd = screen.getByText(endText);
+  expect(foundEnd).toBeInTheDocument();
+  expect(foundEnd).toHaveClass("navbar-end");
+});
+
 it("renders given children", () => {
   const text = "navbar menu";
   render(<NavbarMenu>{text}</NavbarMenu>);
