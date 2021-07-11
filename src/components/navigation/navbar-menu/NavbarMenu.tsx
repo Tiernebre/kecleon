@@ -25,11 +25,15 @@ export const NavbarMenu = ({
     { active } as Partial<NavbarMenuProps>,
     ["navbar-menu"]
   );
+
+  const navbarStart = start && <div className="navbar-start">{start}</div>;
+  const navbarEnd = end && <div className="navbar-end">{end}</div>;
+
   return (
     <div className={className}>
-      {start}
+      {navbarStart}
       {children}
-      {end}
+      {navbarEnd}
     </div>
   );
 };
