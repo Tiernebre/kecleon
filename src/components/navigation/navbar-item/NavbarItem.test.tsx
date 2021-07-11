@@ -86,3 +86,15 @@ it("can be displayed as an active tab for a container", () => {
   const navbarItem = screen.getByText(text);
   expect(navbarItem).toHaveClass("is-active");
 });
+
+it("can be displayed as hoverable dropdown", () => {
+  const container = { dropdown: <div></div> };
+  const text = "Container";
+  render(
+    <NavbarItem container={container} hoverable>
+      {text}
+    </NavbarItem>
+  );
+  const navbarItem = screen.getByText(text);
+  expect(navbarItem).toHaveClass("is-hoverable");
+});
