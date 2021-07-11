@@ -1,6 +1,8 @@
 import { ButtonHTMLAttributes } from "react";
 
-export type NavbarBurgerProps = ButtonHTMLAttributes<HTMLButtonElement>;
+export type NavbarBurgerProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  active?: boolean;
+};
 
 export const NavbarBurger = (props: NavbarBurgerProps): JSX.Element => (
   <button {...props} className="navbar-burger">
