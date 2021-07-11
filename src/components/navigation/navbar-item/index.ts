@@ -1,1 +1,1 @@
-export * from "./NavbarItemLink";
+export * from "./NavbarItem";

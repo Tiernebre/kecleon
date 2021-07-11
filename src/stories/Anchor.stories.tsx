@@ -9,8 +9,8 @@ import {
 import { Anchor, AnchorProps } from "../components";
 
 export default {
-  component: Anchor,
   title: "Example/Anchor",
+  component: Anchor,
   argTypes: {
     to: {
       control: {

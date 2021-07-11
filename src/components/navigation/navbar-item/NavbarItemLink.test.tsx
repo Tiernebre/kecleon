@@ -6,19 +6,27 @@ import user from "@testing-library/user-event";
 
 const getLink = () => screen.getByRole("link");
 
-it("is rendered without opinionated styling by default for single page routing", () => {
+it("is rendered with a given class name for single page routing", () => {
+  const className = "some-custom-class-name";
   render(
     <MemoryRouter>
-      <NavbarItemLink to="some-custom-path">Link</NavbarItemLink>
+      <NavbarItemLink to="some-custom-path" className={className}>
+        Link
+      </NavbarItemLink>
     </MemoryRouter>
   );
-  expect(getLink()).toHaveClass("navbar-item", { exact: true });
+  expect(getLink()).toHaveClass(className, { exact: true });
 });
 
-it("is rendered without opionated styling by default for server side routing", () => {
+it("is rendered with a given class name for server side routing", () => {
+  const className = "some-custom-class-name";
   const href = "https://www.google.com";
-  render(<NavbarItemLink href={href}>Link</NavbarItemLink>);
-  expect(getLink()).toHaveClass("navbar-item", { exact: true });
+  render(
+    <NavbarItemLink href={href} className={className}>
+      Link
+    </NavbarItemLink>
+  );
+  expect(getLink()).toHaveClass(className, { exact: true });
 });
 
 it("will single page route to an existing route in the page", async () => {
