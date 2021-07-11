@@ -10,14 +10,24 @@ export type NavbarItemProps = PropsWithChildren<{
   container?: NavbarItemContainerProps;
 }>;
 
+const className = "navbar-item";
+
 export const NavbarItem = ({
   link,
   container,
   children,
 }: NavbarItemProps): JSX.Element => {
   if (link) {
-    return <NavbarItemLink {...link}>{children}</NavbarItemLink>;
+    return (
+      <NavbarItemLink {...link} className={className}>
+        {children}
+      </NavbarItemLink>
+    );
   } else {
-    return <NavbarItemContainer {...container}>{children}</NavbarItemContainer>;
+    return (
+      <NavbarItemContainer {...container} className={className}>
+        {children}
+      </NavbarItemContainer>
+    );
   }
 };

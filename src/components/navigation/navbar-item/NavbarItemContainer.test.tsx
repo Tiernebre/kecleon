@@ -7,10 +7,13 @@ it("renders given children", () => {
   expect(screen.getByText(content)).toBeInTheDocument();
 });
 
-it("is rendered with unopinionated styling", () => {
+it("is rendered with a given class", () => {
+  const className = "some-custom-class";
   const content = "Navbar Item Container";
-  render(<NavbarItemContainer>{content}</NavbarItemContainer>);
-  expect(screen.getByText(content)).toHaveClass("navbar-item", { exact: true });
+  render(
+    <NavbarItemContainer className={className}>{content}</NavbarItemContainer>
+  );
+  expect(screen.getByText(content)).toHaveClass(className, { exact: true });
 });
 
 it("can be rendered with a dropdown", () => {
