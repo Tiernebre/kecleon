@@ -16,6 +16,21 @@ export default {
         type: "text",
       },
     },
+    expanded: {
+      control: {
+        type: "boolean",
+      },
+    },
+    tab: {
+      control: {
+        type: "boolean",
+      },
+    },
+    active: {
+      control: {
+        type: "boolean",
+      },
+    },
   },
   args: {
     children: "Navbar Item",
