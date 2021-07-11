@@ -30,7 +30,7 @@ export const NavbarMenu = ({
   const navbarEnd = end && <div className="navbar-end">{end}</div>;
 
   return (
-    <div className={className}>
+    <div className={className} role="menu">
       {navbarStart}
       {children}
       {navbarEnd}

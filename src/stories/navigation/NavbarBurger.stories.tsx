@@ -1,11 +1,10 @@
 import { Story, Meta } from "@storybook/react";
-import "./NavbarItem.story.css";
 
 import { NavbarBurger, NavbarBurgerProps } from "../../components";
 
 export default {
-  component: NavbarBurger,
   title: "Navigation/NavbarBurger",
+  component: NavbarBurger,
   argTypes: {
     active: {
       control: {
