@@ -15,12 +15,14 @@ export type NavbarItemProps = PropsWithChildren<{
   expanded?: boolean;
   tab?: boolean;
   active?: boolean;
+  hoverable?: boolean;
 }>;
 
 const classNameMapping: ClassNameTransformMap<NavbarItemProps> = new Map([
   ["expanded", () => "is-expanded"],
   ["tab", () => "is-tab"],
   ["active", () => "is-active"],
+  ["hoverable", () => "is-hoverable"],
 ]);
 
 export const NavbarItem = ({
@@ -30,10 +32,11 @@ export const NavbarItem = ({
   expanded,
   tab,
   active,
+  hoverable,
 }: NavbarItemProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { expanded, tab, active } as Partial<NavbarItemProps>,
+    { expanded, tab, active, hoverable } as Partial<NavbarItemProps>,
     ["navbar-item"]
   );
 
