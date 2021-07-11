@@ -8,3 +8,12 @@ it("renders a link if link props are given", () => {
   expect(navbarItem).toBeInTheDocument();
   expect(navbarItem).toHaveAttribute("href", link.href);
 });
+
+it("renders a container if container props are given", () => {
+  const container = { dropdown: <div></div> };
+  const text = "Container";
+  render(<NavbarItem container={container}>{text}</NavbarItem>);
+  const navbarItem = screen.getByText(text);
+  expect(navbarItem).toBeInTheDocument();
+  expect(navbarItem.nodeName).toEqual("DIV");
+});
