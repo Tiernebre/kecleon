@@ -1,6 +1,12 @@
 import { screen, render } from "@testing-library/react";
 import { NavbarMenu } from "./NavbarMenu";
 
+it("renders with unopinionated styling by default", () => {
+  const text = "text";
+  render(<NavbarMenu>{text}</NavbarMenu>);
+  expect(screen.getByText(text)).toHaveClass("navbar-menu", { exact: true });
+});
+
 it("renders a navbar start if provided", () => {
   const startText = "Start";
   render(<NavbarMenu start={startText} />);
