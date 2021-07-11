@@ -1,5 +1,4 @@
 import { Story, Meta } from "@storybook/react";
-import "./NavbarItem.story.css";
 
 import { NavbarBurger, NavbarBurgerProps } from "../../components";
 
