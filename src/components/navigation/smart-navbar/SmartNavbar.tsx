@@ -10,6 +10,16 @@ export type SmartNavbarProps = NavbarProps & {
   menuEndItems?: ReactNode;
 };
 
+/**
+ * SmartNavbar is a stateful Navigation bar that is built upon the
+ * decoupled and atomic Navbar elements that includes wired up stateful
+ * logic around menu visibility.
+ *
+ * It is suggested to use SmartNavbar if you want a standard responsive
+ * navigation bar out-of-the-box. If you wish for more customization / flexibility,
+ * I suggest using the provided `Navbar` components for a more declarative customized
+ * approach.
+ */
 export const SmartNavbar = ({
   brandItems,
   menuStartItems,
