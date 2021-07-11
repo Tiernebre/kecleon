@@ -11,3 +11,9 @@ it("behaves like a button", () => {
   user.click(getNavbarBurger());
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it("can be marked as active", () => {
+  const onClick = jest.fn();
+  render(<NavbarBurger onClick={onClick} active />);
+  expect(getNavbarBurger()).toHaveClass("is-active");
+});
