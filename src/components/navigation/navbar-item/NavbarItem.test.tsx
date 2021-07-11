@@ -64,3 +64,25 @@ it("can be displayed as a tab for a container", () => {
   const navbarItem = screen.getByText(text);
   expect(navbarItem).toHaveClass("is-tab");
 });
+
+it("can be displayed as an active tab for a link", () => {
+  const link = { href: "https://www.google.com" };
+  render(
+    <NavbarItem link={link} tab active>
+      Link
+    </NavbarItem>
+  );
+  const navbarItem = screen.getByRole("link");
+  expect(navbarItem).toHaveClass("is-active");
+});
+
+it("can be displayed as an active tab for a container", () => {
+  const text = "Container";
+  render(
+    <NavbarItem tab active>
+      {text}
+    </NavbarItem>
+  );
+  const navbarItem = screen.getByText(text);
+  expect(navbarItem).toHaveClass("is-active");
+});
