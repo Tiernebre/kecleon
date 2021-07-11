@@ -1,4 +1,5 @@
 import { screen, render } from "@testing-library/react";
+import { Direction, directions } from "../../../types";
 import { NavbarDropdown } from "./NavbarDropdown";
 
 it("renders given children content", () => {
@@ -14,3 +15,12 @@ it("has unopinionated styling by default", () => {
     exact: true,
   });
 });
+
+it.each<Direction>(directions)(
+  "can be rendered on the %p side",
+  (direction: Direction) => {
+    const text = "Dropdown";
+    render(<NavbarDropdown direction={direction}>{text}</NavbarDropdown>);
+    expect(screen.getByText(text)).toHaveClass(`is-${direction}`);
+  }
+);
