@@ -1,4 +1,4 @@
-import { AbstractView, PropsWithChildren, ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -7,7 +7,7 @@ import {
 export type NavbarMenuProps = PropsWithChildren<{
   start?: ReactNode;
   end?: ReactNode;
-  active?: AbstractView;
+  active?: boolean;
 }>;
 
 const classNameMap: ClassNameTransformMap<NavbarMenuProps> = new Map([

@@ -40,3 +40,9 @@ it("renders given children", () => {
   render(<NavbarMenu>{text}</NavbarMenu>);
   expect(screen.getByText(text)).toBeInTheDocument();
 });
+
+it("can be rendered as active", () => {
+  const text = "navbar menu";
+  render(<NavbarMenu active>{text}</NavbarMenu>);
+  expect(screen.getByText(text)).toHaveClass("is-active");
+});
