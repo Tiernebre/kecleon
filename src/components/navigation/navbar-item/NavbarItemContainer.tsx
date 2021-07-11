@@ -7,19 +7,24 @@ import {
 export type NavbarItemContainerProps = PropsWithChildren<{
   className?: string;
   dropdown?: ReactNode;
+  dropdownUp?: boolean;
 }>;
 
 const classNameMapping: ClassNameTransformMap<NavbarItemContainerProps> =
-  new Map([["dropdown", () => "has-dropdown"]]);
+  new Map([
+    ["dropdown", () => "has-dropdown"],
+    ["dropdownUp", () => "has-dropdown-up"],
+  ]);
 
 export const NavbarItemContainer = ({
   className,
   children,
   dropdown,
+  dropdownUp,
 }: NavbarItemContainerProps): JSX.Element => {
   const dynamicClassName = createClassNameFromProps(
     classNameMapping,
-    { dropdown } as Partial<NavbarItemContainerProps>,
+    { dropdown, dropdownUp } as Partial<NavbarItemContainerProps>,
     [className ?? ""]
   );
   return (
