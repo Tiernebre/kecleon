@@ -19,3 +19,11 @@ it("marks the hamburger and menu as being active when the hamburger menu is clic
   await waitFor(() => expect(getNavbarBurger()).toHaveClass("is-active"));
   await waitFor(() => expect(getNavbarMenu()).toHaveClass("is-active"));
 });
+
+it("marks the hamburger and menu as being inactive when the hamburger menu is clicked twice", async () => {
+  render(<SmartNavbar />);
+  user.click(getNavbarBurger());
+  user.click(getNavbarBurger());
+  await waitFor(() => expect(getNavbarBurger()).not.toHaveClass("is-active"));
+  await waitFor(() => expect(getNavbarMenu()).not.toHaveClass("is-active"));
+});
