@@ -52,7 +52,8 @@
       "prettier"
     ],
     "plugins": [
-      "testing-library"
+      "testing-library",
+      "jest-dom"
     ],
     "overrides": [
       {
@@ -106,6 +107,7 @@
     "copyfiles": "^2.4.1",
     "css-loader": "^5.2.6",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest-dom": "^3.9.0",
     "eslint-plugin-testing-library": "^4.9.0",
     "husky": "^7.0.0",
     "lint-staged": ">=10",
