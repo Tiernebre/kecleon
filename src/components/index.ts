@@ -18,6 +18,7 @@ export * from "./icon-button";
 export * from "./image";
 export * from "./navigation";
 export * from "./notification";
+export * from "./smart-alerts";
 export * from "./table";
 export * from "./tag";
 export * from "./tags";
