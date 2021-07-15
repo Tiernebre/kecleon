@@ -198,6 +198,7 @@ it("can be rendered as a server side route", () => {
   const foundLink = screen.getByRole("link", { name: text });
   expect(foundLink).toBeInTheDocument();
   expect(foundLink.nodeName).toEqual("A");
+  expect(foundLink).toHaveClass("button");
 });
 
 it("can be rendered as a single page route", () => {
@@ -211,6 +212,7 @@ it("can be rendered as a single page route", () => {
   const foundLink = screen.getByRole("link", { name: text });
   expect(foundLink).toBeInTheDocument();
   expect(foundLink.nodeName).toEqual("A");
+  expect(foundLink).toHaveClass("button");
   expect(screen.queryByText("Home")).toBeNull();
   user.click(foundLink);
   expect(screen.getByText("Home")).toBeInTheDocument();
