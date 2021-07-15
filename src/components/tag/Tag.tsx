@@ -28,15 +28,16 @@ export const Tag = ({
   rounded,
   children,
   deletable,
+  className = "",
   ...props
 }: TagProps): JSX.Element => {
-  const className = createClassNameFromProps(
+  const finalizedClassName = createClassNameFromProps(
     classNameMapping,
     { color, size, rounded, deletable } as Partial<TagProps>,
-    ["tag"]
+    ["tag", className]
   );
   return (
-    <span className={className} {...props}>
+    <span className={finalizedClassName} {...props}>
       {children}
     </span>
   );

@@ -60,3 +60,14 @@ it("can be provided normal span attributes", () => {
   user.click(tag);
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it("can have additional class names added", () => {
+  const className = "some-additional class-tag-name";
+  const text = "Tag";
+  render(<Tag className={className}>{text}</Tag>);
+  expect(screen.getByText(text)).toHaveClass(
+    "tag",
+    "some-additional",
+    "class-tag-name"
+  );
+});
