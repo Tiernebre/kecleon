@@ -25,6 +25,7 @@ it("renders a button", () => {
   });
   expect(foundButton).toBeInTheDocument();
   expect(foundButton).toHaveClass("button", { exact: true });
+  expect(foundButton.nodeName).toEqual("BUTTON");
 });
 
 it("renders a button with passed to natural HTML button attributes", () => {
@@ -187,4 +188,12 @@ it("does not renders a button in full width if specifically provided as false", 
     name: text,
   });
   expect(foundButton).not.toHaveClass("is-fullwidth");
+});
+
+it("can be rendered as a server side route", () => {
+  const text = "Server Side Button";
+  render(<Button link={{ href: "https://www.google.com " }}>{text}</Button>);
+  const foundLink = screen.getByRole("link", { name: text });
+  expect(foundLink).toBeInTheDocument();
+  expect(foundLink.nodeName).toEqual("A");
 });
