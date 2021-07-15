@@ -4,6 +4,12 @@
   right: 20px;
   display: flex;
   flex-direction: column;
+  /* 
+    TODO: Really crappy hard-coded value. This should use the Bulma SCSS variable. Storybook 6 is not
+    working at all with using SCSS modules. Still looking into this but don't want to hold up this changeset on
+    just this.
+  */
+  z-index: 31;
 }
 
 .alerts > * {
