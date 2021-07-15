@@ -45,6 +45,11 @@ export default {
         type: "boolean",
       },
     },
+    link: {
+      control: {
+        type: "object",
+      },
+    },
   },
   args: {
     children: "Button",
