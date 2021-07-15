@@ -5,6 +5,7 @@ import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
+import { Anchor, AnchorProps } from "../anchor";
 
 export const ButtonColors = [...colors, "text", "ghost"] as const;
 
@@ -19,6 +20,7 @@ export type ButtonProps = {
   size?: ButtonSize;
   loading?: boolean;
   fullWidth?: boolean;
+  link?: AnchorProps;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const buttonClassNameMapping: ClassNameTransformMap<ButtonProps> = new Map([
@@ -35,6 +37,8 @@ export const Button = ({
   size,
   loading,
   fullWidth,
+  link,
+  className = "",
   ...props
 }: ButtonProps): JSX.Element => {
   const classNameProps: Partial<ButtonProps> = {
@@ -45,14 +49,18 @@ export const Button = ({
     fullWidth,
   };
 
-  const className = createClassNameFromProps(
+  const classNameToUse = createClassNameFromProps(
     buttonClassNameMapping,
     classNameProps,
-    ["button"]
+    ["button", className]
   );
 
-  return (
-    <button className={className} {...props}>
+  return link ? (
+    <Anchor className={classNameToUse} {...link}>
+      {props.children}
+    </Anchor>
+  ) : (
+    <button className={classNameToUse} {...props}>
       {props.children}
     </button>
   );

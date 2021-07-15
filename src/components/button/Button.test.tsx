@@ -7,6 +7,8 @@ import {
   ButtonSizes,
 } from "./Button";
 import user from "@testing-library/user-event";
+import { MemoryRouter } from "react-router";
+import { Route } from "react-router-dom";
 
 const lightCompatibleColors: ButtonColor[] = [
   "primary",
@@ -25,6 +27,19 @@ it("renders a button", () => {
   });
   expect(foundButton).toBeInTheDocument();
   expect(foundButton).toHaveClass("button", { exact: true });
+  expect(foundButton.nodeName).toEqual("BUTTON");
+});
+
+it("have additional classes added", () => {
+  const text = "Button Test";
+  const customClassName = "some-custom class-name";
+  render(<Button className={customClassName}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toBeInTheDocument();
+  expect(foundButton).toHaveClass("button", "some-custom", "class-name");
+  expect(foundButton.nodeName).toEqual("BUTTON");
 });
 
 it("renders a button with passed to natural HTML button attributes", () => {
@@ -187,4 +202,30 @@ it("does not renders a button in full width if specifically provided as false", 
     name: text,
   });
   expect(foundButton).not.toHaveClass("is-fullwidth");
+});
+
+it("can be rendered as a server side route", () => {
+  const text = "Server Side Button";
+  render(<Button link={{ href: "https://www.google.com " }}>{text}</Button>);
+  const foundLink = screen.getByRole("link", { name: text });
+  expect(foundLink).toBeInTheDocument();
+  expect(foundLink.nodeName).toEqual("A");
+  expect(foundLink).toHaveClass("button");
+});
+
+it("can be rendered as a single page route", () => {
+  const text = "Server Side Button";
+  render(
+    <MemoryRouter>
+      <Button link={{ to: "/home" }}>{text}</Button>
+      <Route path="/home">Home</Route>
+    </MemoryRouter>
+  );
+  const foundLink = screen.getByRole("link", { name: text });
+  expect(foundLink).toBeInTheDocument();
+  expect(foundLink.nodeName).toEqual("A");
+  expect(foundLink).toHaveClass("button");
+  expect(screen.queryByText("Home")).toBeNull();
+  user.click(foundLink);
+  expect(screen.getByText("Home")).toBeInTheDocument();
 });
