@@ -7,6 +7,8 @@ import {
   ButtonSizes,
 } from "./Button";
 import user from "@testing-library/user-event";
+import { MemoryRouter } from "react-router";
+import { Route } from "react-router-dom";
 
 const lightCompatibleColors: ButtonColor[] = [
   "primary",
@@ -196,4 +198,20 @@ it("can be rendered as a server side route", () => {
   const foundLink = screen.getByRole("link", { name: text });
   expect(foundLink).toBeInTheDocument();
   expect(foundLink.nodeName).toEqual("A");
+});
+
+it("can be rendered as a single page route", () => {
+  const text = "Server Side Button";
+  render(
+    <MemoryRouter>
+      <Button link={{ to: "/home" }}>{text}</Button>
+      <Route path="/home">Home</Route>
+    </MemoryRouter>
+  );
+  const foundLink = screen.getByRole("link", { name: text });
+  expect(foundLink).toBeInTheDocument();
+  expect(foundLink.nodeName).toEqual("A");
+  expect(screen.queryByText("Home")).toBeNull();
+  user.click(foundLink);
+  expect(screen.getByText("Home")).toBeInTheDocument();
 });
