@@ -30,6 +30,18 @@ it("renders a button", () => {
   expect(foundButton.nodeName).toEqual("BUTTON");
 });
 
+it("have additional classes added", () => {
+  const text = "Button Test";
+  const customClassName = "some-custom class-name";
+  render(<Button className={customClassName}>{text}</Button>);
+  const foundButton = screen.getByRole("button", {
+    name: text,
+  });
+  expect(foundButton).toBeInTheDocument();
+  expect(foundButton).toHaveClass("button", "some-custom", "class-name");
+  expect(foundButton.nodeName).toEqual("BUTTON");
+});
+
 it("renders a button with passed to natural HTML button attributes", () => {
   const text = "Button Test";
   const onClick = jest.fn();

@@ -38,6 +38,7 @@ export const Button = ({
   loading,
   fullWidth,
   link,
+  className = "",
   ...props
 }: ButtonProps): JSX.Element => {
   const classNameProps: Partial<ButtonProps> = {
@@ -48,18 +49,18 @@ export const Button = ({
     fullWidth,
   };
 
-  const className = createClassNameFromProps(
+  const classNameToUse = createClassNameFromProps(
     buttonClassNameMapping,
     classNameProps,
-    ["button"]
+    ["button", className]
   );
 
   return link ? (
-    <Anchor className={className} {...link}>
+    <Anchor className={classNameToUse} {...link}>
       {props.children}
     </Anchor>
   ) : (
-    <button className={className} {...props}>
+    <button className={classNameToUse} {...props}>
       {props.children}
     </button>
   );
