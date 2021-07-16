@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, Ref } from "react";
+import { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Color, Size } from "../../../types";
 import {
@@ -24,16 +24,18 @@ const classNameMap: ClassNameTransformMap<InputProps> = new Map([
   ["isStatic", () => "is-static"],
 ]);
 
-export const Input = forwardRef(
-  (
-    { color, size, isStatic, rounded, register, ...props }: InputProps,
-    ref: Ref<HTMLInputElement>
-  ): JSX.Element => {
-    const className = createClassNameFromProps(
-      classNameMap,
-      { color, size, isStatic, rounded } as Partial<InputProps>,
-      ["input"]
-    );
-    return <input className={className} {...props} ref={ref} {...register} />;
-  }
-);
+export const Input = ({
+  color,
+  size,
+  isStatic,
+  rounded,
+  register,
+  ...props
+}: InputProps): JSX.Element => {
+  const className = createClassNameFromProps(
+    classNameMap,
+    { color, size, isStatic, rounded } as Partial<InputProps>,
+    ["input"]
+  );
+  return <input className={className} {...props} {...register} />;
+};

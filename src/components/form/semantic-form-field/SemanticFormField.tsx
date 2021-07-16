@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, Ref } from "react";
+import { ReactNode } from "react";
 import {
   Label,
   FormControl,
@@ -31,41 +31,35 @@ export type SemanticFormFieldProps = {
  * component intentionally favors an inheritance approach vs
  * composition for spinning up standard, similar inputs.
  */
-export const SemanticFormField = forwardRef(
-  (
-    {
-      id,
-      label,
-      help,
-      control,
-      input,
-      icons,
-      error,
-      register,
-    }: SemanticFormFieldProps,
-    ref: Ref<HTMLInputElement>
-  ): JSX.Element => {
-    const helpId = help || error ? `${id}-help` : undefined;
-    const valid = !error;
+export const SemanticFormField = ({
+  id,
+  label,
+  help,
+  control,
+  input,
+  icons,
+  error,
+  register,
+}: SemanticFormFieldProps): JSX.Element => {
+  const helpId = help || error ? `${id}-help` : undefined;
+  const valid = !error;
 
-    return (
-      <FormField>
-        <Label htmlFor={id}>{label}</Label>
-        <FormControl {...control}>
-          {icons}
-          <ValidatedInput
-            {...input}
-            id={id}
-            aria-describedby={helpId}
-            valid={valid}
-            register={register}
-            ref={ref}
-          />
-        </FormControl>
-        <Help id={helpId} error={error}>
-          {help}
-        </Help>
-      </FormField>
-    );
-  }
-);
+  return (
+    <FormField>
+      <Label htmlFor={id}>{label}</Label>
+      <FormControl {...control}>
+        {icons}
+        <ValidatedInput
+          {...input}
+          id={id}
+          aria-describedby={helpId}
+          valid={valid}
+          register={register}
+        />
+      </FormControl>
+      <Help id={helpId} error={error}>
+        {help}
+      </Help>
+    </FormField>
+  );
+};

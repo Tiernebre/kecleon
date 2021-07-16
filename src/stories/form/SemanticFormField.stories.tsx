@@ -22,7 +22,21 @@ export const StandardSemanticFormField = StandardSemanticFormFieldTemplate.bind(
   {}
 );
 
-const IconSemanticFormFieldTemplate: Story = () => {
+const IconSemanticFormFieldTemplate: Story = () => (
+  <form>
+    <SemanticFormField
+      id="semantic-form-field"
+      control={{ hasIconsLeft: true }}
+      input={{ type: "text", placeholder: "Home Input" }}
+      label="Standard Semantic Form Field"
+      help="This is a help text"
+      icons={<Icon name="home" direction="left" />}
+    />
+  </form>
+);
+export const IconSemanticFormField = IconSemanticFormFieldTemplate.bind({});
+
+const ValidationSemanticFormFieldTemplate: Story = () => {
   const {
     register,
     handleSubmit,
@@ -46,7 +60,11 @@ const IconSemanticFormFieldTemplate: Story = () => {
           valueAsNumber: true,
           required: {
             value: true,
-            message: "FOO",
+            message: "Required",
+          },
+          max: {
+            value: 60,
+            message: "Can't do this bro",
           },
         })}
         error={errors.name}
@@ -55,7 +73,8 @@ const IconSemanticFormFieldTemplate: Story = () => {
     </form>
   );
 };
-export const IconSemanticFormField = IconSemanticFormFieldTemplate.bind({});
+export const ValidationSemanticFormField =
+  ValidationSemanticFormFieldTemplate.bind({});
 
 const ErrorSemanticFormFieldTemplate: Story = () => (
   <form>
