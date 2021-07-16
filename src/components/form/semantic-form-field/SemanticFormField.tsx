@@ -8,7 +8,7 @@ import {
   FormField,
   FormControlProps,
 } from "..";
-import { FieldError } from "react-hook-form";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
 export type SemanticFormFieldProps = {
   control?: FormControlProps;
@@ -18,6 +18,7 @@ export type SemanticFormFieldProps = {
   label: string;
   icons?: ReactNode;
   error?: FieldError;
+  register?: UseFormRegisterReturn;
 };
 
 /**
@@ -32,7 +33,16 @@ export type SemanticFormFieldProps = {
  */
 export const SemanticFormField = forwardRef(
   (
-    { id, label, help, control, input, icons, error }: SemanticFormFieldProps,
+    {
+      id,
+      label,
+      help,
+      control,
+      input,
+      icons,
+      error,
+      register,
+    }: SemanticFormFieldProps,
     ref: Ref<HTMLInputElement>
   ): JSX.Element => {
     const helpId = help || error ? `${id}-help` : undefined;
@@ -48,6 +58,7 @@ export const SemanticFormField = forwardRef(
             id={id}
             aria-describedby={helpId}
             valid={valid}
+            {...register}
             ref={ref}
           />
         </FormControl>
