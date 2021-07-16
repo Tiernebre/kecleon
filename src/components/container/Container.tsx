@@ -6,6 +6,7 @@ import {
 
 export type ContainerProps = PropsWithChildren<{
   fluid?: boolean;
+  className?: string;
 }>;
 
 const containerClassNameMapping: ClassNameTransformMap<ContainerProps> =
@@ -13,13 +14,14 @@ const containerClassNameMapping: ClassNameTransformMap<ContainerProps> =
 
 export const Container = ({
   children,
+  className = "",
   ...classNameProps
 }: ContainerProps): JSX.Element => {
-  const className = createClassNameFromProps(
+  const mappedClassName = createClassNameFromProps(
     containerClassNameMapping,
     classNameProps as Partial<ContainerProps>,
-    ["container"]
+    ["container", className]
   );
 
-  return <div className={className}>{children}</div>;
+  return <div className={mappedClassName}>{children}</div>;
 };

@@ -27,6 +27,16 @@ describe("createClassNameFromProps", () => {
     });
   });
 
+  it("returns given default class names with trimmed space", () => {
+    const defaultClasses = ["column    ", "  is-mobile  "];
+    const className = createClassNameFromProps<Props>(
+      new Map([]),
+      {},
+      defaultClasses
+    );
+    expect(className).toEqual("column is-mobile");
+  });
+
   it("returns with a class name that was true based on given properties", () => {
     const expectedProperty = "mobile";
     const expectedClass = "is-mobile";

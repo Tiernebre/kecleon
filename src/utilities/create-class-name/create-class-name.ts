@@ -31,5 +31,8 @@ export const createClassNameFromProps = <T extends Record<string, unknown>>(
     }
   });
 
-  return classes.join(" ");
+  return classes
+    .map((clazz) => clazz.trim())
+    .join(" ")
+    .trim();
 };
