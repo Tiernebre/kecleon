@@ -8,6 +8,13 @@ it("renders children", () => {
   expect(container).toBeInTheDocument();
 });
 
+it("can have additional classes applied to it", () => {
+  const message = "This is a test container. Cool!";
+  render(<Container className="p-5 m-5">{message}</Container>);
+  const container = screen.getByText(message);
+  expect(container).toHaveClass("p-5", "m-5");
+});
+
 it("renders in fluid mode if provided", () => {
   const message = "This is a test container. Cool!";
   render(<Container fluid>{message}</Container>);
