@@ -1,5 +1,6 @@
 import { Story, Meta } from "@storybook/react";
-import { FormField, Icon } from "../../components";
+import { useForm } from "react-hook-form";
+import { Button, FormField, Icon } from "../../components";
 import { SemanticFormField } from "../../components/form/semantic-form-field";
 
 export default {
@@ -34,6 +35,46 @@ const IconSemanticFormFieldTemplate: Story = () => (
   </form>
 );
 export const IconSemanticFormField = IconSemanticFormFieldTemplate.bind({});
+
+const ValidationSemanticFormFieldTemplate: Story = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ name: string }>();
+
+  const submit = handleSubmit((data) => {
+    console.log(data);
+  });
+
+  return (
+    <form onSubmit={submit}>
+      <SemanticFormField
+        id="semantic-form-field"
+        control={{ hasIconsLeft: true }}
+        input={{ type: "number", placeholder: "00" }}
+        label="Standard Semantic Form Field"
+        help="This is a help text"
+        icons={<Icon name="home" direction="left" />}
+        register={register("name", {
+          valueAsNumber: true,
+          required: {
+            value: true,
+            message: "Required",
+          },
+          max: {
+            value: 60,
+            message: "Can't do this bro",
+          },
+        })}
+        error={errors.name}
+      />
+      <Button>Submit</Button>
+    </form>
+  );
+};
+export const ValidationSemanticFormField =
+  ValidationSemanticFormFieldTemplate.bind({});
 
 const ErrorSemanticFormFieldTemplate: Story = () => (
   <form>
