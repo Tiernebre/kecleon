@@ -1,7 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Color } from "../../../types";
 import { ValidatedInput } from "./ValidatedInput";
 import user from "@testing-library/user-event";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "../..";
 
 const getInput = () => screen.getByRole("textbox");
 
@@ -49,4 +52,47 @@ it("still allows for regular input props", () => {
   expect(input).toHaveAttribute("type", type);
   user.type(input, "Hello World!");
   expect(onInput).toHaveBeenCalled();
+});
+
+it("can be registered as a React Hook Form uncontrolled component", async () => {
+  type TestForm = {
+    name: string;
+    index: number;
+  };
+  type TestBedProps = {
+    onSubmit: (data: TestForm) => void;
+  };
+  const TestBed = ({ onSubmit }: TestBedProps): JSX.Element => {
+    const { register, handleSubmit } = useForm<TestForm>();
+
+    const submit = (data: TestForm) => {
+      onSubmit(data);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(submit)}>
+        <ValidatedInput type="text" register={register("name")} valid={true} />
+        <ValidatedInput
+          type="number"
+          register={register("index", {
+            valueAsNumber: true,
+          })}
+          valid={true}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  };
+  const onSubmit = jest.fn();
+  render(<TestBed onSubmit={onSubmit} />);
+  const name = "Test Validated Name";
+  const index = 435;
+  user.type(screen.getByRole("textbox"), name);
+  user.type(screen.getByRole("spinbutton"), index.toString());
+  user.click(screen.getByRole("button"));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalled());
+  expect(onSubmit).toHaveBeenCalledWith({
+    name,
+    index,
+  });
 });
