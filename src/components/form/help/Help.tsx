@@ -25,9 +25,7 @@ export const Help = ({
     ["help"]
   );
 
-  console.log(error);
   const message = error?.message ? error.message : children;
-  console.log(message);
   const shouldRender = error || children;
   const role = error ? "alert" : undefined;
 
