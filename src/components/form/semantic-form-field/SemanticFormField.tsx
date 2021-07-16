@@ -58,7 +58,7 @@ export const SemanticFormField = forwardRef(
             id={id}
             aria-describedby={helpId}
             valid={valid}
-            {...register}
+            register={register}
             ref={ref}
           />
         </FormControl>
