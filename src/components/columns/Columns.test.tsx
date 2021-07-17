@@ -177,3 +177,18 @@ it("does not render in centered mode by default", () => {
   const columnFound = screen.getByText(message);
   expect(columnFound.parentElement).not.toHaveClass("is-centered");
 });
+
+it("can be rendered with additional class names", () => {
+  const additionalClassNames = "some-additional class-names";
+  const message = "Hello, I'm a column!";
+  render(
+    <Columns className={additionalClassNames}>
+      <Column>{message}</Column>
+    </Columns>
+  );
+  const columnFound = screen.getByText(message);
+  expect(columnFound.parentElement).toHaveClass(
+    "some-additional",
+    "class-names"
+  );
+});

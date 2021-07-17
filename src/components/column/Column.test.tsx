@@ -102,3 +102,11 @@ it.each<Direction>(directions)(
     expect(column).toHaveClass(direction);
   }
 );
+
+it("can be rendered with additional class names", () => {
+  const classNames = "some additional-class names";
+  const message = "Column";
+  render(<Column className={classNames}>{message}</Column>);
+  const column = screen.getByText(message);
+  expect(column).toHaveClass("some", "additional-class", "names");
+});

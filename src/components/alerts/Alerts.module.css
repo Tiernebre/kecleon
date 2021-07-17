@@ -1,5 +1,6 @@
 .alerts {
   position: fixed;
+  top: 1.5rem;
   left: calc(50% - 20rem);
   display: flex;
   flex-direction: column;
