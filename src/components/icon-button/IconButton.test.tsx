@@ -4,6 +4,26 @@ import { IconButton } from "./IconButton";
 import user from "@testing-library/user-event";
 import { IconProps } from "../icon/Icon";
 
+it("renders with a small font size by default", () => {
+  const message = "Icon Button Text";
+  render(
+    <IconButton icon={{ name: "home", message: "Icon" }}>{message}</IconButton>
+  );
+  const foundIcon = screen.getByText("Icon");
+  expect(foundIcon.previousSibling).toHaveClass("fa-sm");
+});
+
+it("still supports providing a custom icon size", () => {
+  const message = "Icon Button Text";
+  render(
+    <IconButton icon={{ name: "home", message: "Icon", fontSize: "lg" }}>
+      {message}
+    </IconButton>
+  );
+  const foundIcon = screen.getByText("Icon");
+  expect(foundIcon.previousSibling).toHaveClass("fa-lg");
+});
+
 it("renders given children content", () => {
   const message = "Icon Button Text";
   render(<IconButton icon={{ name: "home" }}>{message}</IconButton>);
