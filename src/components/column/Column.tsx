@@ -43,6 +43,7 @@ export type ColumnProps = PropsWithChildren<{
   widescreen?: ColumnSize;
   fullHd?: ColumnSize;
   align?: Direction;
+  className?: string;
 }>;
 
 const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
@@ -59,13 +60,14 @@ const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
 
 export const Column = ({
   children,
+  className = "",
   ...classNameProps
 }: ColumnProps): JSX.Element => {
-  const className = createClassNameFromProps(
+  const mappedClassName = createClassNameFromProps(
     columnClassNameMap,
     classNameProps as Partial<ColumnProps>,
-    ["column"]
+    ["column", className]
   );
 
-  return <div className={className}>{children}</div>;
+  return <div className={mappedClassName}>{children}</div>;
 };
