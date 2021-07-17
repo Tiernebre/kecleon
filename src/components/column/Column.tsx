@@ -1,8 +1,10 @@
+import styles from "./Column.module.css";
 import { PropsWithChildren } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
+import { Direction } from "../..";
 
 export const columnSizes = [
   "one-quarter",
@@ -40,6 +42,7 @@ export type ColumnProps = PropsWithChildren<{
   desktop?: ColumnSize;
   widescreen?: ColumnSize;
   fullHd?: ColumnSize;
+  align?: Direction;
 }>;
 
 const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
@@ -51,6 +54,7 @@ const columnClassNameMap: ClassNameTransformMap<ColumnProps> = new Map([
   ["desktop", (desktop: string) => `is-${desktop}-desktop`],
   ["widescreen", (widescreen: string) => `is-${widescreen}-widescreen`],
   ["fullHd", (fullHd: string) => `is-${fullHd}-fullhd`],
+  ["align", (align: string) => styles[align]],
 ]);
 
 export const Column = ({

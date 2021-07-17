@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { Direction, directions } from "../../types";
 import { Column, ColumnSize, columnSizes } from "./Column";
 
 it.each<ColumnSize>(columnSizes)(
@@ -91,3 +92,13 @@ it("not rendered as narrow by default", () => {
   const column = screen.getByText(message);
   expect(column).not.toHaveClass("is-narrow");
 });
+
+it.each<Direction>(directions)(
+  "can be aligned in the %p direction",
+  (direction: Direction) => {
+    const message = "Column";
+    render(<Column align={direction}>{message}</Column>);
+    const column = screen.getByText(message);
+    expect(column).toHaveClass(direction);
+  }
+);

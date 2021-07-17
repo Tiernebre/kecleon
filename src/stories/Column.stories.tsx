@@ -1,6 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 
 import { Column, ColumnProps, columnSizes } from "../components";
+import { directions } from "../types";
 
 export default {
   component: Column,
@@ -15,6 +16,18 @@ export default {
       control: {
         type: "select",
         options: columnSizes,
+      },
+    },
+    offset: {
+      control: {
+        type: "select",
+        options: columnSizes,
+      },
+    },
+    align: {
+      control: {
+        type: "select",
+        options: directions,
       },
     },
   },
