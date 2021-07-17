@@ -10,6 +10,7 @@ export type ColumnsProps = PropsWithChildren<{
   verticallyCentered?: boolean;
   multiLine?: boolean;
   centered?: boolean;
+  className?: string;
 }>;
 
 const columnsClassNameMap: ClassNameTransformMap<ColumnsProps> = new Map([
@@ -22,13 +23,14 @@ const columnsClassNameMap: ClassNameTransformMap<ColumnsProps> = new Map([
 
 export const Columns = ({
   children,
+  className = "",
   ...classNameProps
 }: ColumnsProps): JSX.Element => {
-  const className = createClassNameFromProps(
+  const mappedClassName = createClassNameFromProps(
     columnsClassNameMap,
     classNameProps as Partial<ColumnsProps>,
-    ["columns"]
+    ["columns", className]
   );
 
-  return <div className={className}>{children}</div>;
+  return <div className={mappedClassName}>{children}</div>;
 };
