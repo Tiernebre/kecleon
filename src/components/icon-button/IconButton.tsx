@@ -12,9 +12,13 @@ export const IconButton = ({
   children,
   ...buttonProps
 }: IconButtonProps): JSX.Element => {
+  const iconProps: IconProps = {
+    fontSize: "sm",
+    ...icon,
+  };
   return (
     <Button {...buttonProps}>
-      <Icon {...icon} />
+      <Icon {...iconProps} />
       {children && <span>{children}</span>}
     </Button>
   );
