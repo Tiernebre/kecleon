@@ -15,7 +15,7 @@ export const DropdownTrigger = ({
         icon={{
           name: "angle-down",
         }}
-      ></IconButton>
+      />
       <button className="button">
         <span>Dropdown button</span>
         <span className="icon is-small">
