@@ -6,8 +6,7 @@ import {
   DropdownProps,
   DropdownTrigger,
 } from "../components";
-import { DropdownContent } from "../components/dropdown/content/DropdownContent";
-import { DropdownItem } from "../components/dropdown/item";
+import { SmartDropdownProps } from "../components/dropdown/smart-dropdown";
 import { directions } from "../types";
 
 export default {
@@ -38,7 +37,7 @@ export default {
   },
 } as Meta<DropdownProps>;
 
-const Template: Story<DropdownProps> = (args) => {
+const DumbDropdownTemplate: Story<DropdownProps> = (args) => {
   return (
     <Dropdown {...args}>
       <DropdownTrigger
@@ -59,5 +58,12 @@ const Template: Story<DropdownProps> = (args) => {
   );
 };
 
-export const DefaultDropdown = Template.bind({});
-DefaultDropdown.args = {};
+export const DumbDropdown = DumbDropdownTemplate.bind({});
+DumbDropdown.args = {};
+
+const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
+  return <SmartDropdown></SmartDropdown>;
+};
+
+export const SmartDropdown = DumbDropdownTemplate.bind({});
+SmartDropdown.args = {};
