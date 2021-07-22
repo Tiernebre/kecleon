@@ -43,3 +43,16 @@ it("renders its given trigger label", () => {
   );
   expect(screen.getByText(triggerLabel)).toBeInTheDocument();
 });
+
+it("properly binds the menu ID between the trigger and the menu itself", () => {
+  const menuId = "expected-menu";
+  render(
+    <SmartDropdown
+      menuId={menuId}
+      triggerLabel="Dropdown"
+      items={<Fragment></Fragment>}
+    />
+  );
+  expect(screen.getByRole("button")).toHaveAttribute("aria-controls", menuId);
+  expect(screen.getByRole("menu")).toHaveAttribute("id", menuId);
+});
