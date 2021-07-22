@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import { Fragment } from "react";
 
 import {
   Dropdown,
@@ -65,7 +66,19 @@ export const DumbDropdown = DumbDropdownTemplate.bind({});
 DumbDropdown.args = {};
 
 const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
-  return <SmartDropdown menuId="dropdown-menu"></SmartDropdown>;
+  return (
+    <SmartDropdown
+      menuId="dropdown-menu"
+      items={
+        <Fragment>
+          <DropdownItem>Dropdown Item</DropdownItem>
+          <DropdownItem>Other dropdown item</DropdownItem>
+          <DropdownItem active>Active dropdown item</DropdownItem>
+          <DropdownItem>With a divider</DropdownItem>
+        </Fragment>
+      }
+    />
+  );
 };
 
 export const SmartDropdownExample = SmartDropdownTemplate.bind({});
