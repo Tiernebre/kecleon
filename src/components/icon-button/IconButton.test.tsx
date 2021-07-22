@@ -58,3 +58,44 @@ it("renders the icon with the correct provided details", () => {
   const foundIconMessage = screen.getByText(iconMessage);
   expect(foundIconMessage).toBeInTheDocument();
 });
+
+it("renders the icon to the left by default", () => {
+  const message = "Icon Button Text";
+  const iconMessage = "Icon Message";
+  const icon: IconProps = {
+    name: "home",
+    message: iconMessage,
+  };
+  render(<IconButton icon={icon}>{message}</IconButton>);
+  const text = screen.getByText(message);
+  expect(text.previousSibling).not.toBeNull();
+  expect(text.nextElementSibling).toBeNull();
+});
+
+it("renders the icon to the left if specified", () => {
+  const message = "Icon Button Text";
+  const iconMessage = "Icon Message";
+  const icon: IconProps = {
+    name: "home",
+    message: iconMessage,
+    direction: "left",
+  };
+  render(<IconButton icon={icon}>{message}</IconButton>);
+  const text = screen.getByText(message);
+  expect(text.previousSibling).not.toBeNull();
+  expect(text.nextElementSibling).toBeNull();
+});
+
+it("renders the icon to the right if specified", () => {
+  const message = "Icon Button Text";
+  const iconMessage = "Icon Message";
+  const icon: IconProps = {
+    name: "home",
+    message: iconMessage,
+    direction: "right",
+  };
+  render(<IconButton icon={icon}>{message}</IconButton>);
+  const text = screen.getByText(message);
+  expect(text.previousSibling).toBeNull();
+  expect(text.nextElementSibling).not.toBeNull();
+});

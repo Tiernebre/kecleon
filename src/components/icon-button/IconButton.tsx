@@ -16,10 +16,14 @@ export const IconButton = ({
     fontSize: "sm",
     ...icon,
   };
+  const iconDirection = icon.direction ?? "left";
+  const iconIsRenderedOnRight = iconDirection === "right";
+
   return (
     <Button {...buttonProps}>
-      <Icon {...iconProps} />
+      {!iconIsRenderedOnRight && <Icon {...iconProps} />}
       {children && <span>{children}</span>}
+      {iconIsRenderedOnRight && <Icon {...iconProps} />}
     </Button>
   );
 };
