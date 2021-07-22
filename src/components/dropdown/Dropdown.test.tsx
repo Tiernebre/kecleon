@@ -1,4 +1,5 @@
 import { screen, render } from "@testing-library/react";
+import { Direction, directions } from "../../types";
 import { Dropdown } from "./Dropdown";
 
 it("renders with unopinionated styling by default", () => {
@@ -37,3 +38,12 @@ it("can be inactive", () => {
   render(<Dropdown active={false}>{text}</Dropdown>);
   expect(screen.getByText(text)).not.toHaveClass("is-active");
 });
+
+it.each<Direction>(directions)(
+  "can be aligned to the %p",
+  (direction: Direction) => {
+    const text = "Dropdown";
+    render(<Dropdown alignment={direction}>{text}</Dropdown>);
+    expect(screen.getByText(text)).not.toHaveClass("is-active");
+  }
+);
