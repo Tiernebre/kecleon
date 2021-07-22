@@ -18,7 +18,7 @@ export const DropdownTrigger = ({
           name: "angle-down",
         }}
       >
-        {children}
+        <span>{children}</span>
       </IconButton>
     </div>
   );
