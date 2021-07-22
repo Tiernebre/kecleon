@@ -8,7 +8,7 @@ import {
 } from "..";
 import { DropdownProps } from "../container";
 
-export type SmartDropdownProps = DropdownProps & {
+export type SmartDropdownProps = Omit<DropdownProps, "active"> & {
   menuId: string;
 };
 
@@ -27,7 +27,7 @@ export const SmartDropdown = ({
   menuId,
   ...dropdownProps
 }: SmartDropdownProps): JSX.Element => {
-  const [active, setActive] = useState(dropdownProps.active);
+  const [active, setActive] = useState(false);
 
   const toggleActive = () => setActive(!active);
 
