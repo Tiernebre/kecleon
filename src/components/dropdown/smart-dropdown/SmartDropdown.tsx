@@ -3,6 +3,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownContent } from "..";
 import { DropdownProps } from "../container";
 
 export type SmartDropdownProps = Omit<DropdownProps, "active"> & {
+  triggerLabel: string;
   menuId: string;
   items: ReactNode;
 };
@@ -21,6 +22,7 @@ export type SmartDropdownProps = Omit<DropdownProps, "active"> & {
 export const SmartDropdown = ({
   menuId,
   items,
+  triggerLabel,
   ...dropdownProps
 }: SmartDropdownProps): JSX.Element => {
   const [active, setActive] = useState(false);
@@ -30,7 +32,7 @@ export const SmartDropdown = ({
   return (
     <Dropdown {...dropdownProps} active={active}>
       <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
-        Dropdown button
+        {triggerLabel}
       </DropdownTrigger>
       <DropdownMenu id={menuId}>
         <DropdownContent>{items}</DropdownContent>

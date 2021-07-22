@@ -69,6 +69,7 @@ const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
   return (
     <SmartDropdown
       menuId="dropdown-menu"
+      triggerLabel="Smart Dropdown"
       items={
         <Fragment>
           <DropdownItem>Dropdown Item</DropdownItem>
