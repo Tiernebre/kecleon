@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { Direction } from "readline";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -8,22 +9,25 @@ export type DropdownProps = PropsWithChildren<{
   hoverable?: boolean;
   active?: boolean;
   className?: string;
+  alignment?: Direction;
 }>;
 
 const classNameMapping: ClassNameTransformMap<DropdownProps> = new Map([
   ["hoverable", () => "is-hoverable"],
   ["active", () => "is-active"],
+  ["alignment", (alignment: string) => `is-${alignment}`],
 ]);
 
 export const Dropdown = ({
   hoverable,
   active,
+  alignment,
   className = "",
   children,
 }: DropdownProps): JSX.Element => {
   const mappedClassName = createClassNameFromProps(
     classNameMapping,
-    { hoverable, active } as Partial<DropdownProps>,
+    { hoverable, active, alignment } as Partial<DropdownProps>,
     ["dropdown", className]
   );
   return <div className={mappedClassName}>{children}</div>;
