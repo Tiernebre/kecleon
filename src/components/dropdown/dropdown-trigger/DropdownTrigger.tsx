@@ -1,11 +1,22 @@
-export const DropdownTrigger = (): JSX.Element => {
+import { IconButton } from "../../icon-button";
+
+export type DropdownTriggerProps = {
+  htmlFor?: string;
+};
+
+export const DropdownTrigger = ({
+  htmlFor,
+}: DropdownTriggerProps): JSX.Element => {
   return (
     <div className="dropdown-trigger">
-      <button
-        className="button"
+      <IconButton
         aria-haspopup="true"
-        aria-controls="dropdown-menu"
-      >
+        aria-controls={htmlFor}
+        icon={{
+          name: "angle-down",
+        }}
+      ></IconButton>
+      <button className="button">
         <span>Dropdown button</span>
         <span className="icon is-small">
           <i className="fas fa-angle-down" aria-hidden="true"></i>
