@@ -74,5 +74,7 @@ it("renders given items", () => {
     />
   );
   expect(screen.getByRole("button", { name: /first/i })).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: /second/i })).toBeInTheDocument();
+  const secondButton = screen.getByRole("button", { name: /second/i });
+  user.click(secondButton);
+  expect(onClick).toHaveBeenCalled();
 });
