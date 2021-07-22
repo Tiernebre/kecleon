@@ -1,3 +1,7 @@
+import React from "react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownContent } from "..";
+import { DropdownItem } from "../item";
+
 /**
  * SmartDropdown is a fully integrated composition of all of the
  * "dumb" Dropdown components orchestrated togtether using
@@ -10,5 +14,19 @@
  * components themselves rather than SmartDropdown.
  */
 export const SmartDropdown = (): JSX.Element => {
-  return <div>Smart Dropdown</div>;
+  return (
+    <Dropdown>
+      <DropdownTrigger htmlFor="dropdown-menu" onClick={console.log}>
+        Dropdown button
+      </DropdownTrigger>
+      <DropdownMenu id="dropdown-menu">
+        <DropdownContent>
+          <DropdownItem>Dropdown Item</DropdownItem>
+          <DropdownItem>Other dropdown item</DropdownItem>
+          <DropdownItem active>Active dropdown item</DropdownItem>
+          <DropdownItem>With a divider</DropdownItem>
+        </DropdownContent>
+      </DropdownMenu>
+    </Dropdown>
+  );
 };
