@@ -5,8 +5,11 @@ import {
   DropdownMenu,
   DropdownProps,
   DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  SmartDropdown,
+  SmartDropdownProps,
 } from "../components";
-import { SmartDropdownProps } from "../components/dropdown/smart-dropdown";
 import { directions } from "../types";
 
 export default {
@@ -62,8 +65,8 @@ export const DumbDropdown = DumbDropdownTemplate.bind({});
 DumbDropdown.args = {};
 
 const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
-  return <SmartDropdown></SmartDropdown>;
+  return <SmartDropdown menuId="dropdown-menu"></SmartDropdown>;
 };
 
-export const SmartDropdown = DumbDropdownTemplate.bind({});
-SmartDropdown.args = {};
+export const SmartDropdownExample = SmartDropdownTemplate.bind({});
+SmartDropdownExample.args = {};
