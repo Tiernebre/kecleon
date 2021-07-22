@@ -31,3 +31,15 @@ it("becomes active when the trigger is clicked", () => {
     "is-active"
   );
 });
+
+it("renders its given trigger label", () => {
+  const triggerLabel = "Smart Dropdown";
+  render(
+    <SmartDropdown
+      menuId="Foo"
+      triggerLabel={triggerLabel}
+      items={<Fragment></Fragment>}
+    />
+  );
+  expect(screen.getByText(triggerLabel)).toBeInTheDocument();
+});
