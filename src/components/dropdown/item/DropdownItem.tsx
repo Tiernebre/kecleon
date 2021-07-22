@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { Button } from "../..";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -21,5 +22,9 @@ export const DropdownItem = ({
     { active } as Partial<DropdownItemProps>,
     ["dropdown-item"]
   );
-  return <span className={className}>{children}</span>;
+  return (
+    <Button color="white" className={className}>
+      {children}
+    </Button>
+  );
 };
