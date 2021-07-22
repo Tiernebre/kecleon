@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dropdown,
   DropdownItem,
@@ -18,9 +19,13 @@ import {
  * components themselves rather than SmartDropdown.
  */
 export const SmartDropdown = (): JSX.Element => {
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => setActive(!active);
+
   return (
     <Dropdown>
-      <DropdownTrigger htmlFor="dropdown-menu" onClick={console.log}>
+      <DropdownTrigger htmlFor="dropdown-menu" onClick={toggleActive}>
         Dropdown button
       </DropdownTrigger>
       <DropdownMenu id="dropdown-menu">
