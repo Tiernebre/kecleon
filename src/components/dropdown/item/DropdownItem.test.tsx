@@ -10,11 +10,13 @@ it("renders given text", () => {
 it("can be active", () => {
   const text = "Dropdown Item";
   render(<DropdownItem active>{text}</DropdownItem>);
-  expect(screen.getByText(text)).toHaveClass("is-active");
+  expect(screen.getByText(text)).toHaveClass("is-link");
+  expect(screen.getByText(text)).not.toHaveClass("is-white");
 });
 
 it("can be inactive", () => {
   const text = "Dropdown Item";
   render(<DropdownItem active={false}>{text}</DropdownItem>);
-  expect(screen.getByText(text)).not.toHaveClass("is-active");
+  expect(screen.getByText(text)).not.toHaveClass("is-link");
+  expect(screen.getByText(text)).toHaveClass("is-white");
 });
