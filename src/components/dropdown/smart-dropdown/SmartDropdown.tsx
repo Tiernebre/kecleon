@@ -7,6 +7,10 @@ import {
   DropdownContent,
 } from "..";
 
+export type SmartDropdownProps = {
+  menuId: string;
+};
+
 /**
  * SmartDropdown is a fully integrated composition of all of the
  * "dumb" Dropdown components orchestrated togtether using
@@ -18,17 +22,17 @@ import {
  * opinionated state, I suggest using the individual Dropdown
  * components themselves rather than SmartDropdown.
  */
-export const SmartDropdown = (): JSX.Element => {
+export const SmartDropdown = ({ menuId }: SmartDropdownProps): JSX.Element => {
   const [active, setActive] = useState(false);
 
   const toggleActive = () => setActive(!active);
 
   return (
     <Dropdown>
-      <DropdownTrigger htmlFor="dropdown-menu" onClick={toggleActive}>
+      <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
         Dropdown button
       </DropdownTrigger>
-      <DropdownMenu id="dropdown-menu">
+      <DropdownMenu id={menuId}>
         <DropdownContent>
           <DropdownItem>Dropdown Item</DropdownItem>
           <DropdownItem>Other dropdown item</DropdownItem>
