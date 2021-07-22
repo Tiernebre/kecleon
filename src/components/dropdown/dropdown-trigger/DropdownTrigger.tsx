@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { IconButton } from "../../icon-button";
 
 export type DropdownTriggerProps = PropsWithChildren<{
-  htmlFor?: string;
+  htmlFor: string;
 }>;
 
 export const DropdownTrigger = ({
