@@ -1,6 +1,10 @@
-import React from "react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownContent } from "..";
-import { DropdownItem } from "../item";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownContent,
+} from "..";
 
 /**
  * SmartDropdown is a fully integrated composition of all of the
