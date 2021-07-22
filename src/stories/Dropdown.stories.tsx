@@ -1,14 +1,16 @@
 import { Story, Meta } from "@storybook/react";
-import { useState } from "react";
+import { Fragment } from "react";
 
 import {
   Dropdown,
   DropdownMenu,
   DropdownProps,
   DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  SmartDropdown,
+  SmartDropdownProps,
 } from "../components";
-import { DropdownContent } from "../components/dropdown/content/DropdownContent";
-import { DropdownItem } from "../components/dropdown/item";
 import { directions } from "../types";
 
 export default {
@@ -39,14 +41,12 @@ export default {
   },
 } as Meta<DropdownProps>;
 
-const Template: Story<DropdownProps> = (args) => {
-  const [active, setActive] = useState(false);
-
+const DumbDropdownTemplate: Story<DropdownProps> = (args) => {
   return (
-    <Dropdown {...args} active={active}>
+    <Dropdown {...args}>
       <DropdownTrigger
         htmlFor="dropdown-menu"
-        onClick={() => setActive(!active)}
+        onClick={() => console.log("Trigger!")}
       >
         Dropdown button
       </DropdownTrigger>
@@ -62,5 +62,25 @@ const Template: Story<DropdownProps> = (args) => {
   );
 };
 
-export const DefaultDropdown = Template.bind({});
-DefaultDropdown.args = {};
+export const DumbDropdown = DumbDropdownTemplate.bind({});
+DumbDropdown.args = {};
+
+const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
+  return (
+    <SmartDropdown
+      menuId="dropdown-menu"
+      triggerLabel="Smart Dropdown"
+      items={
+        <Fragment>
+          <DropdownItem>Dropdown Item</DropdownItem>
+          <DropdownItem>Other dropdown item</DropdownItem>
+          <DropdownItem active>Active dropdown item</DropdownItem>
+          <DropdownItem>With a divider</DropdownItem>
+        </Fragment>
+      }
+    />
+  );
+};
+
+export const SmartDropdownExample = SmartDropdownTemplate.bind({});
+SmartDropdownExample.args = {};

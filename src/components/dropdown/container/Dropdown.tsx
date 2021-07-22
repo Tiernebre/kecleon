@@ -2,8 +2,8 @@ import { PropsWithChildren } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
-} from "../../utilities";
-import { Direction } from "../../types";
+} from "../../../utilities";
+import { Direction } from "../../../types";
 
 export type DropdownProps = PropsWithChildren<{
   hoverable?: boolean;

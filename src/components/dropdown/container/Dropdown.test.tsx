@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import { Direction, directions } from "../../types";
+import { Direction, directions } from "../../../types";
 import { Dropdown } from "./Dropdown";
 
 it("renders with unopinionated styling by default", () => {
