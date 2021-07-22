@@ -1,11 +1,13 @@
+import { PropsWithChildren } from "react";
 import { IconButton } from "../../icon-button";
 
-export type DropdownTriggerProps = {
+export type DropdownTriggerProps = PropsWithChildren<{
   htmlFor?: string;
-};
+}>;
 
 export const DropdownTrigger = ({
   htmlFor,
+  children,
 }: DropdownTriggerProps): JSX.Element => {
   return (
     <div className="dropdown-trigger">
@@ -15,13 +17,9 @@ export const DropdownTrigger = ({
         icon={{
           name: "angle-down",
         }}
-      />
-      <button className="button">
-        <span>Dropdown button</span>
-        <span className="icon is-small">
-          <i className="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
+      >
+        {children}
+      </IconButton>
     </div>
   );
 };
