@@ -18,8 +18,8 @@ export const DropdownTrigger = ({
         aria-controls={htmlFor}
         icon={{
           name: "angle-down",
+          direction: "right",
         }}
-        iconDirection="right"
         onClick={onClick}
       >
         <span>{children}</span>
