@@ -54,7 +54,7 @@ const Template: Story<DropdownProps> = (args) => {
         <DropdownContent>
           <DropdownItem>Dropdown Item</DropdownItem>
           <DropdownItem>Other dropdown item</DropdownItem>
-          <DropdownItem>Active dropdown item</DropdownItem>
+          <DropdownItem active>Active dropdown item</DropdownItem>
           <DropdownItem>With a divider</DropdownItem>
         </DropdownContent>
       </DropdownMenu>
