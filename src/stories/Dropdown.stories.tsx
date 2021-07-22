@@ -1,4 +1,5 @@
 import { Story, Meta } from "@storybook/react";
+import { useState } from "react";
 
 import {
   Dropdown,
@@ -38,19 +39,28 @@ export default {
   },
 } as Meta<DropdownProps>;
 
-const Template: Story<DropdownProps> = (args) => (
-  <Dropdown {...args}>
-    <DropdownTrigger htmlFor="dropdown-menu">Dropdown button</DropdownTrigger>
-    <DropdownMenu id="dropdown-menu">
-      <DropdownContent>
-        <DropdownItem>Dropdown Item</DropdownItem>
-        <DropdownItem>Other dropdown item</DropdownItem>
-        <DropdownItem>Active dropdown item</DropdownItem>
-        <DropdownItem>With a divider</DropdownItem>
-      </DropdownContent>
-    </DropdownMenu>
-  </Dropdown>
-);
+const Template: Story<DropdownProps> = (args) => {
+  const [active, setActive] = useState(false);
+
+  return (
+    <Dropdown {...args} active={active}>
+      <DropdownTrigger
+        htmlFor="dropdown-menu"
+        onClick={() => setActive(!active)}
+      >
+        Dropdown button
+      </DropdownTrigger>
+      <DropdownMenu id="dropdown-menu">
+        <DropdownContent>
+          <DropdownItem>Dropdown Item</DropdownItem>
+          <DropdownItem>Other dropdown item</DropdownItem>
+          <DropdownItem>Active dropdown item</DropdownItem>
+          <DropdownItem>With a divider</DropdownItem>
+        </DropdownContent>
+      </DropdownMenu>
+    </Dropdown>
+  );
+};
 
 export const DefaultDropdown = Template.bind({});
 DefaultDropdown.args = {};
