@@ -1,6 +1,13 @@
 import { Story, Meta } from "@storybook/react";
 
-import { Dropdown, DropdownProps } from "../components";
+import {
+  Dropdown,
+  DropdownMenu,
+  DropdownProps,
+  DropdownTrigger,
+} from "../components";
+import { DropdownContent } from "../components/dropdown/content/DropdownContent";
+import { DropdownItem } from "../components/dropdown/item";
 import { directions } from "../types";
 
 export default {
@@ -31,7 +38,19 @@ export default {
   },
 } as Meta<DropdownProps>;
 
-const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
+const Template: Story<DropdownProps> = (args) => (
+  <Dropdown {...args}>
+    <DropdownTrigger htmlFor="dropdown-menu">Dropdown button</DropdownTrigger>
+    <DropdownMenu id="dropdown-menu">
+      <DropdownContent>
+        <DropdownItem>Dropdown Item</DropdownItem>
+        <DropdownItem>Other dropdown item</DropdownItem>
+        <DropdownItem>Active dropdown item</DropdownItem>
+        <DropdownItem>With a divider</DropdownItem>
+      </DropdownContent>
+    </DropdownMenu>
+  </Dropdown>
+);
 
 export const DefaultDropdown = Template.bind({});
 DefaultDropdown.args = {};
