@@ -40,13 +40,11 @@ export default {
 } as Meta<DropdownProps>;
 
 const Template: Story<DropdownProps> = (args) => {
-  const [active, setActive] = useState(false);
-
   return (
-    <Dropdown {...args} active={active}>
+    <Dropdown {...args}>
       <DropdownTrigger
         htmlFor="dropdown-menu"
-        onClick={() => setActive(!active)}
+        onClick={() => console.log("Trigger!")}
       >
         Dropdown button
       </DropdownTrigger>
