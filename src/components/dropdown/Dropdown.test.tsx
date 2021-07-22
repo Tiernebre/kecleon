@@ -47,3 +47,15 @@ it.each<Direction>(directions)(
     expect(screen.getByText(text)).not.toHaveClass("is-active");
   }
 );
+
+it("can be a drop-up", () => {
+  const text = "Dropdown";
+  render(<Dropdown up>{text}</Dropdown>);
+  expect(screen.getByText(text)).toHaveClass("is-up");
+});
+
+it("can be a drop-down", () => {
+  const text = "Dropdown";
+  render(<Dropdown up={false}>{text}</Dropdown>);
+  expect(screen.getByText(text)).not.toHaveClass("is-up");
+});
