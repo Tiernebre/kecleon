@@ -27,12 +27,12 @@ export const SmartDropdown = ({
   menuId,
   ...dropdownProps
 }: SmartDropdownProps): JSX.Element => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(dropdownProps.active);
 
   const toggleActive = () => setActive(!active);
 
   return (
-    <Dropdown {...dropdownProps}>
+    <Dropdown {...dropdownProps} active={active}>
       <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
         Dropdown button
       </DropdownTrigger>
