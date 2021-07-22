@@ -6,8 +6,9 @@ import {
   DropdownMenu,
   DropdownContent,
 } from "..";
+import { DropdownProps } from "../container";
 
-export type SmartDropdownProps = {
+export type SmartDropdownProps = DropdownProps & {
   menuId: string;
 };
 
@@ -22,13 +23,16 @@ export type SmartDropdownProps = {
  * opinionated state, I suggest using the individual Dropdown
  * components themselves rather than SmartDropdown.
  */
-export const SmartDropdown = ({ menuId }: SmartDropdownProps): JSX.Element => {
+export const SmartDropdown = ({
+  menuId,
+  ...dropdownProps
+}: SmartDropdownProps): JSX.Element => {
   const [active, setActive] = useState(false);
 
   const toggleActive = () => setActive(!active);
 
   return (
-    <Dropdown>
+    <Dropdown {...dropdownProps}>
       <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
         Dropdown button
       </DropdownTrigger>
