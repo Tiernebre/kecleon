@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import { Fragment } from "react";
 import { SmartDropdown } from "./SmartDropdown";
 import user from "@testing-library/user-event";
@@ -33,6 +33,40 @@ it("becomes active when the trigger is clicked", () => {
   );
 });
 
+it("becomes inactive when the trigger is clicked while it is active", () => {
+  const triggerLabel = "Smart Dropdown";
+  render(
+    <SmartDropdown
+      menuId="Foo"
+      triggerLabel={triggerLabel}
+      items={<Fragment></Fragment>}
+    />
+  );
+  user.click(screen.getByRole("button"));
+  user.click(screen.getByRole("button"));
+  expect(
+    screen.getByRole("button").parentElement?.parentElement
+  ).not.toHaveClass("is-active");
+});
+
+it("becomes inactive when a click outside of the dropdown occurred", async () => {
+  const triggerLabel = "Smart Dropdown";
+  render(
+    <div>
+      <SmartDropdown
+        menuId="Foo"
+        triggerLabel={triggerLabel}
+        items={<Fragment></Fragment>}
+      />
+      <div>Some outside element</div>
+    </div>
+  );
+  user.click(screen.getByRole("button"));
+  await screen.findByRole("menu");
+  user.click(screen.getByText(/outside/i));
+  await waitFor(() => expect(screen.queryByRole("menu")).toBeNull());
+});
+
 it("renders its given trigger label", () => {
   const triggerLabel = "Smart Dropdown";
   render(
@@ -54,6 +88,7 @@ it("properly binds the menu ID between the trigger and the menu itself", () => {
       items={<Fragment></Fragment>}
     />
   );
+  user.click(screen.getByRole("button"));
   expect(screen.getByRole("button")).toHaveAttribute("aria-controls", menuId);
   expect(screen.getByRole("menu")).toHaveAttribute("id", menuId);
 });
@@ -73,6 +108,7 @@ it("renders given items", () => {
       }
     />
   );
+  user.click(screen.getByRole("button", { name: "Dropdown" }));
   expect(screen.getByRole("button", { name: /first/i })).toBeInTheDocument();
   const secondButton = screen.getByRole("button", { name: /second/i });
   user.click(secondButton);

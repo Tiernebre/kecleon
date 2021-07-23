@@ -1,6 +1,7 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import { Direction, directions } from "../../../types";
 import { Dropdown } from "./Dropdown";
+import user from "@testing-library/user-event";
 
 it("renders with unopinionated styling by default", () => {
   const text = "Dropdown";
@@ -58,4 +59,16 @@ it("can be a drop-down", () => {
   const text = "Dropdown";
   render(<Dropdown up={false}>{text}</Dropdown>);
   expect(screen.getByText(text)).not.toHaveClass("is-up");
+});
+
+it("binds to a click outside event if it is clicked outside of", async () => {
+  const onClickOutside = jest.fn();
+  render(
+    <div>
+      <Dropdown onClickOutside={onClickOutside}>Dropdown</Dropdown>
+      <div>Outside Element!</div>
+    </div>
+  );
+  user.click(screen.getByText(/outside/i));
+  await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(1));
 });
