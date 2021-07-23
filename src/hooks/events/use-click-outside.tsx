@@ -1,11 +1,12 @@
 import { Ref, useEffect } from "react";
 
-export const useClickOutside = (ref: Ref<HTMLElement>): null => {
+export const useClickOutside = (ref: Ref<HTMLElement>): void => {
   useEffect(() => {
-    document.addEventListener("click", () => {
-      console.log("click event woo");
+    document.addEventListener("click", (event) => {
+      const target = event.target as Element;
+      if (target) {
+        console.log(target);
+      }
     });
   }, [ref]);
-
-  return null;
 };
