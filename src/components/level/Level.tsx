@@ -30,6 +30,7 @@ export const Level = ({
     <div className={className}>
       {left && <div className="level-left">{left}</div>}
       {children}
+      {right && <div className="level-right">{right}</div>}
     </div>
   );
 };

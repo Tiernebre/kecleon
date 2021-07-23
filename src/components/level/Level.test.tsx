@@ -24,3 +24,9 @@ it("can render content on the left", () => {
   render(<Level left={left} />);
   expect(screen.getByText(left)).toHaveClass("level-left");
 });
+
+it("can render content on the right", () => {
+  const right = "Right";
+  render(<Level right={right} />);
+  expect(screen.getByText(right)).toHaveClass("level-right");
+});
