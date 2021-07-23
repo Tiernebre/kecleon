@@ -30,7 +30,7 @@ export const Dropdown = ({
   className = "",
   children,
 }: DropdownProps): JSX.Element => {
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   useClickOutside(dropdownRef);
   const mappedClassName = createClassNameFromProps(
     classNameMapping,

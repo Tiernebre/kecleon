@@ -1,12 +1,20 @@
-import { Ref, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
-export const useClickOutside = (ref: Ref<HTMLElement>): void => {
+export const useClickOutside = (
+  ref: RefObject<HTMLDivElement>,
+  onClickOutside: () => void
+): void => {
   useEffect(() => {
     document.addEventListener("click", (event) => {
-      const target = event.target as Element | null;
-      if (target) {
-        console.log(target);
+      const elementClickedOn = event.target as Element | null;
+      const elementToCheck = ref.current;
+      if (
+        elementClickedOn &&
+        elementToCheck &&
+        !elementToCheck.contains(elementClickedOn)
+      ) {
+        onClickOutside();
       }
     });
-  }, [ref]);
+  }, [ref, onClickOutside]);
 };
