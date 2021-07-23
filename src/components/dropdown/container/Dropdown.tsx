@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { createRef, PropsWithChildren, useRef } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -29,10 +29,16 @@ export const Dropdown = ({
   className = "",
   children,
 }: DropdownProps): JSX.Element => {
+  const dropdownRef = useRef(null);
   const mappedClassName = createClassNameFromProps(
     classNameMapping,
     { hoverable, active, alignment, up } as Partial<DropdownProps>,
     ["dropdown", className]
   );
-  return <div className={mappedClassName}>{children}</div>;
+
+  return (
+    <div className={mappedClassName} ref={dropdownRef}>
+      {children}
+    </div>
+  );
 };
