@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import { Fragment } from "react";
 import { SmartDropdown } from "./SmartDropdown";
 import user from "@testing-library/user-event";
@@ -49,7 +49,7 @@ it("becomes inactive when the trigger is clicked while it is active", () => {
   ).not.toHaveClass("is-active");
 });
 
-it("becomes inactive when a click outside of the dropdown occurred", () => {
+it("becomes inactive when a click outside of the dropdown occurred", async () => {
   const triggerLabel = "Smart Dropdown";
   render(
     <div>
@@ -62,13 +62,9 @@ it("becomes inactive when a click outside of the dropdown occurred", () => {
     </div>
   );
   user.click(screen.getByRole("button"));
-  expect(screen.getByRole("button").parentElement?.parentElement).toHaveClass(
-    "is-active"
-  );
+  await screen.findByRole("menu");
   user.click(screen.getByText(/outside/i));
-  expect(
-    screen.getByRole("button").parentElement?.parentElement
-  ).not.toHaveClass("is-active");
+  await waitFor(() => expect(screen.queryByRole("menu")).toBeNull());
 });
 
 it("renders its given trigger label", () => {
