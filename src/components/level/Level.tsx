@@ -26,5 +26,10 @@ export const Level = ({
     ["level"]
   );
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className}>
+      {left && <div className="level-left">{left}</div>}
+      {children}
+    </div>
+  );
 };

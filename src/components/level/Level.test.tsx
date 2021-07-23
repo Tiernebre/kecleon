@@ -18,3 +18,9 @@ it("can specifically not support mobile", () => {
   render(<Level mobile={false}>{levelText}</Level>);
   expect(screen.getByText(levelText)).not.toHaveClass("is-mobile");
 });
+
+it("can render content on the left", () => {
+  const left = "Left";
+  render(<Level left={left} />);
+  expect(screen.getByText(left)).toHaveClass("level-left");
+});
