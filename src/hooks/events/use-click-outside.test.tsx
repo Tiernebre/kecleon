@@ -33,9 +33,16 @@ it("calls the given callback if a click outside occurred outside of the provided
   await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(1));
 });
 
-it("does not call the given callback if a click outside occurred outside of the provided element", async () => {
+it("does not call the given callback if a click outside occurred on the exact provided element", async () => {
   const onClickOutside = jest.fn();
   render(<ClickOutsideTestBed onClickOutside={onClickOutside} />);
   user.click(screen.getByTestId("click-outside-listener"));
+  await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(0));
+});
+
+it("does not call the given callback if a click outside occurred in a child of the exact provided component", async () => {
+  const onClickOutside = jest.fn();
+  render(<ClickOutsideTestBed onClickOutside={onClickOutside} />);
+  user.click(screen.getByText("Even a child element!"));
   await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(0));
 });
