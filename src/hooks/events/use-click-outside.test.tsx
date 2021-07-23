@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { useRef } from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { RefObject, useRef } from "react";
 import { useClickOutside } from "./use-click-outside";
 import user from "@testing-library/user-event";
 
@@ -45,4 +46,19 @@ it("does not call the given callback if a click outside occurred in a child of t
   render(<ClickOutsideTestBed onClickOutside={onClickOutside} />);
   user.click(screen.getByText("Even a child element!"));
   await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(0));
+});
+
+it("gets cleaned up properly on unmount", async () => {
+  const someOtherElement = document.createElement("div");
+  someOtherElement.textContent = "Outside Click Wooo";
+  document.body.appendChild(someOtherElement);
+  const onClickOutside = jest.fn();
+  const { unmount } = render(
+    <ClickOutsideTestBed onClickOutside={onClickOutside} />
+  );
+  user.click(screen.getByText(someOtherElement.textContent));
+  await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(1));
+  unmount();
+  user.click(screen.getByText(someOtherElement.textContent));
+  await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(1));
 });

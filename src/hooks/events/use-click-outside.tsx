@@ -10,7 +10,7 @@ const checkIfClickOutsideOccurredForElement =
   };
 
 export const useClickOutside = (
-  ref: RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement | null>,
   onClickOutside: () => void
 ): void => {
   useEffect(() => {
