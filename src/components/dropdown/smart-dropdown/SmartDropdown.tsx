@@ -38,7 +38,7 @@ export const SmartDropdown = ({
       <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
         {triggerLabel}
       </DropdownTrigger>
-      <DropdownMenu id={menuId}>
+      <DropdownMenu active={active} id={menuId}>
         <DropdownContent>{items}</DropdownContent>
       </DropdownMenu>
     </Dropdown>

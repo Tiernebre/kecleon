@@ -92,6 +92,7 @@ it("properly binds the menu ID between the trigger and the menu itself", () => {
       items={<Fragment></Fragment>}
     />
   );
+  user.click(screen.getByRole("button"));
   expect(screen.getByRole("button")).toHaveAttribute("aria-controls", menuId);
   expect(screen.getByRole("menu")).toHaveAttribute("id", menuId);
 });
@@ -111,6 +112,7 @@ it("renders given items", () => {
       }
     />
   );
+  user.click(screen.getByRole("button", { name: "Dropdown" }));
   expect(screen.getByRole("button", { name: /first/i })).toBeInTheDocument();
   const secondButton = screen.getByRole("button", { name: /second/i });
   user.click(secondButton);
