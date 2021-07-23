@@ -11,6 +11,7 @@ export type DropdownProps = PropsWithChildren<{
   className?: string;
   alignment?: Direction;
   up?: boolean;
+  onClickOutside?: () => void;
 }>;
 
 const classNameMapping: ClassNameTransformMap<DropdownProps> = new Map([
