@@ -2,7 +2,10 @@ import { ReactNode, useState } from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownContent } from "..";
 import { DropdownProps } from "../container";
 
-export type SmartDropdownProps = Omit<DropdownProps, "active"> & {
+export type SmartDropdownProps = Omit<
+  DropdownProps,
+  "active" | "onClickOutside"
+> & {
   triggerLabel: string;
   menuId: string;
   items: ReactNode;
