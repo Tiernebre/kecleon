@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { useClickOutside } from "./use-click-outside";
 import user from "@testing-library/user-event";
 
