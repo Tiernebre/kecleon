@@ -1,9 +1,10 @@
-import { createRef, PropsWithChildren, useRef } from "react";
+import { PropsWithChildren, useRef } from "react";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../../utilities";
 import { Direction } from "../../../types";
+import { useClickOutside } from "../../../hooks";
 
 export type DropdownProps = PropsWithChildren<{
   hoverable?: boolean;
@@ -30,6 +31,7 @@ export const Dropdown = ({
   children,
 }: DropdownProps): JSX.Element => {
   const dropdownRef = useRef(null);
+  useClickOutside(dropdownRef);
   const mappedClassName = createClassNameFromProps(
     classNameMapping,
     { hoverable, active, alignment, up } as Partial<DropdownProps>,
