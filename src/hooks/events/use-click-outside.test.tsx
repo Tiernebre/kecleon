@@ -32,3 +32,10 @@ it("calls the given callback if a click outside occurred outside of the provided
   user.click(screen.getByTestId("click-outside-trigger"));
   await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(1));
 });
+
+it("does not call the given callback if a click outside occurred outside of the provided element", async () => {
+  const onClickOutside = jest.fn();
+  render(<ClickOutsideTestBed onClickOutside={onClickOutside} />);
+  user.click(screen.getByTestId("click-outside-listener"));
+  await waitFor(() => expect(onClickOutside).toHaveBeenCalledTimes(0));
+});
