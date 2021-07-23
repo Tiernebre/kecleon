@@ -17,6 +17,7 @@ export * from "./form";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./image";
+export * from "./level";
 export * from "./navigation";
 export * from "./notification";
 export * from "./smart-alerts";
