@@ -33,6 +33,44 @@ it("becomes active when the trigger is clicked", () => {
   );
 });
 
+it("becomes inactive when the trigger is clicked while it is active", () => {
+  const triggerLabel = "Smart Dropdown";
+  render(
+    <SmartDropdown
+      menuId="Foo"
+      triggerLabel={triggerLabel}
+      items={<Fragment></Fragment>}
+    />
+  );
+  user.click(screen.getByRole("button"));
+  user.click(screen.getByRole("button"));
+  expect(
+    screen.getByRole("button").parentElement?.parentElement
+  ).not.toHaveClass("is-active");
+});
+
+it("becomes inactive active but a click outside of the dropdown occurred", () => {
+  const triggerLabel = "Smart Dropdown";
+  render(
+    <div>
+      <SmartDropdown
+        menuId="Foo"
+        triggerLabel={triggerLabel}
+        items={<Fragment></Fragment>}
+      />
+      <div>Some outside element</div>
+    </div>
+  );
+  user.click(screen.getByRole("button"));
+  expect(screen.getByRole("button").parentElement?.parentElement).toHaveClass(
+    "is-active"
+  );
+  user.click(screen.getByText(/outside/i));
+  expect(
+    screen.getByRole("button").parentElement?.parentElement
+  ).not.toHaveClass("is-active");
+});
+
 it("renders its given trigger label", () => {
   const triggerLabel = "Smart Dropdown";
   render(

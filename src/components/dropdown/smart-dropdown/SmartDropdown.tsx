@@ -30,7 +30,11 @@ export const SmartDropdown = ({
   const toggleActive = () => setActive(!active);
 
   return (
-    <Dropdown {...dropdownProps} active={active}>
+    <Dropdown
+      {...dropdownProps}
+      active={active}
+      onClickOutside={() => setActive(false)}
+    >
       <DropdownTrigger htmlFor={menuId} onClick={toggleActive}>
         {triggerLabel}
       </DropdownTrigger>
