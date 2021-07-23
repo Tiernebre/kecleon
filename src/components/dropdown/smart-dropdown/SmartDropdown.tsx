@@ -10,7 +10,7 @@ export type SmartDropdownProps = Omit<DropdownProps, "active"> & {
 
 /**
  * SmartDropdown is a fully integrated composition of all of the
- * "dumb" Dropdown components orchestrated togtether using
+ * "dumb" Dropdown components orchestrated together using
  * state and side effects. This makes it easier for consumers
  * to plug and go with a Dropdown they do not have to assemble
  * themselves.
