@@ -49,7 +49,7 @@ it("becomes inactive when the trigger is clicked while it is active", () => {
   ).not.toHaveClass("is-active");
 });
 
-it("becomes inactive active but a click outside of the dropdown occurred", () => {
+it("becomes inactive when a click outside of the dropdown occurred", () => {
   const triggerLabel = "Smart Dropdown";
   render(
     <div>
