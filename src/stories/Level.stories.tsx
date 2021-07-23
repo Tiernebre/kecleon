@@ -11,7 +11,9 @@ const StandardLevelTemplate: Story<LevelProps> = () => (
   <Level
     left={<LevelItem>Left</LevelItem>}
     right={<LevelItem>Right</LevelItem>}
-  />
+  >
+    Centered
+  </Level>
 );
 
 export const StandardLevel = StandardLevelTemplate.bind({});
