@@ -29,11 +29,10 @@ export const Dropdown = ({
   up,
   className = "",
   children,
+  onClickOutside,
 }: DropdownProps): JSX.Element => {
   const dropdownRef = useRef<HTMLElement>(null);
-  useClickOutside(dropdownRef, () => {
-    console.log("Dropdown Click Outside woot");
-  });
+  useClickOutside(dropdownRef, onClickOutside);
   const mappedClassName = createClassNameFromProps(
     classNameMapping,
     { hoverable, active, alignment, up } as Partial<DropdownProps>,
