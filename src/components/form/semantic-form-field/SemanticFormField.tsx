@@ -6,7 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { Label, FormControl, Help, FormField, FormControlProps } from "..";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import { FieldError } from "react-hook-form";
 
 export type SemanticFormFieldProps = PropsWithChildren<{
   control?: FormControlProps;
@@ -15,7 +15,6 @@ export type SemanticFormFieldProps = PropsWithChildren<{
   label: string;
   icons?: ReactNode;
   error?: FieldError;
-  register?: UseFormRegisterReturn;
 }>;
 
 /**
@@ -35,7 +34,6 @@ export const SemanticFormField = ({
   control,
   icons,
   error,
-  register,
   children,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help || error ? `${id}-help` : undefined;
@@ -45,10 +43,9 @@ export const SemanticFormField = ({
     if (isValidElement(child)) {
       return cloneElement(child, {
         id,
+        color,
         "aria-invalid": !!error,
         "aria-describedby": helpId,
-        color,
-        register,
       });
     } else {
       return child;

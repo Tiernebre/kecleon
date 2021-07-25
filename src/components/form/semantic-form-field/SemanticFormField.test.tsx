@@ -109,17 +109,16 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
 
     return (
       <form onSubmit={handleSubmit(submit)}>
-        <SemanticFormField id="name" label="Name" register={register("name")}>
-          <Input type="string" />
+        <SemanticFormField id="name" label="Name">
+          <Input register={register("name")} type="string" />
         </SemanticFormField>
-        <SemanticFormField
-          id="index"
-          label="Index"
-          register={register("index", {
-            valueAsNumber: true,
-          })}
-        >
-          <Input type="number" />
+        <SemanticFormField id="index" label="Index">
+          <Input
+            type="number"
+            register={register("index", {
+              valueAsNumber: true,
+            })}
+          />
         </SemanticFormField>
         <Button type="submit">Submit</Button>
       </form>
