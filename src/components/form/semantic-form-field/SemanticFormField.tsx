@@ -1,15 +1,15 @@
-import React, { Fragment, ReactNode } from "react";
-import {
-  Label,
-  FormControl,
-  Help,
-  FormField,
-  FormControlProps,
-  Input,
-} from "..";
+import React, {
+  Children,
+  cloneElement,
+  Fragment,
+  isValidElement,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
+import { Label, FormControl, Help, FormField, FormControlProps } from "..";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
-export type SemanticFormFieldProps = {
+export type SemanticFormFieldProps = PropsWithChildren<{
   control?: FormControlProps;
   help?: string;
   id: string;
@@ -17,8 +17,7 @@ export type SemanticFormFieldProps = {
   icons?: ReactNode;
   error?: FieldError;
   register?: UseFormRegisterReturn;
-  children: ReactNode;
-};
+}>;
 
 /**
  * SemanticFormField is a component that combines Label, FormControl,
@@ -43,11 +42,18 @@ export const SemanticFormField = ({
   const helpId = help || error ? `${id}-help` : undefined;
   const color = error ? "danger" : undefined;
 
-  const input = React.cloneElement(<Fragment>{children}</Fragment>, {
-    id,
-    "aria-describedby": helpId,
-    register,
-    color,
+  const input = Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      return cloneElement(child, {
+        id,
+        "aria-invalid": !!error,
+        "aria-describedby": helpId,
+        color,
+        register,
+      });
+    } else {
+      return child;
+    }
   });
 
   return (

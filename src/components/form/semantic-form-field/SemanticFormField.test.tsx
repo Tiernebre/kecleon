@@ -3,22 +3,22 @@ import { useForm } from "react-hook-form";
 import { Button } from "../..";
 import { Icon } from "../../icon";
 import { FormControlProps } from "../form-control";
-import { InputProps } from "../input";
+import { Input } from "../input";
 import { SemanticFormField, SemanticFormFieldProps } from "./SemanticFormField";
 import user from "@testing-library/user-event";
 
 it("displays the given label", () => {
   const id = "test-semantic-form-field";
-  const input: InputProps = {
-    type: "text",
-  };
   const label = "Test Label";
   const props: SemanticFormFieldProps = {
     id,
-    input,
     label,
   };
-  render(<SemanticFormField {...props} />);
+  render(
+    <SemanticFormField {...props}>
+      <Input type="text" />
+    </SemanticFormField>
+  );
   const inputAssociatedWithLabel = screen.getByLabelText(label);
   expect(inputAssociatedWithLabel).toBeInTheDocument();
   expect(inputAssociatedWithLabel).toBeValid();
@@ -26,18 +26,18 @@ it("displays the given label", () => {
 
 it("displays a help message if provided", () => {
   const id = "test-semantic-form-field";
-  const input: InputProps = {
-    type: "text",
-  };
   const help = "Help";
   const label = "Test Label";
   const props: SemanticFormFieldProps = {
     id,
-    input,
     label,
     help,
   };
-  render(<SemanticFormField {...props} />);
+  render(
+    <SemanticFormField {...props}>
+      <Input type="text" />
+    </SemanticFormField>
+  );
   const helpMessage = screen.getByText(help);
   expect(helpMessage).toBeInTheDocument();
   expect(helpMessage).toHaveAttribute("id", `${id}-help`);
@@ -52,9 +52,6 @@ it("displays given icons", () => {
   const control: FormControlProps = {
     hasIconsLeft: true,
   };
-  const input: InputProps = {
-    type: "text",
-  };
   const help = "Help";
   const label = "Test Label";
   const iconMessage = "Hi, I'm an icon";
@@ -62,20 +59,20 @@ it("displays given icons", () => {
   const props: SemanticFormFieldProps = {
     id,
     control,
-    input,
     label,
     help,
     icons: icon,
   };
-  render(<SemanticFormField {...props} />);
+  render(
+    <SemanticFormField {...props}>
+      <Input type="text" />
+    </SemanticFormField>
+  );
   expect(screen.getByText(iconMessage)).toBeInTheDocument();
 });
 
 it("is formatted to handle an error", () => {
   const id = "test-semantic-form-field";
-  const input: InputProps = {
-    type: "text",
-  };
   const label = "Test Label";
   const error = {
     type: "required",
@@ -83,11 +80,14 @@ it("is formatted to handle an error", () => {
   };
   const props: SemanticFormFieldProps = {
     id,
-    input,
     label,
     error,
   };
-  render(<SemanticFormField {...props} />);
+  render(
+    <SemanticFormField {...props}>
+      <Input type="text" />
+    </SemanticFormField>
+  );
   expect(screen.getByRole("textbox")).toBeInvalid();
   expect(screen.getByText(error.message)).toBeInTheDocument();
 });
@@ -109,20 +109,18 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
 
     return (
       <form onSubmit={handleSubmit(submit)}>
-        <SemanticFormField
-          id="name"
-          input={{ type: "text" }}
-          label="Name"
-          register={register("name")}
-        />
+        <SemanticFormField id="name" label="Name" register={register("name")}>
+          <Input type="string" />
+        </SemanticFormField>
         <SemanticFormField
           id="index"
-          input={{ type: "number" }}
           label="Index"
           register={register("index", {
             valueAsNumber: true,
           })}
-        />
+        >
+          <Input type="number" />
+        </SemanticFormField>
         <Button type="submit">Submit</Button>
       </form>
     );
