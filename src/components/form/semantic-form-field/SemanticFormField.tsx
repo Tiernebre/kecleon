@@ -22,10 +22,9 @@ export type SemanticFormFieldProps = PropsWithChildren<{
  * and Help components to create a fully composed Form Field
  * for a typical form.
  *
- * Unlike these individual components, this component is based
- * upon given prop data to then render the correct components. This
- * component intentionally favors an inheritance approach vs
- * composition for spinning up standard, similar inputs.
+ * Any given children component will have information about the form field
+ * passed down to it implicitly It is recommended to use {@link Input},
+ * {@link Textarea}, or {@link Select}
  */
 export const SemanticFormField = ({
   id,
