@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import {
   Label,
   FormControl,
@@ -17,6 +17,7 @@ export type SemanticFormFieldProps = {
   icons?: ReactNode;
   error?: FieldError;
   register?: UseFormRegisterReturn;
+  children: ReactNode;
 };
 
 /**
@@ -37,21 +38,24 @@ export const SemanticFormField = ({
   icons,
   error,
   register,
+  children,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help || error ? `${id}-help` : undefined;
-  const controlColor = error ? "danger" : undefined;
+  const color = error ? "danger" : undefined;
+
+  const input = React.cloneElement(<Fragment>{children}</Fragment>, {
+    id,
+    "aria-describedby": helpId,
+    register,
+    color,
+  });
 
   return (
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
         {icons}
-        <Input
-          id={id}
-          aria-describedby={helpId}
-          register={register}
-          color={controlColor}
-        />
+        {input}
       </FormControl>
       <Help id={helpId} error={error}>
         {help}
