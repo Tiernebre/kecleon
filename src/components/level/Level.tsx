@@ -1,10 +1,12 @@
 import { PropsWithChildren, ReactNode } from "react";
+import { HTMLTag } from "../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
 } from "../../utilities";
 
 export type LevelProps = PropsWithChildren<{
+  as?: HTMLTag;
   left?: ReactNode;
   right?: ReactNode;
   mobile?: boolean;
@@ -15,6 +17,7 @@ const classNameMap: ClassNameTransformMap<LevelProps> = new Map([
 ]);
 
 export const Level = ({
+  as: Comp = "div",
   left,
   right,
   children,
@@ -27,10 +30,10 @@ export const Level = ({
   );
 
   return (
-    <div className={className}>
+    <Comp className={className}>
       {left && <div className="level-left">{left}</div>}
       {children}
       {right && <div className="level-right">{right}</div>}
-    </div>
+    </Comp>
   );
 };
