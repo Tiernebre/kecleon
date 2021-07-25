@@ -24,7 +24,8 @@ export type SemanticFormFieldProps = PropsWithChildren<{
  *
  * Any given children component will have information about the form field
  * passed down to it implicitly It is recommended to use {@link Input},
- * {@link Textarea}, or {@link Select}
+ * {@link Textarea}, or {@link Select} as they have prop support for the
+ * fields passed down implicitly.
  */
 export const SemanticFormField = ({
   id,
