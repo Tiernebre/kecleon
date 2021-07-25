@@ -30,3 +30,8 @@ it("can render content on the right", () => {
   render(<Level right={right} />);
   expect(screen.getByText(right)).toHaveClass("level-right");
 });
+
+it("can be rendered as a different HTML element besides a div", () => {
+  render(<Level as="header">Level</Level>);
+  expect(screen.getByText("Level").nodeName).toEqual("HEADER");
+});
