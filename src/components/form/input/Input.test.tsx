@@ -148,3 +148,9 @@ it("can be marked as described by", () => {
   const input = screen.getByRole("textbox");
   expect(input).toHaveAttribute("aria-describedby", describedBy);
 });
+
+it("by default is not described by anything", () => {
+  render(<Input />);
+  const input = screen.getByRole("textbox");
+  expect(input).not.toHaveAttribute("aria-describedby");
+});
