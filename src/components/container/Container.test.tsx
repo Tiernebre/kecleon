@@ -35,3 +35,10 @@ it("renders in non-fluid mode by default", () => {
   const container = screen.getByText(message);
   expect(container).not.toHaveClass("is-fluid");
 });
+
+it("can be rendered as a different HTML element", () => {
+  const message = "This is a test container. Cool!";
+  render(<Container as="section">{message}</Container>);
+  const container = screen.getByText(message);
+  expect(container.nodeName).toEqual("SECTION");
+});
