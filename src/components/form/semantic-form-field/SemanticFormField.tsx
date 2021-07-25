@@ -44,7 +44,7 @@ export const SemanticFormField = ({
       return cloneElement(child, {
         id,
         color,
-        "aria-invalid": !!error,
+        invalid: !!error,
         "aria-describedby": helpId,
       });
     } else {

@@ -123,3 +123,21 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
     index,
   });
 });
+
+it("can be marked as invalid", () => {
+  render(<Input invalid />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeInvalid();
+});
+
+it("can be marked as valid", () => {
+  render(<Input invalid={false} />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeValid();
+});
+
+it("by default is valid", () => {
+  render(<Input />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeValid();
+});

@@ -15,6 +15,7 @@ export type InputProps = InputHtmlAttributes & {
   rounded?: boolean;
   isStatic?: boolean;
   register?: UseFormRegisterReturn;
+  invalid?: boolean;
 };
 
 const classNameMap: ClassNameTransformMap<InputProps> = new Map([
@@ -30,6 +31,7 @@ export const Input = ({
   isStatic,
   rounded,
   register,
+  invalid = false,
   ...props
 }: InputProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -37,5 +39,12 @@ export const Input = ({
     { color, size, isStatic, rounded } as Partial<InputProps>,
     ["input"]
   );
-  return <input className={className} {...props} {...register} />;
+  return (
+    <input
+      {...props}
+      {...register}
+      className={className}
+      aria-invalid={invalid}
+    />
+  );
 };
