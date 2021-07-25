@@ -3,10 +3,10 @@ import {
   Label,
   FormControl,
   Help,
-  ValidatedInput,
   InputProps,
   FormField,
   FormControlProps,
+  Input,
 } from "..";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
@@ -42,19 +42,19 @@ export const SemanticFormField = ({
   register,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help || error ? `${id}-help` : undefined;
-  const valid = !error;
+  const controlColor = error ? "danger" : undefined;
 
   return (
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
         {icons}
-        <ValidatedInput
+        <Input
           {...input}
           id={id}
           aria-describedby={helpId}
-          valid={valid}
           register={register}
+          color={controlColor}
         />
       </FormControl>
       <Help id={helpId} error={error}>
