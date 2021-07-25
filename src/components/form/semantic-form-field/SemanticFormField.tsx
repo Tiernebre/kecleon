@@ -3,7 +3,6 @@ import {
   Label,
   FormControl,
   Help,
-  InputProps,
   FormField,
   FormControlProps,
   Input,
@@ -14,7 +13,6 @@ export type SemanticFormFieldProps = {
   control?: FormControlProps;
   help?: string;
   id: string;
-  input: InputProps;
   label: string;
   icons?: ReactNode;
   error?: FieldError;
@@ -36,7 +34,6 @@ export const SemanticFormField = ({
   label,
   help,
   control,
-  input,
   icons,
   error,
   register,
@@ -50,7 +47,6 @@ export const SemanticFormField = ({
       <FormControl {...control}>
         {icons}
         <Input
-          {...input}
           id={id}
           aria-describedby={helpId}
           register={register}
