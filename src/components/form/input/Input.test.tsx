@@ -141,3 +141,10 @@ it("by default is valid", () => {
   const input = screen.getByRole("textbox");
   expect(input).toBeValid();
 });
+
+it("can be marked as described by", () => {
+  const describedBy = "some-other-element";
+  render(<Input describedBy={describedBy} />);
+  const input = screen.getByRole("textbox");
+  expect(input).toHaveAttribute("aria-describedby", describedBy);
+});

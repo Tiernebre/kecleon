@@ -45,7 +45,7 @@ export const SemanticFormField = ({
         id,
         color,
         invalid: !!error,
-        "aria-describedby": helpId,
+        describedBy: helpId,
       });
     } else {
       return child;
