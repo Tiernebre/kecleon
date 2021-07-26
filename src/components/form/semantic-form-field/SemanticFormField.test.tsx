@@ -6,6 +6,7 @@ import { FormControlProps } from "../form-control";
 import { Input } from "../input";
 import { SemanticFormField, SemanticFormFieldProps } from "./SemanticFormField";
 import user from "@testing-library/user-event";
+import { Select } from "../select";
 
 it("displays the given label", () => {
   const id = "test-semantic-form-field";
@@ -118,6 +119,42 @@ it("supports textarea as a child input", () => {
   const foundTextarea = screen.getByRole("textbox");
   expect(foundTextarea).toHaveAttribute("aria-describedby", `${id}-help`);
   expect(foundTextarea).toBeInvalid();
+});
+
+it("supports select as a child input", () => {
+  const id = "test-semantic-form-field-textarea";
+  const label = "Test Label";
+  const props: SemanticFormFieldProps = {
+    id,
+    label,
+  };
+  const { rerender } = render(
+    <SemanticFormField {...props}>
+      <Select>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">B</option>
+      </Select>
+    </SemanticFormField>
+  );
+  const error = {
+    type: "required",
+    message: "This field is required. Please fill in information",
+  };
+  expect(screen.getByRole("combobox")).toBeValid();
+  expect(screen.getByLabelText(label).nodeName).toEqual("SELECT");
+  rerender(
+    <SemanticFormField {...props} error={error}>
+      <Select>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">B</option>
+      </Select>
+    </SemanticFormField>
+  );
+  const foundSelect = screen.getByRole("combobox");
+  expect(foundSelect).toHaveAttribute("aria-describedby", `${id}-help`);
+  expect(foundSelect).toBeInvalid();
 });
 
 it("can be registered as a React Hook Form uncontrolled component", async () => {
