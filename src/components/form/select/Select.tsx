@@ -1,4 +1,5 @@
 import { SelectHTMLAttributes } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import { CommonFormInputAttributes, Size } from "../../../types";
 import {
   ClassNameTransformMap,
@@ -14,6 +15,7 @@ type HTMLSelectAttributes = Omit<
 export type SelectProps = HTMLSelectAttributes &
   CommonFormInputAttributes & {
     size?: Size;
+    register?: UseFormRegisterReturn;
   };
 
 const classNameMap: ClassNameTransformMap<SelectProps> = new Map([
@@ -28,6 +30,7 @@ export const Select = ({
   multiple,
   children,
   describedBy,
+  register,
   invalid = false,
   ...props
 }: SelectProps): JSX.Element => {
@@ -40,6 +43,7 @@ export const Select = ({
   return (
     <div className={className}>
       <select
+        {...register}
         multiple={multiple}
         {...props}
         aria-invalid={invalid}
