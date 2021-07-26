@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes } from "react";
-import { Color, Size } from "../../../types";
+import { CommonFormInputAttributes, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -11,10 +11,10 @@ type HTMLSelectAttributes = Omit<
   SelectHTMLAttributes<HTMLSelectElement>,
   "size"
 >;
-export type SelectProps = HTMLSelectAttributes & {
-  color?: Color;
-  size?: Size;
-};
+export type SelectProps = HTMLSelectAttributes &
+  CommonFormInputAttributes & {
+    size?: Size;
+  };
 
 const classNameMap: ClassNameTransformMap<SelectProps> = new Map([
   mapClassNameForColor(),
@@ -27,6 +27,7 @@ export const Select = ({
   size,
   multiple,
   children,
+  invalid = false,
   ...props
 }: SelectProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -37,7 +38,7 @@ export const Select = ({
 
   return (
     <div className={className}>
-      <select multiple={multiple} {...props}>
+      <select multiple={multiple} {...props} aria-invalid={invalid}>
         {children}
       </select>
     </div>

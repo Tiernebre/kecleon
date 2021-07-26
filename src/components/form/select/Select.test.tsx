@@ -60,3 +60,18 @@ it("invokes a callback when a user changes their selected option", () => {
   ).toBe(false);
   expect(onChange).toHaveBeenCalledTimes(1);
 });
+
+it("can be marked as invalid", () => {
+  render(<Select invalid />);
+  expect(screen.getByRole("combobox")).toBeInvalid();
+});
+
+it("can be marked as valid", () => {
+  render(<Select invalid={false} />);
+  expect(screen.getByRole("combobox")).toBeValid();
+});
+
+it("by default is valid", () => {
+  render(<Select />);
+  expect(screen.getByRole("combobox")).toBeValid();
+});
