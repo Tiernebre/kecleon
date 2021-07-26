@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import { Button } from "../..";
+import { Button, Textarea } from "../..";
 import { Icon } from "../../icon";
 import { FormControlProps } from "../form-control";
 import { Input } from "../input";
@@ -90,6 +90,32 @@ it("is formatted to handle an error", () => {
   );
   expect(screen.getByRole("textbox")).toBeInvalid();
   expect(screen.getByText(error.message)).toBeInTheDocument();
+});
+
+it("supports textarea as a child input", () => {
+  const id = "test-semantic-form-field-textarea";
+  const label = "Test Label";
+  const props: SemanticFormFieldProps = {
+    id,
+    label,
+  };
+  const { rerender } = render(
+    <SemanticFormField {...props}>
+      <Textarea />
+    </SemanticFormField>
+  );
+  const error = {
+    type: "required",
+    message: "This field is required. Please fill in information",
+  };
+  expect(screen.getByRole("textbox")).toBeValid();
+  expect(screen.getByLabelText(label).nodeName).toEqual("TEXTAREA");
+  rerender(
+    <SemanticFormField {...props} error={error}>
+      <Textarea />
+    </SemanticFormField>
+  );
+  expect(screen.getByRole("textbox")).toBeInvalid();
 });
 
 it("can be registered as a React Hook Form uncontrolled component", async () => {
