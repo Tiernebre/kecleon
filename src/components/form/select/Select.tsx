@@ -27,6 +27,7 @@ export const Select = ({
   size,
   multiple,
   children,
+  describedBy,
   invalid = false,
   ...props
 }: SelectProps): JSX.Element => {
@@ -38,7 +39,12 @@ export const Select = ({
 
   return (
     <div className={className}>
-      <select multiple={multiple} {...props} aria-invalid={invalid}>
+      <select
+        multiple={multiple}
+        {...props}
+        aria-invalid={invalid}
+        aria-describedby={describedBy}
+      >
         {children}
       </select>
     </div>

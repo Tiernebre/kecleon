@@ -75,3 +75,12 @@ it("by default is valid", () => {
   render(<Select />);
   expect(screen.getByRole("combobox")).toBeValid();
 });
+
+it("can be marked as being described by another element", () => {
+  const describedBy = "some-element";
+  render(<Select describedBy={describedBy} />);
+  expect(screen.getByRole("combobox")).toHaveAttribute(
+    "aria-describedby",
+    describedBy
+  );
+});
