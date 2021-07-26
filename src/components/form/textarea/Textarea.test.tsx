@@ -76,3 +76,10 @@ it("by default is valid", () => {
   const textarea = screen.getByRole("textbox");
   expect(textarea).toBeValid();
 });
+
+it("can mark as associated id to be described by", () => {
+  const describedBy = "some-other-element";
+  render(<Textarea describedBy={describedBy} />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toHaveAttribute("aria-describedby", describedBy);
+});

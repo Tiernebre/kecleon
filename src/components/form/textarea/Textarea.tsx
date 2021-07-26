@@ -23,6 +23,7 @@ export const Textarea = ({
   color,
   size,
   fixed,
+  describedBy,
   invalid = false,
   ...props
 }: TextareaProps): JSX.Element => {
@@ -31,5 +32,12 @@ export const Textarea = ({
     { color, size, fixed } as Partial<TextareaProps>,
     ["textarea"]
   );
-  return <textarea className={className} {...props} aria-invalid={invalid} />;
+  return (
+    <textarea
+      className={className}
+      {...props}
+      aria-invalid={invalid}
+      aria-describedby={describedBy}
+    />
+  );
 };
