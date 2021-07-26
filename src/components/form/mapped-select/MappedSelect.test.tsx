@@ -41,3 +41,22 @@ it("renders a list of data structures into a select with corresponding options",
     expect(optionFound).toHaveAttribute("value", option.id.toString());
   });
 });
+
+it("passes its other props and attributes to select", () => {
+  const color = "danger";
+  const describedBy = "some-other-element";
+  const id = "mapped-select";
+  render(
+    <MappedSelect
+      options={[]}
+      mapToOption={jest.fn()}
+      color={color}
+      describedBy={describedBy}
+      id={id}
+    />
+  );
+  const select = screen.getByRole("combobox");
+  expect(select).toHaveAttribute("aria-describedby", describedBy);
+  expect(select).toHaveAttribute("id", id);
+  expect(select.parentElement).toHaveClass(`is-${color}`);
+});

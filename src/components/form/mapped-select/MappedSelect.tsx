@@ -21,10 +21,11 @@ export type MappedSelectProps<T extends Record<string, unknown>> =
 export const MappedSelect = <T extends Record<string, unknown>>({
   options,
   mapToOption,
+  ...props
 }: MappedSelectProps<T>): JSX.Element => {
   const mappedOptions = options.map((option) => mapToOption(option));
   return (
-    <Select>
+    <Select {...props}>
       <SelectOptions options={mappedOptions} />
     </Select>
   );
