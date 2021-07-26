@@ -1,7 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Textarea } from "./Textarea";
 import user from "@testing-library/user-event";
 import { Color, colors, Size, sizes } from "../../../types";
+import { useForm } from "react-hook-form";
+import { Button } from "../..";
 
 it("displays without opinionated styling by default", () => {
   render(<Textarea />);
@@ -82,4 +84,36 @@ it("can mark as associated id to be described by", () => {
   render(<Textarea describedBy={describedBy} />);
   const textarea = screen.getByRole("textbox");
   expect(textarea).toHaveAttribute("aria-describedby", describedBy);
+});
+
+it("can be registered as a React Hook Form uncontrolled component", async () => {
+  type TestForm = {
+    name: string;
+  };
+  type TestBedProps = {
+    onSubmit: (data: TestForm) => void;
+  };
+  const TestBed = ({ onSubmit }: TestBedProps): JSX.Element => {
+    const { register, handleSubmit } = useForm<TestForm>();
+
+    const submit = (data: TestForm) => {
+      onSubmit(data);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(submit)}>
+        <Textarea register={register("name")} />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  };
+  const onSubmit = jest.fn();
+  render(<TestBed onSubmit={onSubmit} />);
+  const name = "Test Name";
+  user.type(screen.getByRole("textbox"), name);
+  user.click(screen.getByRole("button"));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalled());
+  expect(onSubmit).toHaveBeenCalledWith({
+    name,
+  });
 });
