@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { Color, Size } from "../../../types";
+import { CommonFormInputAttributes, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -9,15 +9,13 @@ import {
 } from "../../../utilities";
 
 type InputHtmlAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
-export type InputProps = InputHtmlAttributes & {
-  color?: Color;
-  size?: Size;
-  rounded?: boolean;
-  isStatic?: boolean;
-  register?: UseFormRegisterReturn;
-  invalid?: boolean;
-  describedBy?: string;
-};
+export type InputProps = InputHtmlAttributes &
+  CommonFormInputAttributes & {
+    size?: Size;
+    rounded?: boolean;
+    isStatic?: boolean;
+    register?: UseFormRegisterReturn;
+  };
 
 const classNameMap: ClassNameTransformMap<InputProps> = new Map([
   mapClassNameForColor<InputProps>(),

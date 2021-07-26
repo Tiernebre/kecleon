@@ -7,6 +7,7 @@ import {
 } from "react";
 import { Label, FormControl, Help, FormField, FormControlProps } from "..";
 import { FieldError } from "react-hook-form";
+import { CommonFormInputAttributes } from "../../../types";
 
 export type SemanticFormFieldProps = PropsWithChildren<{
   control?: FormControlProps;
@@ -41,7 +42,7 @@ export const SemanticFormField = ({
 
   const input = Children.map(children, (child) => {
     if (isValidElement(child)) {
-      return cloneElement(child, {
+      return cloneElement<CommonFormInputAttributes>(child, {
         id,
         color,
         invalid: !!error,
