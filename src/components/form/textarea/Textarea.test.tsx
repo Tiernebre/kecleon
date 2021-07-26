@@ -52,3 +52,21 @@ it("does not display with fixed height if fixed is false", () => {
   const textarea = screen.getByRole("textbox");
   expect(textarea).not.toHaveClass(`has-fixed-size`);
 });
+
+it("can be marked as invalid", () => {
+  render(<Textarea invalid />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toBeInvalid();
+});
+
+it("can be marked as valid", () => {
+  render(<Textarea invalid={false} />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toBeValid();
+});
+
+it("by default is valid", () => {
+  render(<Textarea />);
+  const textarea = screen.getByRole("textbox");
+  expect(textarea).toBeValid();
+});

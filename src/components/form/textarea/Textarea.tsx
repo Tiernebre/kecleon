@@ -1,5 +1,5 @@
 import { TextareaHTMLAttributes } from "react";
-import { Color, Size } from "../../../types";
+import { CommonFormInputAttributes, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -7,11 +7,11 @@ import {
   mapClassNameForSize,
 } from "../../../utilities";
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  color?: Color;
-  size?: Size;
-  fixed?: boolean;
-};
+export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
+  CommonFormInputAttributes & {
+    size?: Size;
+    fixed?: boolean;
+  };
 
 const classNameMap: ClassNameTransformMap<TextareaProps> = new Map([
   mapClassNameForColor<TextareaProps>(),
@@ -23,6 +23,7 @@ export const Textarea = ({
   color,
   size,
   fixed,
+  invalid = false,
   ...props
 }: TextareaProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -30,5 +31,5 @@ export const Textarea = ({
     { color, size, fixed } as Partial<TextareaProps>,
     ["textarea"]
   );
-  return <textarea className={className} {...props} />;
+  return <textarea className={className} {...props} aria-invalid={invalid} />;
 };
