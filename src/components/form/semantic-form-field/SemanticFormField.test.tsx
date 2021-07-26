@@ -115,7 +115,9 @@ it("supports textarea as a child input", () => {
       <Textarea />
     </SemanticFormField>
   );
-  expect(screen.getByRole("textbox")).toBeInvalid();
+  const foundTextarea = screen.getByRole("textbox");
+  expect(foundTextarea).toHaveAttribute("aria-describedby", `${id}-help`);
+  expect(foundTextarea).toBeInvalid();
 });
 
 it("can be registered as a React Hook Form uncontrolled component", async () => {
