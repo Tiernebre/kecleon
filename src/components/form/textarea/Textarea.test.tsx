@@ -20,6 +20,12 @@ it("displays with the given amount of rows for height", () => {
   expect(screen.getByRole("textbox")).toHaveAttribute("rows", rows.toString());
 });
 
+it("can be given an id", () => {
+  const id = "some-textarea";
+  render(<Textarea id={id} />);
+  expect(screen.getByRole("textbox")).toHaveAttribute("id", id);
+});
+
 it("can bind to a callback for events", () => {
   const onInput = jest.fn();
   render(<Textarea onInput={onInput} />);
