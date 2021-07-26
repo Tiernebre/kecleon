@@ -1,7 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Color, colors, Size, sizes } from "../../../types";
 import { Select } from "./Select";
 import user from "@testing-library/user-event";
+import { useForm } from "react-hook-form";
+import { Button } from "../..";
 
 it("has unopinionated styling by default", () => {
   render(<Select />);
@@ -59,4 +61,70 @@ it("invokes a callback when a user changes their selected option", () => {
     (screen.getByRole("option", { name: "C" }) as HTMLOptionElement).selected
   ).toBe(false);
   expect(onChange).toHaveBeenCalledTimes(1);
+});
+
+it("can be marked as invalid", () => {
+  render(<Select invalid />);
+  expect(screen.getByRole("combobox")).toBeInvalid();
+});
+
+it("can be marked as valid", () => {
+  render(<Select invalid={false} />);
+  expect(screen.getByRole("combobox")).toBeValid();
+});
+
+it("by default is valid", () => {
+  render(<Select />);
+  expect(screen.getByRole("combobox")).toBeValid();
+});
+
+it("can be marked as being described by another element", () => {
+  const describedBy = "some-element";
+  render(<Select describedBy={describedBy} />);
+  expect(screen.getByRole("combobox")).toHaveAttribute(
+    "aria-describedby",
+    describedBy
+  );
+});
+
+it("can have an id passed to it", () => {
+  const id = "some-select";
+  render(<Select id={id} />);
+  expect(screen.getByRole("combobox")).toHaveAttribute("id", id);
+});
+
+it("can be registered as a React Hook Form uncontrolled component", async () => {
+  type TestForm = {
+    name: string;
+  };
+  type TestBedProps = {
+    onSubmit: (data: TestForm) => void;
+  };
+  const TestBed = ({ onSubmit }: TestBedProps): JSX.Element => {
+    const { register, handleSubmit } = useForm<TestForm>();
+
+    const submit = (data: TestForm) => {
+      onSubmit(data);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(submit)}>
+        <Select register={register("name")}>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </Select>
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  };
+  const onSubmit = jest.fn();
+  render(<TestBed onSubmit={onSubmit} />);
+  const optionToChoose = "B";
+  user.selectOptions(screen.getByRole("combobox"), [optionToChoose]);
+  user.click(screen.getByRole("button"));
+  await waitFor(() => expect(onSubmit).toHaveBeenCalled());
+  expect(onSubmit).toHaveBeenCalledWith({
+    name: optionToChoose,
+  });
 });

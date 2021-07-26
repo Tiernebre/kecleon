@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { Color, Size } from "../../../types";
+import { CommonFormInputAttributes, Size } from "../../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -9,13 +9,13 @@ import {
 } from "../../../utilities";
 
 type InputHtmlAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "size">;
-export type InputProps = InputHtmlAttributes & {
-  color?: Color;
-  size?: Size;
-  rounded?: boolean;
-  isStatic?: boolean;
-  register?: UseFormRegisterReturn;
-};
+export type InputProps = InputHtmlAttributes &
+  CommonFormInputAttributes & {
+    size?: Size;
+    rounded?: boolean;
+    isStatic?: boolean;
+    register?: UseFormRegisterReturn;
+  };
 
 const classNameMap: ClassNameTransformMap<InputProps> = new Map([
   mapClassNameForColor<InputProps>(),
@@ -30,6 +30,8 @@ export const Input = ({
   isStatic,
   rounded,
   register,
+  describedBy,
+  invalid = false,
   ...props
 }: InputProps): JSX.Element => {
   const className = createClassNameFromProps(
@@ -37,5 +39,13 @@ export const Input = ({
     { color, size, isStatic, rounded } as Partial<InputProps>,
     ["input"]
   );
-  return <input className={className} {...props} {...register} />;
+  return (
+    <input
+      {...props}
+      {...register}
+      className={className}
+      aria-invalid={invalid}
+      aria-describedby={describedBy}
+    />
+  );
 };

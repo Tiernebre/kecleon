@@ -1,14 +1,15 @@
-import { Select } from "../select";
+import { Select, SelectProps } from "../select";
 import { Option, SelectOptions } from "../select-options";
 
 type MapStructureToOption<T extends Record<string, unknown>> = (
   structure: T
 ) => Option;
 
-export type MappedSelectProps<T extends Record<string, unknown>> = {
-  options: T[];
-  mapToOption: MapStructureToOption<T>;
-};
+export type MappedSelectProps<T extends Record<string, unknown>> =
+  SelectProps & {
+    options: T[];
+    mapToOption: MapStructureToOption<T>;
+  };
 
 /**
  * MappedSelect is a component meant for taking complex data structures and schemas
@@ -20,10 +21,11 @@ export type MappedSelectProps<T extends Record<string, unknown>> = {
 export const MappedSelect = <T extends Record<string, unknown>>({
   options,
   mapToOption,
+  ...props
 }: MappedSelectProps<T>): JSX.Element => {
   const mappedOptions = options.map((option) => mapToOption(option));
   return (
-    <Select>
+    <Select {...props}>
       <SelectOptions options={mappedOptions} />
     </Select>
   );

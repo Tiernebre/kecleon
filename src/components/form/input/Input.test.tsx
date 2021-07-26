@@ -123,3 +123,34 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
     index,
   });
 });
+
+it("can be marked as invalid", () => {
+  render(<Input invalid />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeInvalid();
+});
+
+it("can be marked as valid", () => {
+  render(<Input invalid={false} />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeValid();
+});
+
+it("by default is valid", () => {
+  render(<Input />);
+  const input = screen.getByRole("textbox");
+  expect(input).toBeValid();
+});
+
+it("can be marked as described by", () => {
+  const describedBy = "some-other-element";
+  render(<Input describedBy={describedBy} />);
+  const input = screen.getByRole("textbox");
+  expect(input).toHaveAttribute("aria-describedby", describedBy);
+});
+
+it("by default is not described by anything", () => {
+  render(<Input />);
+  const input = screen.getByRole("textbox");
+  expect(input).not.toHaveAttribute("aria-describedby");
+});

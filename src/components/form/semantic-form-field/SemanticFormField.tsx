@@ -1,61 +1,64 @@
-import { ReactNode } from "react";
 import {
-  Label,
-  FormControl,
-  Help,
-  ValidatedInput,
-  InputProps,
-  FormField,
-  FormControlProps,
-} from "..";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+  Children,
+  cloneElement,
+  isValidElement,
+  PropsWithChildren,
+  ReactNode,
+} from "react";
+import { Label, FormControl, Help, FormField, FormControlProps } from "..";
+import { FieldError } from "react-hook-form";
+import { CommonFormInputAttributes } from "../../../types";
 
-export type SemanticFormFieldProps = {
+export type SemanticFormFieldProps = PropsWithChildren<{
   control?: FormControlProps;
   help?: string;
   id: string;
-  input: InputProps;
   label: string;
   icons?: ReactNode;
   error?: FieldError;
-  register?: UseFormRegisterReturn;
-};
+}>;
 
 /**
  * SemanticFormField is a component that combines Label, FormControl,
  * and Help components to create a fully composed Form Field
  * for a typical form.
  *
- * Unlike these individual components, this component is based
- * upon given prop data to then render the correct components. This
- * component intentionally favors an inheritance approach vs
- * composition for spinning up standard, similar inputs.
+ * Any given children component will have information about the form field
+ * passed down to it implicitly It is recommended to use {@link Input},
+ * {@link Textarea}, or {@link Select} as they have prop support for the
+ * fields passed down implicitly.
  */
 export const SemanticFormField = ({
   id,
   label,
   help,
   control,
-  input,
   icons,
   error,
-  register,
+  children,
 }: SemanticFormFieldProps): JSX.Element => {
   const helpId = help || error ? `${id}-help` : undefined;
-  const valid = !error;
+  const color = error ? "danger" : undefined;
+
+  const input = Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      return cloneElement<CommonFormInputAttributes>(child, {
+        id,
+        color,
+        invalid: !!error,
+        describedBy: helpId,
+      });
+    } else {
+      return child;
+    }
+  });
 
   return (
     <FormField>
       <Label htmlFor={id}>{label}</Label>
       <FormControl {...control}>
         {icons}
-        <ValidatedInput
-          {...input}
-          id={id}
-          aria-describedby={helpId}
-          valid={valid}
-          register={register}
-        />
+        {input}
       </FormControl>
       <Help id={helpId} error={error}>
         {help}
