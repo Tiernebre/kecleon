@@ -84,3 +84,9 @@ it("can be marked as being described by another element", () => {
     describedBy
   );
 });
+
+it("can have an id passed to it", () => {
+  const id = "some-select";
+  render(<Select id={id} />);
+  expect(screen.getByRole("combobox")).toHaveAttribute("id", id);
+});
