@@ -4,7 +4,7 @@ import {
   createClassNameFromProps,
   mapClassNameForColor,
 } from "../../utilities";
-import styles from "./Spinner.module.css";
+import styles from "./Spinner.module.scss";
 
 const SpinnerDot = (): JSX.Element => (
   <div className={styles.spinner_dot} aria-hidden="true" />
