@@ -2,7 +2,6 @@ import { Color } from "../..";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
-  mapClassNameForColor,
 } from "../../utilities";
 import styles from "./Spinner.module.scss";
 
@@ -15,7 +14,7 @@ type SpinnerProps = {
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
-  mapClassNameForColor(),
+  ["color", (color: string) => styles[`spinner-${color}`]],
 ]);
 
 export const Spinner = (props: SpinnerProps): JSX.Element => {
