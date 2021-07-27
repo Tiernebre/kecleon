@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Notification } from "..";
 import { AlertColor } from "../../types";
-import styles from "./Alert.module.css";
+import styles from "./Alert.module.scss";
 
 export type AlertProps = PropsWithChildren<{
   color: AlertColor;

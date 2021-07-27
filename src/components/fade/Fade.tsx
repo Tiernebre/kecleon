@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import styles from "./Fade.module.css";
+import styles from "./Fade.module.scss";
 
 export type FadeProps = PropsWithChildren<{
   visible: boolean;

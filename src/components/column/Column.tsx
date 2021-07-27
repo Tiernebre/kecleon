@@ -1,4 +1,4 @@
-import styles from "./Column.module.css";
+import styles from "./Column.module.scss";
 import { PropsWithChildren } from "react";
 import {
   ClassNameTransformMap,
