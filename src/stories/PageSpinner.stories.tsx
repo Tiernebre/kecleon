@@ -1,6 +1,7 @@
 import { Story, Meta } from "@storybook/react";
 import { colors, sizes } from "..";
 import { PageSpinner, PageSpinnerProps } from "../components";
+import "./PageSpinner.stories.scss";
 
 export default {
   component: PageSpinner,
