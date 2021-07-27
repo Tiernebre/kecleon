@@ -25,10 +25,11 @@
   },
   "scripts": {
     "bundle:css": "copyfiles -u 1 src/styles/**/* lib && copyfiles -u 1 src/**/*.css lib",
+    "bundle:scss": "copyfiles -u 1 src/styles/**/* lib && copyfiles -u 1 src/**/*.scss lib",
     "clean": "rimraf ./lib",
     "prebuild": "yarn clean",
     "build": "tsc --p tsconfig.lib.json",
-    "postbuild": "yarn bundle:css",
+    "postbuild": "yarn bundle:css && yarn bundle:scss",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint . --max-warnings=0",
     "test": "react-scripts test",
