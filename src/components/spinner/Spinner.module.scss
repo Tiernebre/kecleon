@@ -116,3 +116,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
   }
 }
+
+$spinner-sizes: (
+  "small": 20px,
+  "normal": 40px,
+  "medium": 60px,
+  "large": 100px,
+);
+
+@each $sizeName, $size in $spinner-sizes {
+  .is-#{$sizeName} {
+    width: $size;
+    height: $size;
+  }
+}

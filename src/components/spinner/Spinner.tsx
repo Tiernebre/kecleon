@@ -1,4 +1,5 @@
 import { Color } from "../..";
+import { Size } from "../../types";
 import {
   ClassNameTransformMap,
   createClassNameFromProps,
@@ -12,19 +13,22 @@ const SpinnerDot = (): JSX.Element => (
 type SpinnerProps = {
   label?: string;
   color?: Color;
+  size?: Size;
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
   ["color", (color: string) => styles[`is-${color}`]],
+  ["size", (size: string) => styles[`is-${size}`]],
 ]);
 
 export const Spinner = ({
   label = "Loading...",
   color = "white",
+  size = "normal",
 }: SpinnerProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMapping,
-    { color } as Partial<SpinnerProps>,
+    { color, size } as Partial<SpinnerProps>,
     [styles.spinner]
   );
 
