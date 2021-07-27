@@ -22,7 +22,11 @@ export default {
   },
 } as Meta<PageSpinnerProps>;
 
-const Template: Story = (args) => <PageSpinner {...args} />;
+const Template: Story = (args) => (
+  <div style={{ height: "100vh" }}>
+    <PageSpinner {...args} />
+  </div>
+);
 
 export const InteractivePageSpinner = Template.bind({});
 InteractivePageSpinner.args = {};
