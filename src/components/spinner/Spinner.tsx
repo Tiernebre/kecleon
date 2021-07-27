@@ -23,7 +23,7 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
 
 export const Spinner = ({
   label = "Loading...",
-  color = "white",
+  color = "black",
   size = "normal",
 }: SpinnerProps): JSX.Element => {
   const className = createClassNameFromProps(

@@ -5,7 +5,7 @@ import styles from "./Spinner.module.scss";
 
 it("by default is white", () => {
   render(<Spinner />);
-  expect(screen.getByRole("alert")).toHaveClass(styles["is-white"]);
+  expect(screen.getByRole("alert")).toHaveClass(styles["is-black"]);
 });
 
 it("by default is labeled with 'Loading...'", () => {
