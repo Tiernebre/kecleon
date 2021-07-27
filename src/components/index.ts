@@ -20,6 +20,7 @@ export * from "./image";
 export * from "./level";
 export * from "./navigation";
 export * from "./notification";
+export * from "./page-spinner";
 export * from "./smart-alerts";
 export * from "./spinner";
 export * from "./table";
