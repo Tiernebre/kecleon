@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import { Spinner } from ".";
-import { Color, colors } from "../../types";
+import { Color, colors, Size, sizes } from "../../types";
 import styles from "./Spinner.module.scss";
 
 it("by default is white", () => {
@@ -24,4 +24,9 @@ it("supports a custom label", () => {
 it.each<Color>(colors)("can be colored in %p", (color: Color) => {
   render(<Spinner color={color} />);
   expect(screen.getByRole("alert")).toHaveClass(styles[`is-${color}`]);
+});
+
+it.each<Size>(sizes)("can be sized in %p", (size: Size) => {
+  render(<Spinner size={size} />);
+  expect(screen.getByRole("alert")).toHaveClass(styles[`is-${size}`]);
 });
