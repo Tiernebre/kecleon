@@ -10,7 +10,7 @@ const SpinnerDot = (): JSX.Element => (
   <div className={styles.spinner_dot} aria-hidden="true" />
 );
 
-type SpinnerProps = {
+export type SpinnerProps = {
   label?: string;
   color?: Color;
   size?: Size;
