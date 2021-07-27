@@ -42,7 +42,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   display: block;
   width: 25%;
   height: 25%;
-  background-color: #fff;
+  background-color: blue;
   border-radius: 100%;
   animation: spinner_dot-before 2s infinite ease-in-out both;
 }

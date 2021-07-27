@@ -6,7 +6,7 @@ export default {
   title: "Example/Spinner",
 } as Meta;
 
-const Template: Story = () => <Spinner />;
+const Template: Story = () => <Spinner color="primary" />;
 
 export const DefaultSpinner = Template.bind({});
 DefaultSpinner.args = {};
