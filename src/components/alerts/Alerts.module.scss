@@ -1,3 +1,5 @@
+$navbar-z: 30;
+
 .alerts {
   position: fixed;
   top: 1.5rem;
@@ -9,7 +11,7 @@
     working at all with using SCSS modules. Still looking into this but don't want to hold up this changeset on
     just this.
   */
-  z-index: 31;
+  z-index: $navbar-z + 1;
 }
 
 .alerts > * {
