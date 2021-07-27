@@ -21,6 +21,7 @@ export * from "./level";
 export * from "./navigation";
 export * from "./notification";
 export * from "./smart-alerts";
+export * from "./spinner";
 export * from "./table";
 export * from "./tag";
 export * from "./tags";
