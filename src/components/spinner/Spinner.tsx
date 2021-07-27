@@ -10,6 +10,7 @@ const SpinnerDot = (): JSX.Element => (
 );
 
 type SpinnerProps = {
+  label?: string;
   color?: Color;
 };
 
@@ -17,13 +18,18 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
   ["color", (color: string) => styles[`is-${color}`]],
 ]);
 
-export const Spinner = (props: SpinnerProps): JSX.Element => {
-  const className = createClassNameFromProps(classNameMapping, props, [
-    styles.spinner,
-  ]);
+export const Spinner = ({
+  label = "Loading...",
+  color = "white",
+}: SpinnerProps): JSX.Element => {
+  const className = createClassNameFromProps(
+    classNameMapping,
+    { color } as Partial<SpinnerProps>,
+    [styles.spinner]
+  );
 
   return (
-    <div className={className}>
+    <div aria-label={label} role="alert" className={className}>
       <SpinnerDot />
       <SpinnerDot />
       <SpinnerDot />
