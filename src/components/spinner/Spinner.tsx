@@ -14,7 +14,7 @@ type SpinnerProps = {
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
-  ["color", (color: string) => styles[`spinner-${color}`]],
+  ["color", (color: string) => styles[`is-${color}`]],
 ]);
 
 export const Spinner = (props: SpinnerProps): JSX.Element => {

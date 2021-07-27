@@ -110,7 +110,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 }
 
 @each $colorName, $colorList in $colors {
-  .spinner-#{$colorName} {
+  .is-#{$colorName} {
     .spinner_dot:before {
       background-color: list.nth($colorList, 1);
     }
