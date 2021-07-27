@@ -3,8 +3,8 @@ import { Story, Meta } from "@storybook/react";
 import { Level, LevelItem, LevelProps } from "../components";
 
 export default {
-  component: Level,
   title: "Example/Level",
+  component: Level,
 } as Meta<LevelProps>;
 
 const StandardLevelTemplate: Story<LevelProps> = () => (
