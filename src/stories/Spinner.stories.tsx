@@ -1,12 +1,27 @@
 import { Story, Meta } from "@storybook/react";
-import { Spinner } from "../components";
+import { colors, sizes } from "..";
+import { Spinner, SpinnerProps } from "../components";
 
 export default {
   component: Spinner,
   title: "Example/Spinner",
-} as Meta;
+  argTypes: {
+    color: {
+      control: {
+        type: "select",
+        options: colors,
+      },
+    },
+    size: {
+      control: {
+        type: "select",
+        options: sizes,
+      },
+    },
+  },
+} as Meta<SpinnerProps>;
 
-const Template: Story = () => <Spinner color="primary" size="medium" />;
+const Template: Story = (args) => <Spinner {...args} />;
 
-export const DefaultSpinner = Template.bind({});
-DefaultSpinner.args = {};
+export const InteractiveSpinner = Template.bind({});
+InteractiveSpinner.args = {};

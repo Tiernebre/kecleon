@@ -10,7 +10,7 @@ const SpinnerDot = (): JSX.Element => (
   <div className={styles.spinner_dot} aria-hidden="true" />
 );
 
-type SpinnerProps = {
+export type SpinnerProps = {
   label?: string;
   color?: Color;
   size?: Size;
@@ -23,7 +23,7 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
 
 export const Spinner = ({
   label = "Loading...",
-  color = "white",
+  color = "black",
   size = "normal",
 }: SpinnerProps): JSX.Element => {
   const className = createClassNameFromProps(
