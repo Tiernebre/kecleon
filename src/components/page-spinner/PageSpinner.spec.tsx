@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, waitFor } from "@testing-library/react";
 import { PageSpinner } from ".";
 import { Color, colors, Size, sizes } from "../../types";
 import styles from "../spinner/Spinner.module.scss";
@@ -29,4 +29,13 @@ it.each<Color>(colors)("can be colored in %p", (color: Color) => {
 it.each<Size>(sizes)("can be sized in %p", (size: Size) => {
   render(<PageSpinner size={size} />);
   expect(screen.getByRole("alert")).toHaveClass(styles[`is-${size}`]);
+});
+
+it("renders the spinner with negative margin to **truly** be centered", async () => {
+  render(<PageSpinner />);
+  const spinner = screen.getByRole("alert");
+  const spinnerHeight = spinner.offsetHeight;
+  await waitFor(() =>
+    expect(spinner).toHaveStyle(`margin-top: -${spinnerHeight / 2}px`)
+  );
 });
