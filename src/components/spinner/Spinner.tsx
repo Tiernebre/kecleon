@@ -1,4 +1,4 @@
-import { forwardRef, Ref } from "react";
+import { CSSProperties, forwardRef, Ref } from "react";
 import { Color } from "../..";
 import { Size } from "../../types";
 import {
@@ -15,6 +15,7 @@ export type SpinnerProps = {
   label?: string;
   color?: Color;
   size?: Size;
+  css?: CSSProperties;
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
@@ -24,7 +25,12 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
 
 export const Spinner = forwardRef(
   (
-    { label = "Loading...", color = "black", size = "normal" }: SpinnerProps,
+    {
+      label = "Loading...",
+      color = "black",
+      size = "normal",
+      css,
+    }: SpinnerProps,
     ref: Ref<HTMLDivElement>
   ): JSX.Element => {
     const className = createClassNameFromProps(
@@ -34,7 +40,13 @@ export const Spinner = forwardRef(
     );
 
     return (
-      <div aria-label={label} role="alert" className={className} ref={ref}>
+      <div
+        aria-label={label}
+        role="alert"
+        className={className}
+        ref={ref}
+        style={css}
+      >
         <SpinnerDot />
         <SpinnerDot />
         <SpinnerDot />
