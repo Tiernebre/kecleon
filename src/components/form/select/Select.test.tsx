@@ -156,3 +156,72 @@ it("does not display a placeholder option if placeholder is not provided", () =>
   expect(select).toHaveValue("A");
   expect(select.firstChild?.isEqualNode(optionA)).toEqual(true);
 });
+
+it("hides the placeholder option if the user chose a valid option", () => {
+  const placeholder = "Select from the MANY options below!";
+  render(
+    <Select placeholder={placeholder} hidePlaceholderAfterChange>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </Select>
+  );
+  const placeholderOption = screen.getByRole("option", { name: placeholder });
+  expect(placeholderOption).toBeInTheDocument();
+  expect(placeholderOption).toBeVisible();
+  expect(screen.getAllByRole("option")).toHaveLength(3);
+  const select = screen.getByRole("combobox");
+  expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
+  expect(select).toHaveValue("");
+  user.selectOptions(select, ["A"]);
+  const removedPlaceholderOption = screen.queryByRole("option", {
+    name: placeholder,
+  });
+  expect(removedPlaceholderOption).toBeNull();
+  expect(screen.getAllByRole("option")).toHaveLength(2);
+});
+
+it("does not hide the placeholder option if the user chose a valid option but hiding was disabled", () => {
+  const placeholder = "Select from the MANY options below!";
+  render(
+    <Select placeholder={placeholder} hidePlaceholderAfterChange={false}>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </Select>
+  );
+  const placeholderOption = screen.getByRole("option", { name: placeholder });
+  expect(placeholderOption).toBeInTheDocument();
+  expect(placeholderOption).toBeVisible();
+  expect(screen.getAllByRole("option")).toHaveLength(3);
+  const select = screen.getByRole("combobox");
+  expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
+  expect(select).toHaveValue("");
+  user.selectOptions(select, ["A"]);
+  const removedPlaceholderOption = screen.queryByRole("option", {
+    name: placeholder,
+  });
+  expect(removedPlaceholderOption).not.toBeNull();
+  expect(screen.getAllByRole("option")).toHaveLength(3);
+});
+
+it("does not hide the placeholder option if the user chose a valid option by default", () => {
+  const placeholder = "Select from the MANY options below!";
+  render(
+    <Select placeholder={placeholder}>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </Select>
+  );
+  const placeholderOption = screen.getByRole("option", { name: placeholder });
+  expect(placeholderOption).toBeInTheDocument();
+  expect(placeholderOption).toBeVisible();
+  expect(screen.getAllByRole("option")).toHaveLength(3);
+  const select = screen.getByRole("combobox");
+  expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
+  expect(select).toHaveValue("");
+  user.selectOptions(select, ["A"]);
+  const removedPlaceholderOption = screen.queryByRole("option", {
+    name: placeholder,
+  });
+  expect(removedPlaceholderOption).not.toBeNull();
+  expect(screen.getAllByRole("option")).toHaveLength(3);
+});

@@ -1,4 +1,4 @@
-import { SelectHTMLAttributes } from "react";
+import { SelectHTMLAttributes, useEffect, useRef, useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { CommonFormInputAttributes, Size } from "../../../types";
 import {
@@ -16,6 +16,7 @@ export type SelectProps = HTMLSelectAttributes &
   CommonFormInputAttributes & {
     size?: Size;
     register?: UseFormRegisterReturn;
+    hidePlaceholderAfterChange?: boolean;
   };
 
 const classNameMap: ClassNameTransformMap<SelectProps> = new Map([
@@ -33,8 +34,10 @@ export const Select = ({
   register,
   invalid = false,
   placeholder,
+  hidePlaceholderAfterChange,
   ...props
 }: SelectProps): JSX.Element => {
+  const [interactedWith, setInteractedWith] = useState(false);
   const className = createClassNameFromProps(
     classNameMap,
     { color, size, multiple } as Partial<SelectProps>,
@@ -42,10 +45,16 @@ export const Select = ({
   );
 
   const placeholderOption = (
-    <option disabled selected value="">
+    <option disabled selected value="" hidden={interactedWith}>
       {placeholder}
     </option>
   );
+
+  const onInput = () => {
+    if (hidePlaceholderAfterChange) {
+      setInteractedWith(true);
+    }
+  };
 
   return (
     <div className={className}>
@@ -55,6 +64,7 @@ export const Select = ({
         {...props}
         aria-invalid={invalid}
         aria-describedby={describedBy}
+        onInput={onInput}
       >
         {placeholder && placeholderOption}
         {children}
