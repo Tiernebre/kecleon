@@ -1,21 +1,16 @@
 import { PropsWithChildren } from "react";
-import { Button } from "../..";
+import { Button, IconButtonProps } from "../..";
 
-export type DropdownItemProps = PropsWithChildren<{
-  active?: boolean;
-  onClick?: () => void;
-}>;
+export type DropdownItemProps = IconButtonProps &
+  PropsWithChildren<{
+    active?: boolean;
+  }>;
 
 export const DropdownItem = ({
-  children,
   active,
-  onClick,
+  ...buttonProps
 }: DropdownItemProps): JSX.Element => {
   const color = active ? "link" : "white";
 
-  return (
-    <Button color={color} className="dropdown-item" onClick={onClick}>
-      {children}
-    </Button>
-  );
+  return <Button color={color} className="dropdown-item" {...buttonProps} />;
 };
