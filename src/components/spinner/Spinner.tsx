@@ -15,7 +15,7 @@ export type SpinnerProps = {
   label?: string;
   color?: Color;
   size?: Size;
-  css?: CSSProperties;
+  customStyle?: CSSProperties;
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
@@ -29,7 +29,7 @@ export const Spinner = forwardRef(
       label = "Loading...",
       color = "black",
       size = "normal",
-      css,
+      customStyle,
     }: SpinnerProps,
     ref: Ref<HTMLDivElement>
   ): JSX.Element => {
@@ -45,7 +45,7 @@ export const Spinner = forwardRef(
         role="alert"
         className={className}
         ref={ref}
-        style={css}
+        style={customStyle}
       >
         <SpinnerDot />
         <SpinnerDot />
