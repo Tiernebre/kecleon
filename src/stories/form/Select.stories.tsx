@@ -25,6 +25,11 @@ export default {
         type: "boolean",
       },
     },
+    placeholder: {
+      control: {
+        type: "text",
+      },
+    },
   },
 } as Meta<SelectProps>;
 
