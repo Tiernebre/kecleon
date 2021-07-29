@@ -35,6 +35,6 @@ it("supports being provided CSS as a prop", () => {
   const css = {
     margin: "10px",
   };
-  render(<Spinner css={css} />);
+  render(<Spinner customStyle={css} />);
   expect(screen.getByRole("alert")).toHaveStyle("margin: 10px");
 });
