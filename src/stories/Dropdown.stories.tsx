@@ -50,12 +50,15 @@ const DumbDropdownTemplate: Story<DropdownProps> = (args) => {
       >
         Dropdown button
       </DropdownTrigger>
-      <DropdownMenu id="dropdown-menu">
+      <DropdownMenu active={args.active || false} id="dropdown-menu">
         <DropdownContent>
           <DropdownItem>Dropdown Item</DropdownItem>
           <DropdownItem>Other dropdown item</DropdownItem>
           <DropdownItem active>Active dropdown item</DropdownItem>
-          <DropdownItem>With a divider</DropdownItem>
+          <DropdownItem icon={{ name: "home", direction: "left" }}>
+            With an icon
+          </DropdownItem>
+          <DropdownItem divider>With a divider</DropdownItem>
         </DropdownContent>
       </DropdownMenu>
     </Dropdown>
@@ -75,7 +78,10 @@ const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
           <DropdownItem>Dropdown Item</DropdownItem>
           <DropdownItem>Other dropdown item</DropdownItem>
           <DropdownItem active>Active dropdown item</DropdownItem>
-          <DropdownItem>With a divider</DropdownItem>
+          <DropdownItem divider>With a divider</DropdownItem>
+          <DropdownItem icon={{ name: "home", direction: "left" }}>
+            With an icon
+          </DropdownItem>
         </Fragment>
       }
     />
