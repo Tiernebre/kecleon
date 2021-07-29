@@ -79,6 +79,9 @@ const SmartDropdownTemplate: Story<SmartDropdownProps> = (args) => {
           <DropdownItem>Other dropdown item</DropdownItem>
           <DropdownItem active>Active dropdown item</DropdownItem>
           <DropdownItem>With a divider</DropdownItem>
+          <DropdownItem icon={{ name: "home", direction: "left" }}>
+            With an icon
+          </DropdownItem>
         </Fragment>
       }
     />
