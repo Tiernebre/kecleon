@@ -1,3 +1,4 @@
+import { CSSProperties, forwardRef, Ref } from "react";
 import { Color } from "../..";
 import { Size } from "../../types";
 import {
@@ -14,6 +15,7 @@ export type SpinnerProps = {
   label?: string;
   color?: Color;
   size?: Size;
+  customStyle?: CSSProperties;
 };
 
 const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
@@ -21,24 +23,36 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
   ["size", (size: string) => styles[`is-${size}`]],
 ]);
 
-export const Spinner = ({
-  label = "Loading...",
-  color = "black",
-  size = "normal",
-}: SpinnerProps): JSX.Element => {
-  const className = createClassNameFromProps(
-    classNameMapping,
-    { color, size } as Partial<SpinnerProps>,
-    [styles.spinner]
-  );
+export const Spinner = forwardRef(
+  (
+    {
+      label = "Loading...",
+      color = "black",
+      size = "normal",
+      customStyle,
+    }: SpinnerProps,
+    ref: Ref<HTMLDivElement>
+  ): JSX.Element => {
+    const className = createClassNameFromProps(
+      classNameMapping,
+      { color, size } as Partial<SpinnerProps>,
+      [styles.spinner]
+    );
 
-  return (
-    <div aria-label={label} role="alert" className={className}>
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-    </div>
-  );
-};
+    return (
+      <div
+        aria-label={label}
+        role="alert"
+        className={className}
+        ref={ref}
+        style={customStyle}
+      >
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+      </div>
+    );
+  }
+);
