@@ -1,3 +1,4 @@
+import { forwardRef, Ref } from "react";
 import { Color } from "../..";
 import { Size } from "../../types";
 import {
@@ -21,24 +22,25 @@ const classNameMapping: ClassNameTransformMap<SpinnerProps> = new Map([
   ["size", (size: string) => styles[`is-${size}`]],
 ]);
 
-export const Spinner = ({
-  label = "Loading...",
-  color = "black",
-  size = "normal",
-}: SpinnerProps): JSX.Element => {
-  const className = createClassNameFromProps(
-    classNameMapping,
-    { color, size } as Partial<SpinnerProps>,
-    [styles.spinner]
-  );
+export const Spinner = forwardRef(
+  (
+    { label = "Loading...", color = "black", size = "normal" }: SpinnerProps,
+    ref: Ref<HTMLDivElement>
+  ): JSX.Element => {
+    const className = createClassNameFromProps(
+      classNameMapping,
+      { color, size } as Partial<SpinnerProps>,
+      [styles.spinner]
+    );
 
-  return (
-    <div aria-label={label} role="alert" className={className}>
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-      <SpinnerDot />
-    </div>
-  );
-};
+    return (
+      <div aria-label={label} role="alert" className={className} ref={ref}>
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+        <SpinnerDot />
+      </div>
+    );
+  }
+);
