@@ -131,10 +131,28 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
 
 it("displays a placeholder option that is chosen by default if placeholder is provided", () => {
   const placeholder = "Select from the MANY options below!";
-  render(<Select placeholder={placeholder} />);
+  render(
+    <Select placeholder={placeholder}>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </Select>
+  );
   const placeholderOption = screen.getByRole("option", { name: placeholder });
   expect(placeholderOption).toBeInTheDocument();
   const select = screen.getByRole("combobox");
   expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
   expect(select).toHaveValue("");
+});
+
+it("does not display a placeholder option if placeholder is not provided", () => {
+  render(
+    <Select>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </Select>
+  );
+  const select = screen.getByRole("combobox");
+  const optionA = screen.getByRole("option", { name: "A" });
+  expect(select).toHaveValue("A");
+  expect(select.firstChild?.isEqualNode(optionA)).toEqual(true);
 });
