@@ -41,3 +41,18 @@ it("can be rendered with an icon", () => {
   const foundIconMessage = screen.getByText(iconMessage);
   expect(foundIconMessage).toBeInTheDocument();
 });
+
+it("can be rendered with a divider", () => {
+  render(<DropdownItem divider>Dropdown Item</DropdownItem>);
+  expect(screen.getByRole("separator")).toBeInTheDocument();
+});
+
+it("can be rendered without a divider explicitly", () => {
+  render(<DropdownItem divider={false}>Dropdown Item</DropdownItem>);
+  expect(screen.queryByRole("separator")).toBeNull();
+});
+
+it("is rendered without a divider by default", () => {
+  render(<DropdownItem>Dropdown Item</DropdownItem>);
+  expect(screen.queryByRole("separator")).toBeNull();
+});

@@ -6,12 +6,16 @@ export type DropdownItemProps = Omit<IconButtonProps, "icon"> &
   PropsWithChildren<{
     active?: boolean;
     icon?: IconProps;
+    divider?: boolean;
   }>;
 
 const className = "dropdown-item";
 
+const DropdownDivider = () => <hr className="dropdown-divider" />;
+
 export const DropdownItem = ({
   active,
+  divider,
   ...buttonProps
 }: DropdownItemProps): JSX.Element => {
   const color = active ? "link" : "white";
@@ -22,9 +26,16 @@ export const DropdownItem = ({
     color,
   };
 
-  if (props.icon) {
-    return <IconButton icon={props.icon} {...props} />;
-  } else {
-    return <Button {...props} />;
-  }
+  const dropdownItemButton = props.icon ? (
+    <IconButton icon={props.icon} {...props} />
+  ) : (
+    <Button {...props} />
+  );
+
+  return (
+    <>
+      {divider && <DropdownDivider />}
+      {dropdownItemButton}
+    </>
+  );
 };
