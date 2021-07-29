@@ -30,3 +30,11 @@ it.each<Size>(sizes)("can be sized in %p", (size: Size) => {
   render(<Spinner size={size} />);
   expect(screen.getByRole("alert")).toHaveClass(styles[`is-${size}`]);
 });
+
+it("supports being provided CSS as a prop", () => {
+  const css = {
+    margin: "10px",
+  };
+  render(<Spinner css={css} />);
+  expect(screen.getByRole("alert")).toHaveStyle("margin: 10px");
+});
