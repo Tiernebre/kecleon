@@ -1,4 +1,4 @@
-import { SelectHTMLAttributes, useEffect, useRef, useState } from "react";
+import { SelectHTMLAttributes, useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { CommonFormInputAttributes, Size } from "../../../types";
 import {
