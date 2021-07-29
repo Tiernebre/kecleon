@@ -44,17 +44,17 @@ export const Select = ({
     ["select"]
   );
 
-  const placeholderOption = (
-    <option disabled selected value="" hidden={interactedWith}>
-      {placeholder}
-    </option>
-  );
-
   const onInput = () => {
     if (hidePlaceholderAfterChange) {
       setInteractedWith(true);
     }
   };
+
+  const placeholderOption = placeholder && (
+    <option disabled selected value="" hidden={interactedWith}>
+      {placeholder}
+    </option>
+  );
 
   return (
     <div className={className}>
@@ -66,7 +66,7 @@ export const Select = ({
         aria-describedby={describedBy}
         onInput={onInput}
       >
-        {placeholder && placeholderOption}
+        {placeholderOption}
         {children}
       </select>
     </div>
