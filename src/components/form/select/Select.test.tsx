@@ -136,4 +136,5 @@ it("displays a placeholder option that is chosen by default if placeholder is pr
   expect(placeholderOption).toBeInTheDocument();
   const select = screen.getByRole("combobox");
   expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
+  expect(select).toHaveValue("");
 });
