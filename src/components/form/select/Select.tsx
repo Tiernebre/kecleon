@@ -32,12 +32,19 @@ export const Select = ({
   describedBy,
   register,
   invalid = false,
+  placeholder,
   ...props
 }: SelectProps): JSX.Element => {
   const className = createClassNameFromProps(
     classNameMap,
     { color, size, multiple } as Partial<SelectProps>,
     ["select"]
+  );
+
+  const placeholderOption = (
+    <option disabled selected value="">
+      {placeholder}
+    </option>
   );
 
   return (
@@ -49,6 +56,7 @@ export const Select = ({
         aria-invalid={invalid}
         aria-describedby={describedBy}
       >
+        {placeholder && placeholderOption}
         {children}
       </select>
     </div>

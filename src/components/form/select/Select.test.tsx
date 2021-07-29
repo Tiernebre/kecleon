@@ -128,3 +128,12 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
     name: optionToChoose,
   });
 });
+
+it("displays a placeholder option that is chosen by default if placeholder is provided", () => {
+  const placeholder = "Select from the MANY options below!";
+  render(<Select placeholder={placeholder} />);
+  const placeholderOption = screen.getByRole("option", { name: placeholder });
+  expect(placeholderOption).toBeInTheDocument();
+  const select = screen.getByRole("combobox");
+  expect(select.firstChild?.isEqualNode(placeholderOption)).toEqual(true);
+});
