@@ -51,7 +51,7 @@ export const Select = ({
   };
 
   const placeholderOption = placeholder && (
-    <option disabled selected value="" hidden={interactedWith}>
+    <option disabled hidden={interactedWith}>
       {placeholder}
     </option>
   );
