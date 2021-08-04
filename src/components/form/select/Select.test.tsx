@@ -37,6 +37,44 @@ it("can support selecting single (with multiple as false)", () => {
   expect(select.parentElement).not.toHaveClass("is-multiple");
 });
 
+it("by default uses the value of the first option if no placeholder is provided", () => {
+  render(
+    <Select>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </Select>
+  );
+  const select = screen.getByRole("combobox");
+  expect(select).toHaveValue("A");
+});
+
+it("by default uses an empty string value if a placeholder is provided", () => {
+  render(
+    <Select placeholder="placeholder">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </Select>
+  );
+  const select = screen.getByRole("combobox");
+  expect(select).toHaveValue("");
+});
+
+it("can have its value changed when an option is chosen with a placeholder", () => {
+  render(
+    <Select placeholder="placeholder">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </Select>
+  );
+  const select = screen.getByRole("combobox");
+  expect(select).toHaveValue("");
+  user.selectOptions(select, ["A"]);
+  expect(select).toHaveValue("A");
+});
+
 it("invokes a callback when a user changes their selected option", () => {
   const onChange = jest.fn();
   render(
@@ -124,6 +162,7 @@ it("can be registered as a React Hook Form uncontrolled component", async () => 
   user.selectOptions(screen.getByRole("combobox"), [optionToChoose]);
   user.click(screen.getByRole("button"));
   await waitFor(() => expect(onSubmit).toHaveBeenCalled());
+  expect(screen.getByRole("combobox")).toHaveValue(optionToChoose);
   expect(onSubmit).toHaveBeenCalledWith({
     name: optionToChoose,
   });

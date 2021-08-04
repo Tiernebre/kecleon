@@ -51,14 +51,17 @@ export const Select = ({
   };
 
   const placeholderOption = placeholder && (
-    <option disabled selected value="" hidden={interactedWith}>
+    <option disabled hidden={interactedWith} value="">
       {placeholder}
     </option>
   );
 
+  const defaultValue = placeholderOption ? "" : undefined;
+
   return (
     <div className={className}>
       <select
+        defaultValue={defaultValue}
         {...register}
         multiple={multiple}
         {...props}
