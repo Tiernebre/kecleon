@@ -31,6 +31,9 @@ export default {
       },
     },
   },
+  args: {
+    placeholder: "Placeholder",
+  },
 } as Meta<SelectProps>;
 
 const InteractiveSelectTemplate: Story<SelectProps> = (args) => (
