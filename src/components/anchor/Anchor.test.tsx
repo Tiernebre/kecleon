@@ -3,8 +3,22 @@ import { MemoryRouter, Switch } from "react-router";
 import { Route } from "react-router-dom";
 import { Anchor } from "./Anchor";
 import user from "@testing-library/user-event";
+import { axe } from "jest-axe";
 
 const getLink = () => screen.getByRole("link");
+
+it("is accessible", async () => {
+  const className = "some-custom-srs-link";
+  const href = "https://www.google.com";
+  const { container } = render(
+    <Anchor className={className} href={href}>
+      Link
+    </Anchor>
+  );
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 it("can be passed along traditional HTML attributes for single page routing", () => {
   const className = "some-custom-spa-link";

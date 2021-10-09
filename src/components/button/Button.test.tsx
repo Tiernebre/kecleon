@@ -9,6 +9,7 @@ import {
 import user from "@testing-library/user-event";
 import { MemoryRouter } from "react-router";
 import { Route } from "react-router-dom";
+import { axe } from "jest-axe";
 
 const lightCompatibleColors: ButtonColor[] = [
   "primary",
@@ -18,6 +19,13 @@ const lightCompatibleColors: ButtonColor[] = [
   "info",
   "link",
 ];
+
+it("is accessible", async () => {
+  const text = "Button Test";
+  const { container } = render(<Button>{text}</Button>);
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
 
 it("renders a button", () => {
   const text = "Button Test";
