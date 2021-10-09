@@ -85,19 +85,13 @@ it("invokes a callback when a user changes their selected option", () => {
     </Select>
   );
   expect(onChange).not.toHaveBeenCalled();
-  expect(
-    (screen.getByRole("option", { name: "B" }) as HTMLOptionElement).selected
-  ).toBe(false);
+  const getOptionByName = (name: string): HTMLOptionElement =>
+    screen.getByRole("option", { name });
+  expect(getOptionByName("B").selected).toBe(false);
   user.selectOptions(screen.getByRole("combobox"), ["B"]);
-  expect(
-    (screen.getByRole("option", { name: "A" }) as HTMLOptionElement).selected
-  ).toBe(false);
-  expect(
-    (screen.getByRole("option", { name: "B" }) as HTMLOptionElement).selected
-  ).toBe(true);
-  expect(
-    (screen.getByRole("option", { name: "C" }) as HTMLOptionElement).selected
-  ).toBe(false);
+  expect(getOptionByName("A").selected).toBe(false);
+  expect(getOptionByName("B").selected).toBe(true);
+  expect(getOptionByName("C").selected).toBe(false);
   expect(onChange).toHaveBeenCalledTimes(1);
 });
 
