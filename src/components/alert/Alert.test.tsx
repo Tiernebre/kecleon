@@ -2,6 +2,16 @@ import { render, screen } from "@testing-library/react";
 import { Alert } from "./Alert";
 import user from "@testing-library/user-event";
 import { AlertColor } from "../../types";
+import { axe, toHaveNoViolations } from "jest-axe";
+
+expect.extend(toHaveNoViolations);
+
+it("is accessible", async () => {
+  const { container } = render(<Alert color="success" />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
 
 it("can be closed", () => {
   const onClose = jest.fn();
