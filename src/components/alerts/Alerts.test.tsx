@@ -1,9 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Alert } from "../alert/Alert";
 import { Alerts } from "./Alerts";
-import { axe, toHaveNoViolations } from "jest-axe";
-
-expect.extend(toHaveNoViolations);
+import { axe } from "jest-axe";
 
 it("is accessible", async () => {
   const { container } = render(

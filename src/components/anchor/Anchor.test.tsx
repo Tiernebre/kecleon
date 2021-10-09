@@ -3,9 +3,7 @@ import { MemoryRouter, Switch } from "react-router";
 import { Route } from "react-router-dom";
 import { Anchor } from "./Anchor";
 import user from "@testing-library/user-event";
-import { axe, toHaveNoViolations } from "jest-axe";
-
-expect.extend(toHaveNoViolations);
+import { axe } from "jest-axe";
 
 const getLink = () => screen.getByRole("link");
 

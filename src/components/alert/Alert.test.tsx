@@ -2,9 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Alert } from "./Alert";
 import user from "@testing-library/user-event";
 import { AlertColor } from "../../types";
-import { axe, toHaveNoViolations } from "jest-axe";
-
-expect.extend(toHaveNoViolations);
+import { axe } from "jest-axe";
 
 it("is accessible", async () => {
   const { container } = render(<Alert color="success" />);
