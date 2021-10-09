@@ -84,6 +84,11 @@ yarn install
 yarn start
 ```
 
+## Publishing
+
+This project follows the Angular Conventional Commits format for proper semantic version
+releases. More information at https://www.conventionalcommits.org/en/v1.0.0-beta.4/
+
 ## License
 
 This project is [MIT Licensed](./LICENSE).
